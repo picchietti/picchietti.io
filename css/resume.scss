@@ -1,0 +1,44 @@
+#paper a:hover{text-decoration:underline;}
+#paper{line-height:1.3;font-size:9pt;font-family:arial;overflow:auto;position:relative;padding:50px 90px;}
+#name2{position:relative;float:left;font-weight:bold;font-size:30pt;}
+#pronunciation2{font-size:10pt;text-align:right;}
+#right2{float:right;text-align:right;overflow:auto;font-size:11pt;}
+#education{display:flex;justify-content: space-between;}
+#education div{padding:0 6px;}
+.section{margin-top:20px;}
+.section .title{font-size:12pt;font-weight:bold;margin-bottom:12px;}
+#qr{float:right;width:100px;height:100px;margin-left:10px;background-repeat:no-repeat;background-image:url('//www.jonpicchietti.com/resume/img/qrcode3.png');background-image:url('//www.jonpicchietti.com/resume/img/qrcode.svg');background-size:98px 100px;}
+.experience{margin-top:10px;}
+ul li{line-height:1.5;}
+#skills li{line-height:2;}
+.indent{padding-left:25px;}
+#other-experiences{display:none;}
+#toggle-experiences{text-align: center;padding: 10px 0;}
+.gray-date{color:rgb(109,109,138);}
+#impacts{display: flex;flex-wrap: wrap;justify-content: space-between;}
+#impacts .impact{min-width: 175px;}
+#impacts .impact .fa.fa-info-circle{cursor: help;}
+
+.growth-overview{margin-top: 20px;display: inline-block;overflow: auto;position: relative;}
+.growth-overview-title{font-size: .9em;text-align: center;}
+.growth-overview-total{position:absolute;color: rgba(0, 50, 200, 0.7);font-size: 3em;position: absolute;top: 25%;left: 40%;text-shadow: 1px 1px 3px rgba(100,100,100,0.5);}
+
+.axis path, .axis line {fill: none;stroke: #000;shape-rendering: crispEdges;}
+.line {fill: none;stroke: steelblue;stroke-width: 1.5px;}
+
+@media print{
+	body{background:#fff;height:auto;}
+	a{color:#000;}
+	#paper{padding:0;margin-bottom:0;}
+	#header{display:none;}
+}
+
+@media screen and (max-width:976px){
+	#paper{margin:10px auto;padding:5%;}
+	#name2{margin-bottom:15px;}
+
+	#namebox, #center{width:100%;}
+	#center{padding:0;}
+	#namebox{text-align:center;}
+	#namebox, #occupation{display:block;margin:0 auto;float:none;}
+}
