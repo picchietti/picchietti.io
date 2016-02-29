@@ -45,11 +45,24 @@
 
 					<div class="section">
 						<div class="title">Experience</div>
-						<ul>
-							<li><span class="bold">Talents:</span> Website, software, and app programming. Photo editing.</li>
-							<li><span class="bold">Languages:</span> JavaScript, PHP, MySQL, HTML5, CSS3, Java &amp; Android SDK, Haml.</li>
-							<li><span class="bold">Experience with:</span> Handlebars, Backbone, Bash, Ruby/Rails.</li>
-						</ul>
+						<div id="skills">
+							<div class="subtitle">Skills</div>
+								<span class="skill">JavaScript</span>
+								<span class="skill">CoffeeScript</span>
+								<span class="skill">PHP</span>
+								<span class="skill">MySQL</span>
+								<span class="skill">HTML5</span>
+								<span class="skill">CSS3</span>
+								<span class="skill">Sass</span>
+								<span class="skill">Git</span>
+								<span class="skill">Java &amp; Android SDK</span>
+								<span class="skill">Ruby/Rails</span>
+								<span class="skill">Backbone</span>
+								<span class="skill">Handlebars</span>
+								<span class="skill">Haml</span>
+								<span class="skill">Bash</span>
+								<!-- <span class="skill">D3</span> -->
+						</div>
 					</div>
 
 					<div class="section">
