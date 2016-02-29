@@ -54,69 +54,105 @@
 
 					<div class="section">
 						<div class="title">Employment</div>
-						<div id="experiences" class="indent">
+						<div id="experiences">
 							<div class="experience">
-								<span class="bold">Software Engineer</span>, <a href="http://www.greplytix.com/" target="_blank">Greplytix</a>, <span class="gray-date">2015-Current</span>
-								<ul>
-									<li>Component-based web application development with Backbone, Handlebars, and Haml.</li>
-									<li>Innovating with cutting-edge technologies.</li>
-								</ul>
+								<div class="when fa-stack fa-3x" title="2015 - Current">
+									<i class="fa fa-stack-2x fa-circle"></i>
+									<i class="fa fa-stack-1x year">2015+</i>
+								</div>
+								<div class="what">
+									<i class="fa fa-caret-left"></i>
+									<span class="bold">Software Engineer</span>, <a href="http://www.greplytix.com/" target="_blank">Greplytix</a>
+									<ul>
+										<li>Component-based, MVC web application development.</li>
+										<li>Innovating with cutting-edge technologies.</li>
+									</ul>
+								</div>
 							</div>
 							<div class="experience">
-								<span class="bold">Webmaster</span>, <a href="http://www.siualumni.com/" target="_blank">Southern Illinois University Alumni Association</a>, <span class="gray-date">2013-15</span>
-								<ul>
-									<li>Handled all website tasks.</li>
-									<li>Assisted clients with technical problems.</li>
-									<li>Utilized analytical data for informed, money-saving decisions.</li>
-								</ul>
+								<div class="when fa-stack fa-3x" title="2013 - 2015">
+									<i class="fa fa-stack-2x fa-circle"></i>
+									<i class="fa fa-stack-1x year">13-15</i>
+								</div>
+								<div class="what">
+									<i class="fa fa-caret-left"></i>
+									<span class="bold">Webmaster</span>, <a href="http://www.siualumni.com/" target="_blank">Southern Illinois University Alumni Association</a>
+									<ul>
+										<li>Handled all website tasks.</li>
+										<li>Assisted clients with technical problems.</li>
+										<li>Utilized analytical data for informed, money-saving decisions.</li>
+									</ul>
+								</div>
 							</div>
 							<div class="experience">
-								<span class="bold">Information Technology</span>, <a href="http://infotech.siu.edu/" target="_blank">Southern Illinois University IT</a>, <span class="gray-date">2011-12</span>
-								<ul>
-									<li>Searched thousands of webpages for malicious code.</li>
-									<li>Trained new employees.</li>
-								</ul>
+								<div class="when fa-stack fa-3x" title="2011 - 2012">
+									<i class="fa fa-stack-2x fa-circle"></i>
+									<i class="fa fa-stack-1x year">11-12</i>
+								</div>
+								<div class="what">
+									<i class="fa fa-caret-left"></i>
+									<span class="bold">Information Technology</span>, <a href="http://infotech.siu.edu/" target="_blank">Southern Illinois University IT</a>
+									<ul>
+										<li>Searched thousands of webpages for malicious code.</li>
+										<li>Trained new employees.</li>
+									</ul>
+								</div>
 							</div>
 
 							<div id="other-experiences">
 								<div class="experience">
-									<span class="bold">Webmaster</span>, <a href="https://www.dnadiscovery.net/" target="_blank">DNA Discovery</a>, <span class="gray-date">2014-Ongoing</span>
-									<ul>
-										<li>Rebuilt website to be competitive and informative.</li>
-										<li>Mobile friendly.</li>
-									</ul>
+									<div class="when fa-stack fa-3x" title="2010 - 2011">
+										<i class="fa fa-stack-2x fa-circle"></i>
+										<i class="fa fa-stack-1x year">10-11</i>
+									</div>
+									<div class="what">
+										<i class="fa fa-caret-left"></i>
+										<span class="bold">Computer Lab Manager</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a>
+										<ul>
+											<li>Administered and networked 25 new apple iMacs.</li>
+											<li>Taught students web development.</li>
+										</ul>
+									</div>
 								</div>
+
 								<div class="experience">
-									<span class="bold">Lead Web Developer</span>, Champaign Central High School, <span class="gray-date">2009-11</span>
-									<ul>
-										<li>Built <a href="http://internal.champaignschools.org/staffwebsites/plattnda/" target="_blank">webpage</a> for Physics professor to display PowerPoint lectures online.</li>
-										<li>Only student with expertise and trust to work on <a href="http://www.champaignschools.org/schools/home/?id=32" target="_blank">school website</a>.</li>
-										<li>Edited several hundred webpages.</li>
-									</ul>
-								</div>
-								<div class="experience">
-									<span class="bold">Computer Lab Manager</span>, Champaign Central High School, <span class="gray-date">2010-11</span>
-									<ul>
-										<li>Administered and networked 25 new apple iMacs.</li>
-										<li>Taught students web development.</li>
-									</ul>
-								</div>
-								<div class="experience">
-									<span class="bold">More websites I've worked on but no longer maintain: </span><a href="http://www.stlaurs.com/" target="_blank">stlaurs.com</a>, <a href="http://www2.cs.siu.edu/~HPCLab/" target="_blank">cs.siu.edu/~HPCLab</a>, msknighteducation.com
+									<div class="when fa-stack fa-3x" title="2009 - 2011">
+										<i class="fa fa-stack-2x fa-circle"></i>
+										<i class="fa fa-stack-1x year">09-11</i>
+									</div>
+									<div class="what">
+										<i class="fa fa-caret-left"></i>
+										<span class="bold">Lead Web Developer</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a>
+										<ul>
+											<li>Only student with expertise and trust to work on <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">school website</a>.</li>
+											<li>Edited several hundred webpages.</li>
+										</ul>
+									</div>
 								</div>
 							</div>
+						</div>
 
-							<div id="toggle-experiences" class="no-select">
-								<span class="link" onclick="Loader.load('/scripts/snippets/toggle.js', 'Toggle.display(\'other-experiences\')')">(3) More</span>
-							</div>
-
+						<div id="toggle-experiences" class="no-select">
+							<span class="link" onclick="Loader.load('/scripts/snippets/toggle.js', 'Toggle.display(\'other-experiences\')')">(2) More</span>
 						</div>
 					</div>
 
 					<div class="section">
-						<div class="title">Software &amp; Apps</div>
+						<div class="title">Websites &amp; Software</div>
 						<ul>
 							<li>Hamlbars - Open-source <a href="https://atom.io/packages/language-hamlbars" target="_blank">Atom</a> and <a href="https://packagecontrol.io/packages/Hamlbars" target="_blank">Sublime Text 3</a> editor plugins.</li>
+							<li>Websites:
+								<ul>
+									<li><a href="https://www.dnadiscovery.net/" target="_blank">DNA Discovery</a></li>
+								</ul>
+							</li>
+							<li>Websites I've worked on but no longer maintain:
+								<ul>
+									<li><a href="http://www.stlaurs.org/" target="_blank">Stlaurs</a></li>
+									<li><a href="http://www2.cs.siu.edu/~HPCLab/" target="_blank">SIU HPC Lab</a></li>
+									<li>msknighteducation.com</li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 
