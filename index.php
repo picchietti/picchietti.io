@@ -13,6 +13,21 @@
 				growth_overview("#users-graph", "data/users-month.php", "Last 30 days", false);
 				growth_overview("#pageviews-graph", "data/pageviews-month.php", "Last 30 days", false);
 			}, false);
+
+			window.addEventListener('DOMContentLoaded', function(){
+				$('toggle-experiences').addEventListener('click', function(){
+					Loader.load("/scripts/snippets/toggle.js", function(){
+						Toggle.display('other-experiences');
+
+						var button = $('toggle-experiences');
+						var box = $('other-experiences');
+						if(box.style.display != 'none')
+							button.innerHTML = '(2) Less';
+						else
+							button.innerHTML = '(2) More';
+					});
+				}, false);
+			}, false);
 		</script>
 	</head>
 	<body>
@@ -145,13 +160,13 @@
 							</div>
 						</div>
 
-						<div id="toggle-experiences" class="no-select">
-							<span class="link" onclick="Loader.load('/scripts/snippets/toggle.js', 'Toggle.display(\'other-experiences\')')">(2) More</span>
+						<div class="alignc">
+							<button id="toggle-experiences">(2) More</button>
 						</div>
 					</div>
 
 					<div class="section">
-						<div class="title">Websites &amp; Software</div>
+						<div class="title">Software &amp; Projects</div>
 						<ul>
 							<li>Hamlbars - Open-source <a href="https://atom.io/packages/language-hamlbars" target="_blank">Atom</a> and <a href="https://packagecontrol.io/packages/Hamlbars" target="_blank">Sublime Text 3</a> editor plugins.</li>
 							<li>Websites:

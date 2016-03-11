@@ -48,8 +48,7 @@ $button_blue: rgb(45, 139, 215);
 	height:100px;
 	margin-left:10px;
 	background-repeat:no-repeat;
-	background-image:url('//www.jonpicchietti.com/resume/img/qrcode3.png');
-	background-image:url('//www.jonpicchietti.com/resume/img/qrcode.svg');
+	background-image:url('//www.jonpicchietti.com/img/qrcode.svg');
 	background-size:98px 100px;
 }
 
@@ -73,7 +72,6 @@ $button_blue: rgb(45, 139, 215);
 }
 
 #other-experiences{display:none;}
-#toggle-experiences{text-align: center;padding: 10px 0;}
 
 #experiences{
 	border-left: 2px solid gray;
