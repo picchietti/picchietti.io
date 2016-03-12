@@ -16,7 +16,7 @@ if(isset($_COOKIE["PHPSESSID"])){
 #access, #signin{float:left;width:48%;}
 #signin input{margin:2px 0;}
 #security{margin:4px auto;height:5px;background-color:#ddd;}
-#strength{height:100%;}
+#strength{height:100%;width:0;transition: width .4s;}
 #feedback{text-align:center;color:#f00;}
 
 @media(max-width:625px){
@@ -33,7 +33,7 @@ if(isset($_COOKIE["PHPSESSID"])){
 	<div id="signin">
 		<div class="wrap-centered">
 			Login<br />
-			<input type="email" id="email1" placeholder="Username (email)" /><br />
+			<input type="email" id="email1" placeholder="Email" /><br />
 			<input type="password" id="pass1" placeholder="Password" /><br />
 			<div id="security"><div id="strength"></div></div>
 		</div>
