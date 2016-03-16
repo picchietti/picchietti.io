@@ -10,7 +10,9 @@
 
 		<div id="header">
 			<div id="left">
-				<img src="//www.jonpicchietti.com/img/circular.png" alt="" id="profile" />
+				<a href="//www.jonpicchietti.com">
+					<img src="//www.jonpicchietti.com/img/circular.png" alt="" id="profile" />
+				</a>
 			</div>
 			<div id="right">
 				<div class="wrap-centered">

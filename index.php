@@ -84,9 +84,10 @@
 						<div class="title">Employment</div>
 						<div id="experiences">
 							<div class="experience">
-								<div class="when fa-stack fa-3x" title="2015 - Current">
-									<i class="fa fa-stack-2x fa-circle"></i>
-									<i class="fa fa-stack-1x year">2015+</i>
+								<div class="when fa-stack fa-2x" title="2015 - Current">
+									<i class="fa fa-stack-1x fa-circle background"></i>
+									<i class="fa fa-stack-1x fa-circle foreground"></i>
+									<i class="fa year">2015+</i>
 								</div>
 								<div class="what">
 									<i class="fa fa-caret-left"></i>
@@ -98,9 +99,10 @@
 								</div>
 							</div>
 							<div class="experience">
-								<div class="when fa-stack fa-3x" title="2013 - 2015">
-									<i class="fa fa-stack-2x fa-circle"></i>
-									<i class="fa fa-stack-1x year">13-15</i>
+								<div class="when fa-stack fa-2x" title="2013 - 2015">
+									<i class="fa fa-stack-1x fa-circle background"></i>
+									<i class="fa fa-stack-1x fa-circle foreground"></i>
+									<i class="fa year">13-15</i>
 								</div>
 								<div class="what">
 									<i class="fa fa-caret-left"></i>
@@ -113,9 +115,10 @@
 								</div>
 							</div>
 							<div class="experience">
-								<div class="when fa-stack fa-3x" title="2011 - 2012">
-									<i class="fa fa-stack-2x fa-circle"></i>
-									<i class="fa fa-stack-1x year">11-12</i>
+								<div class="when fa-stack fa-2x" title="2011 - 2012">
+									<i class="fa fa-stack-1x fa-circle background"></i>
+									<i class="fa fa-stack-1x fa-circle foreground"></i>
+									<i class="fa year">11-12</i>
 								</div>
 								<div class="what">
 									<i class="fa fa-caret-left"></i>
@@ -129,9 +132,10 @@
 
 							<div id="other-experiences">
 								<div class="experience">
-									<div class="when fa-stack fa-3x" title="2010 - 2011">
-										<i class="fa fa-stack-2x fa-circle"></i>
-										<i class="fa fa-stack-1x year">10-11</i>
+									<div class="when fa-stack fa-2x" title="2010 - 2011">
+										<i class="fa fa-stack-1x fa-circle background"></i>
+										<i class="fa fa-stack-1x fa-circle foreground"></i>
+										<i class="fa year">10-11</i>
 									</div>
 									<div class="what">
 										<i class="fa fa-caret-left"></i>
@@ -144,9 +148,10 @@
 								</div>
 
 								<div class="experience">
-									<div class="when fa-stack fa-3x" title="2009 - 2011">
-										<i class="fa fa-stack-2x fa-circle"></i>
-										<i class="fa fa-stack-1x year">09-11</i>
+									<div class="when fa-stack fa-2x" title="2009 - 2011">
+										<i class="fa fa-stack-1x fa-circle background"></i>
+										<i class="fa fa-stack-1x fa-circle foreground"></i>
+										<i class="fa year">09-11</i>
 									</div>
 									<div class="what">
 										<i class="fa fa-caret-left"></i>
@@ -171,7 +176,7 @@
 							<li>Hamlbars - Open-source <a href="https://atom.io/packages/language-hamlbars" target="_blank">Atom</a> and <a href="https://packagecontrol.io/packages/Hamlbars" target="_blank">Sublime Text 3</a> editor plugins.</li>
 							<li>Websites:
 								<ul>
-									<li><a href="https://www.dnadiscovery.net/" target="_blank">DNA Discovery</a></li>
+									<li><a href="https://dnadiscovery.net/" target="_blank">DNA Discovery</a></li>
 								</ul>
 							</li>
 							<li>Websites I've worked on but no longer maintain:

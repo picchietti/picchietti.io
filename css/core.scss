@@ -11,6 +11,10 @@ ul{
 	padding-left: 40px;
 }
 
+ul li{
+	line-height:1.5;
+}
+
 ul li ul{
 	list-style-type: circle;
 	padding-left: 30px;
@@ -66,13 +70,14 @@ html, body, #main{height:100%;}
 body {
 	color: #000;
 	background: #fff;
+	font-family: Arial;
 	font-size: 14pt;
 	font-weight: 400;
 	line-height: 1.75em;
 	position:relative;
 }
 
-body, input, select, textarea{font-family: Helvetica, sans-serif;}
+input, select, textarea{font-family: Helvetica, sans-serif;}
 
 a, .link {color: #00f;text-decoration: none;cursor:pointer;}
 
@@ -111,40 +116,44 @@ a, .link {color: #00f;text-decoration: none;cursor:pointer;}
 	width: 35%;
 	font-size: 15pt;
 	box-shadow:0 1px 8px #555;
-}
 
-	#header a, #menu{
-		color: #00f;
-	}
-
-		#header a .fa, #menu .fa, .link .fa{
-			margin-right: 10px;
-		}
-
-	#header #profile{
+	#profile{
 		width: 100%;
 	}
 
-	#header #right{
+	#left{
+		a{
+			cursor: default;
+		}
+	}
+
+	#right{
 		text-align: center;
 	}
 
-	#header #menu2{
+	#menu2{
 		margin-top: -20px;
 	}
+}
+
+a .fa, #menu .fa, .link .fa{
+	margin-right: 10px;
+}
 
 	#menu-toggle{
 		display:none;
 		cursor: default;
-	}
 
-		#menu-toggle .fa.fa-circle{
+		.fa.fa-circle{
 			color: $button_blue;
 		}
 
-		#menu-toggle .fa.fa-bars{
+		.fa.fa-bars{
 			color: #fff;
 		}
+	}
+
+
 
 	#menu{
 		background-color:rgba(255,255,255,.4);
@@ -187,11 +196,11 @@ a, .link {color: #00f;text-decoration: none;cursor:pointer;}
 	#main {
 		max-width: none;
 		overflow:auto;
-	}
 
-		#main #content{
+		#content{
 			padding: 1em 3em 3em 3em;
 		}
+	}
 }
 
 
@@ -205,24 +214,24 @@ a, .link {color: #00f;text-decoration: none;cursor:pointer;}
 		font-size: 12pt;
 		margin-bottom:15px;
 		float: none;
-	}
 
-		#header #profile{
+		#profile{
 			max-width:160px;
 			max-height:122px;
 			width:auto;
 		}
 
-		#header #left{
+		#left{
 			float:left;
 			width:50%;
 			text-align:center;
 		}
 
-		#header #right{
+		#right{
 			float:left;
 			width:50%;
 		}
+	}
 
 	#menu2{
 		display:none;
@@ -248,10 +257,11 @@ a, .link {color: #00f;text-decoration: none;cursor:pointer;}
 	#header {
 		padding: 1em 1.5em;
 		height:auto;
-	}
-		#header #right{
+
+		#right{
 			text-align:center;
 		}
+	}
 
 	#menu2{
 		display: none;
