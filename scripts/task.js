@@ -38,11 +38,10 @@ make:function(id,task){
 	about.className = 'about';
 
   about.mouse_down = function(event){
-    console.log('start');
-    this.startX = (event.clientX) ? event.clientX : event.touches.item(0).clientX;
-    about.addEventListener('mousemove', about.mouse_move, false);
+    this.startX = event.clientX || event.touches.item(0).clientX;
+    document.addEventListener('mousemove', about.mouse_move, false);
     document.addEventListener('mouseup', about.mouse_up, false);
-    about.addEventListener('touchmove', about.mouse_move, false);
+    document.addEventListener('touchmove', about.mouse_move, false);
     document.addEventListener('touchend', about.mouse_up, false);
     document.onselectstart = function(){return false;};
 
@@ -50,11 +49,10 @@ make:function(id,task){
 	}
 
   about.mouse_move = function(event){
-    console.log('movement');
     var half_width = about.clientWidth * 0.25;
-    var clientX = (event.clientX) ? event.clientX : event.touches.item(0).clientX;
-    var diff = clientX - this.startX;
-    this.style.left = Math.max(0, diff) + 'px';
+    var clientX = event.clientX || event.touches.item(0).clientX;
+    var diff = clientX - about.startX;
+    about.style.left = Math.max(0, diff) + 'px';
     if(diff >= half_width)
       check.classList.add('deleting');
     else
@@ -64,14 +62,13 @@ make:function(id,task){
   }
 
   about.mouse_up = function(event){
-    console.log('end');
-    about.removeEventListener('mousemove', about.mouse_move, false);
+    document.removeEventListener('mousemove', about.mouse_move, false);
     document.removeEventListener('mouseup', about.mouse_up, false);
-    about.removeEventListener('touchmove', about.mouse_up, false);
+    document.removeEventListener('touchmove', about.mouse_up, false);
     document.removeEventListener('touchend', about.mouse_up, false);
     document.onselectstart = function(){return true;};
     var half_width = about.clientWidth * 0.25;
-    var clientX = (event.clientX) ? event.clientX : event.changedTouches.item(0).clientX;
+    var clientX = event.clientX || event.changedTouches.item(0).clientX;
     var diff = clientX - about.startX;
     if(diff >= half_width){
       Task.check(check);
