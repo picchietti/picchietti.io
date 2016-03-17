@@ -37,22 +37,42 @@ make:function(id,task){
 	about.innerHTML += task.replace('<','&lt;').replace('>','&gt;');
 	about.className = 'about';
 
-  about.mouse_move = function (){
+  about.mouse_down = function(event){
+    console.log('start');
+    this.startX = (event.clientX) ? event.clientX : event.touches.item(0).clientX;
+    about.addEventListener('mousemove', about.mouse_move, false);
+    document.addEventListener('mouseup', about.mouse_up, false);
+    about.addEventListener('touchmove', about.mouse_move, false);
+    document.addEventListener('touchend', about.mouse_up, false);
+    document.onselectstart = function(){return false;};
+
+    event.preventDefault();
+	}
+
+  about.mouse_move = function(event){
+    console.log('movement');
     var half_width = about.clientWidth * 0.25;
-    var diff = event.clientX - this.startX;
+    var clientX = (event.clientX) ? event.clientX : event.touches.item(0).clientX;
+    var diff = clientX - this.startX;
     this.style.left = Math.max(0, diff) + 'px';
     if(diff >= half_width)
       check.classList.add('deleting');
     else
       check.classList.remove('deleting');
+
+    event.preventDefault();
   }
 
-  about.mouse_up = function(){
+  about.mouse_up = function(event){
+    console.log('end');
     about.removeEventListener('mousemove', about.mouse_move, false);
     document.removeEventListener('mouseup', about.mouse_up, false);
+    about.removeEventListener('touchmove', about.mouse_up, false);
+    document.removeEventListener('touchend', about.mouse_up, false);
     document.onselectstart = function(){return true;};
     var half_width = about.clientWidth * 0.25;
-    var diff = event.clientX - about.startX;
+    var clientX = (event.clientX) ? event.clientX : event.changedTouches.item(0).clientX;
+    var diff = clientX - about.startX;
     if(diff >= half_width){
       Task.check(check);
       return;
@@ -64,6 +84,9 @@ make:function(id,task){
   		textarea.addEventListener('mousedown', function(event){event.stopPropagation();}, false);
   		textarea.addEventListener('mousemove', function(event){event.stopPropagation();}, false);
   		textarea.addEventListener('mouseup', function(event){event.stopPropagation();}, false);
+  		textarea.addEventListener('touchstart', function(event){event.stopPropagation();}, false);
+  		textarea.addEventListener('touchmove', function(event){event.stopPropagation();}, false);
+  		textarea.addEventListener('touchend', function(event){event.stopPropagation();}, false);
   		textarea.onkeydown=function(e){
   			if(e.keyCode==13){
   				var changed = this.value;
@@ -76,14 +99,12 @@ make:function(id,task){
     }
 
     about.style.left = "0px";
+
+    event.preventDefault();
   }
 
-	about.addEventListener('mousedown', function(){
-    this.startX = event.clientX
-    about.addEventListener('mousemove', about.mouse_move, false);
-    document.addEventListener('mouseup', about.mouse_up, false);
-    document.onselectstart = function(){return false;};
-	}, false);
+	about.addEventListener('mousedown', about.mouse_down, false);
+	about.addEventListener('touchstart', about.mouse_down, false);
 
 	item.appendChild(check);
 	item.appendChild(about);
@@ -123,7 +144,6 @@ function load(){
 	}
 
 	Task.getAll();
-	input.focus();
 }
 
 window.addEventListener('load',load,false);
