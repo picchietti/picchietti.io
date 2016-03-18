@@ -1,6 +1,6 @@
 <?php
 require("cred.php");
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 $url = $db->real_escape_string($_POST['url']);
 

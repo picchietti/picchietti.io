@@ -26,7 +26,7 @@ var Account = {
 		var email = $("email1").value;
 		var pass = $("pass1").value;
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "https://www.jonpicchietti.com/scripts/login.php", true);
+		xhr.open("POST", "https://www.picchietti.io/scripts/login.php", true);
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send('email='+email+'&pass='+pass);
 		xhr.onreadystatechange=function(){
@@ -41,7 +41,7 @@ var Account = {
 					if(match != null && match[1] != "")
 						location.href = match[1];
 					else
-						location.href = "//www.jonpicchietti.com";
+						location.href = "//www.picchietti.io";
 				}
 			}
 		}

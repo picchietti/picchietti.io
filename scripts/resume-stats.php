@@ -1,6 +1,6 @@
 <?php
 
-require_once '/home/sysadminjon/jonpicchietti.com/libraries/google-api-php-client/autoload.php';
+require_once '/home/sysadminjon/picchietti.io/libraries/google-api-php-client/autoload.php';
 
 $client = new Google_Client();
 $client->setApplicationName("Resume Stats");
@@ -42,7 +42,7 @@ sum($dna);
 
 // build in a check to make sure that the new file contents are at least the same number as the last time.
 
-file_put_contents("/home/sysadminjon/jonpicchietti.com/data/users.txt",number_format($users, 0, '.', ','));
-file_put_contents("/home/sysadminjon/jonpicchietti.com/data/pageviews.txt",number_format($pageviews, 0, '.', ','));
+file_put_contents("/home/sysadminjon/picchietti.io/data/users.txt",number_format($users, 0, '.', ','));
+file_put_contents("/home/sysadminjon/picchietti.io/data/pageviews.txt",number_format($pageviews, 0, '.', ','));
 
 ?>

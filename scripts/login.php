@@ -6,7 +6,7 @@ if(isset($_COOKIE["PHPSESSID"])){ // also exit here if $_SERVER https isn't set
 	exit();
 }
 
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 $ip=$_SERVER["REMOTE_ADDR"];
 $attempts=$db->query("SELECT number FROM attempts WHERE ip='$ip'")->fetch_assoc();

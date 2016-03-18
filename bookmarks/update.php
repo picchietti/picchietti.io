@@ -1,7 +1,7 @@
 <?php
 
 require("cred.php");
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 $oldurl = $db->real_escape_string($_POST['oldurl']);
 $oldurl = urldecode($oldurl);

@@ -12,7 +12,7 @@
 
 
 
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 
 function rel2abs($rel, $base){

@@ -4,10 +4,10 @@
 
 RewriteEngine On
 RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://www.jonpicchietti.com/$1 [R,L]
+RewriteRule ^(.*)$ https://www.picchietti.io/$1 [R,L]
 
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^https://(www\.)?jonpicchietti.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?picchietti.io/.*$ [NC]
 RewriteRule \.(gif|jpg|png|css)$ - [F]
 
 <ifmodule mod_deflate.c>

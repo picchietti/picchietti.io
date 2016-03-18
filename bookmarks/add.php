@@ -19,7 +19,7 @@ http://www.w3.org/TR/html5/media-elements.html#mediaevents	//file_get_contents 4
 */
 
 
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 $url = $db->real_escape_string($_POST['url']);
 $folder =  htmlspecialchars_decode($db->real_escape_string($_POST['folder']));

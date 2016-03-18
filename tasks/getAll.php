@@ -1,7 +1,7 @@
 <?php
 
 require("cred.php");
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 $found = $db->query("SELECT id,task FROM tasks ORDER BY id asc"); //task
 

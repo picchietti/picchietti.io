@@ -8,7 +8,7 @@ var Loader={
 		}
 
 		var newScript = document.createElement("script");
-		newScript.src = location.protocol+'//www.jonpicchietti.com/'+file;
+		newScript.src = location.protocol+'//www.picchietti.io/'+file;
 
 		newScript.onload=function(){
 			callback();

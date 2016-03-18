@@ -10,7 +10,7 @@
 
 		<div id="header">
 			<div id="left">
-				<a href="//www.jonpicchietti.com">
+				<a href="//www.picchietti.io">
 					<img src="/img/circular.png" alt="" id="profile" />
 				</a>
 			</div>

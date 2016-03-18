@@ -1,6 +1,6 @@
 <?php
 require("cred.php");
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 $a = $db->real_escape_string($_GET['amount']);
 $f = htmlspecialchars_decode($db->real_escape_string($_GET['folder']));

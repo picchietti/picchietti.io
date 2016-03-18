@@ -2,7 +2,7 @@
 
 class email{
 	private $to, $subject;
-	private $header = "Content-Type: text/html; charset=iso-8859-1 From: JonPicchietti.com <no-reply@jonpicchietti.com>\n";
+	private $header = "Content-Type: text/html; charset=iso-8859-1 From: picchietti.io <no-reply@picchietti.io>\n";
 	private $start = '<html><body style="background-color:#eee;margin:0;padding:20px 0;"><div style="background-color:#fff;width:70%;margin:0 auto;padding:20px;border-radius:4px;">';
 	private $end = '</div></body></html>';
 

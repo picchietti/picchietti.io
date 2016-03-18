@@ -1,7 +1,7 @@
 <?php
 
 require("cred.php");
-require("/home/sysadminjon/private/jonpicchietti.com/database.php");
+require("/home/sysadminjon/private/picchietti.io/database.php");
 
 $id = $db->real_escape_string($_POST['id']);
 $task = str_replace(">","&gt;",str_replace("<","&lt;",$db->real_escape_string($_POST['replaced'])));
