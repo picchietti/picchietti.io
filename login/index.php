@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_COOKIE["PHPSESSID"])){
-	header("Location: https:");
+	header("Location: https://www.jonpicchietti.com");
 	exit();
 }
 
