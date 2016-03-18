@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_COOKIE["PHPSESSID"])){
-	header("Location: https://www.jonpicchietti.com");
+	header("Location: https:");
 	exit();
 }
 
@@ -10,7 +10,7 @@ if(isset($_COOKIE["PHPSESSID"])){
 <head>
 <title>Account Tools</title>
 @@include('../includes/head.php')
-<script src="//www.jonpicchietti.com/scripts/account.js"></script>
+<script src="/scripts/account.js"></script>
 <script>window.addEventListener("load", Account.setupPage, false);</script>
 <style>
 #access, #signin{float:left;width:48%;}
@@ -44,5 +44,5 @@ if(isset($_COOKIE["PHPSESSID"])){
 	</div>
 </div>
 @@include('../includes/footer.php')
-<script src="//www.jonpicchietti.com/scripts/analytics.js"></script>
+<script src="/scripts/analytics.js"></script>
 </body></html>

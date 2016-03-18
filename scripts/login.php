@@ -2,7 +2,7 @@
 
 // log via email the attempts that stand out?
 
-if(isset($_COOKIE["PHPSESSID"])){
+if(isset($_COOKIE["PHPSESSID"])){ // also exit here if $_SERVER https isn't set
 	exit();
 }
 

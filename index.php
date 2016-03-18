@@ -4,9 +4,9 @@
 		<title>Jon Picchietti</title>
 		<meta name="description" content="Jon Picchietti, recent SIUC graduate, is an adept computer scientist currently living, learning, and programming in Southern Illinois." />
 		@@include('./includes/head.php')
-		<link rel="stylesheet" href="//www.jonpicchietti.com/css/resume.css">
-		<script src="//www.jonpicchietti.com/lib/d3/d3.min.js"></script>
-		<script src="//www.jonpicchietti.com/scripts/growth-overview.js"></script>
+		<link rel="stylesheet" href="/css/resume.css">
+		<script src="/lib/d3/d3.min.js"></script>
+		<script src="/scripts/growth-overview.js"></script>
 		<script>
 			window.addEventListener('load', function(){
 				growth_overview("#contribution-graph", "data/contributions.json", "Jan 2015-16", true);
@@ -211,9 +211,9 @@
 					<div class="section">
 						<div class="title">Awards &amp; Certification</div>
 						<ul>
-							<li>Academic Dean's List, <a href="//www.jonpicchietti.com/award/deans-list/2014.pdf">2014</a> - <a href="//www.jonpicchietti.com/award/deans-list/2015.pdf">2015</a></li>
-							<li>Google Analytics Certification &ndash; <a href="//www.jonpicchietti.com/certification/analytics/ecommerce">Ecommerce Analytics</a>, <a href="//www.jonpicchietti.com/certification/analytics/platform">Platform Principles</a>, <a href="//www.jonpicchietti.com/certification/analytics/fundamentals">Analytics Fundamentals</a></li>
-							<li><a href="//www.jonpicchietti.com/award/wyse/">Computer Science Sectional Champion</a> &ndash; Worldwide Youth in Science and Engineering, 2011</li>
+							<li>Academic Dean's List, <a href="/award/deans-list/2014.pdf">2014</a> - <a href="/award/deans-list/2015.pdf">2015</a></li>
+							<li>Google Analytics Certification &ndash; <a href="/certification/analytics/ecommerce">Ecommerce Analytics</a>, <a href="/certification/analytics/platform">Platform Principles</a>, <a href="/certification/analytics/fundamentals">Analytics Fundamentals</a></li>
+							<li><a href="/award/wyse/">Computer Science Sectional Champion</a> &ndash; Worldwide Youth in Science and Engineering, 2011</li>
 							<li>Technological Achievement Award &ndash; Microsoft's University of Illinois Gamebuilder's Hackathon, 2011</li>
 						</ul>
 					</div>
@@ -222,6 +222,6 @@
 		</div>
 
 		@@include('./includes/footer.php')
-		<script src="//www.jonpicchietti.com/scripts/analytics.js"></script>
+		<script src="/scripts/analytics.js"></script>
 	</body>
 </html>

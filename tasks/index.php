@@ -14,8 +14,8 @@
 #tasks .deleting{color: #0f0;}
 #tasks .about{background-color: #fff;position:absolute;top:0;left:0;width:100%;padding-left:5px;}
 </style>
-<script src="//www.jonpicchietti.com/lib/underscore.min.js"></script>
-<script src="//www.jonpicchietti.com/scripts/task.js"></script>
+<script src="/lib/underscore.min.js"></script>
+<script src="/scripts/task.js"></script>
 </head>
 <body>
 @@include('../includes/header.php')

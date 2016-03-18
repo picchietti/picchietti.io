@@ -11,7 +11,7 @@
 		<div id="header">
 			<div id="left">
 				<a href="//www.jonpicchietti.com">
-					<img src="//www.jonpicchietti.com/img/circular.png" alt="" id="profile" />
+					<img src="/img/circular.png" alt="" id="profile" />
 				</a>
 			</div>
 			<div id="right">
