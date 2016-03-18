@@ -6,6 +6,7 @@
 <meta name=viewport content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/bookmarks.css" />
+<link rel="stylesheet" href="/lib/fontello-bookmarks/css/bookmarks.css" />
 <script>
 function $(id){
 	return document.getElementById(id);
@@ -238,7 +239,7 @@ var BookMark={
 		var url = inputs[0].value;
 		var title = inputs[1].value;
 
-		if(title! = BookMark.currentItem.innerHTML)
+		if(title != BookMark.currentItem.innerHTML)
 			post+="name="+encodeURIComponent(title);
 
 		if(url!=BookMark.currentItem.url)
@@ -345,7 +346,7 @@ window.addEventListener('load', load, false);
 <div id="bar"></div>
 
 <div id="controls">
-	<div id="choose-folder" class="no-select-all" onclick="togglePopup()"><img src="folder.png" alt="folder" /><span id="selected-folder">Select Folder</span></div>
+	<div id="choose-folder" class="no-select" onclick="togglePopup()"><i class="icon-folder"></i><span id="selected-folder">Select Folder</span></div>
 	<input type="text" id="global" placeholder="Enter Website URL..." />
 </div>
 
@@ -353,7 +354,7 @@ window.addEventListener('load', load, false);
 
 <div id="popup" class="popup" onclick="togglePopup();">
 	<div class="modal">
-		<div id="folderCol"><img src="folder.png" alt="folder" /> Folders</div>
+		<div id="folderCol"><i class="icon-folder"></i> Folders</div>
 		<input type="button" value="+" id="folder-add" onclick="addFolder();" />
 		<div id="folders"></div>
 	</div>
