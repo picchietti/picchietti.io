@@ -6,16 +6,16 @@ function resetMenu(){
 
 var Menu={
 	on:function(){
-		$("menu").style.display="block";
+		$('menu2').style.left="0px";
 		window.addEventListener("resize", resetMenu, false);
 	},
 	off:function(){
-		$("menu").style.display="none";
+		$('menu2').style.left="-100%";
 		window.removeEventListener("resize", resetMenu, false);
 	}
 }
 
 window.addEventListener('DOMContentLoaded',function(){
 	$("menu-toggle").addEventListener('click', Menu.on, false);
-	$("menu").addEventListener('click', Menu.off, false);
+	$("menu2").addEventListener('click', Menu.off, false);
 },false);
