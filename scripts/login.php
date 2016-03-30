@@ -8,23 +8,23 @@ if(isset($_COOKIE["PHPSESSID"])){ // also exit here if $_SERVER https isn't set
 
 require("/home/sysadminjon/private/picchietti.io/database.php");
 
-$ip=$_SERVER["REMOTE_ADDR"];
-$attempts=$db->query("SELECT number FROM attempts WHERE ip='$ip'")->fetch_assoc();
-$attempts=intval($attempts["number"]);
+$ip = $_SERVER["REMOTE_ADDR"];
+$attempts = $db->query("SELECT number FROM attempts WHERE ip='$ip'")->fetch_assoc();
+$attempts = intval($attempts["number"]);
 
 if($attempts >= 1)
 	sleep(15);
 
-$email=$db->real_escape_string($_POST['email']);
-$pass=$db->real_escape_string($_POST['pass']);
+$email = $db->real_escape_string($_POST['email']);
+$pass = $db->real_escape_string($_POST['pass']);
 
-$results=$db->query("SELECT password,salt FROM accounts WHERE email='$email'");
-$data=$results->fetch_assoc();
-$hash1=hash("sha512",$pass.$data['salt']);
+$results = $db->query("SELECT password,salt FROM accounts WHERE email='$email'");
+$data = $results->fetch_assoc();
+$hash1 = hash("sha512",$pass.$data['salt']);
 
-if($hash1==$data['password']){
+if($hash1 == $data['password']){
 	session_start();
-	$_SESSION['user']=$email;
+	$_SESSION['user'] = $email;
 	$db->query("DELETE FROM attempts WHERE ip='$ip'");
 }
 else{

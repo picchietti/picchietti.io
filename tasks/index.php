@@ -1,4 +1,4 @@
-<?php require("cred.php"); ?>
+@@include('cred.php')
 <!DOCTYPE html>
 <html>
 <head>
