@@ -77,7 +77,7 @@
 								<span class="skill">Haml</span>
 								<span class="skill">Bash</span>
 								<span class="skill">Gulp</span>
-								<!-- <span class="skill">Docker, Vagrant</span> -->
+								<span class="skill">Docker &amp; Vagrant</span>
 								<!-- <span class="skill">D3</span> -->
 						</div>
 					</div>
