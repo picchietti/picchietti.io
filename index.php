@@ -96,7 +96,7 @@
 									<span class="bold">Software Engineer</span>, <a href="http://www.greplytix.com/" target="_blank">Greplytix</a>
 									<ul>
 										<li>Component-based, MVC web application development.</li>
-										<li>Innovating with cutting-edge technologies.</li>
+										<li>Promoted to lead client-side developer.</li>
 									</ul>
 								</div>
 							</div>
