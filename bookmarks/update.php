@@ -19,8 +19,6 @@ if(isset($_POST['url'])){
 	$db->query("UPDATE bookmarks SET url='{$url}', url_hash='{$hash}' WHERE url='{$oldurl}' LIMIT 1") or die($db->error());
 }
 
-echo $url. '   ' .$oldurl
-
 $db->close();
 
 ?>
