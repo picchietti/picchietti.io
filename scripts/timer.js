@@ -1,3 +1,5 @@
+// it is running the server/
+
 var Timer = function(when, box){
 	var self = this;
 
