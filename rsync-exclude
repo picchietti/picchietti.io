@@ -2,5 +2,5 @@ picchietti.io/private/uploads/files/
 picchietti.io/private/letsencrypt/
 picchietti.io/public/pages/bookmarks/icons/
 ./rsync-exclude
-./db/
+db/
 .git/
