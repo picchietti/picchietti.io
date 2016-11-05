@@ -8,8 +8,8 @@ services:
     volumes:
       - ~/Desktop/server:/usr/src/app/source
       - ~/Desktop/release:/usr/src/app/release
-      - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/source/picchietti.io/private/letsencrypt/privkey.pem
-      - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/source/picchietti.io/private/letsencrypt/fullchain.pem
+      - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/release/picchietti.io/private/letsencrypt/privkey.pem
+      - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/release/picchietti.io/private/letsencrypt/fullchain.pem
     depends_on:
       - mysql
     links:
