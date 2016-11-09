@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var changed = require('gulp-changed');
 var minify_css = require('gulp-minify-css');
 var include_file = require('gulp-file-include');
+var pump = require('pump');
 
 var del = require('del');
 var glob = require("glob");
@@ -84,15 +85,16 @@ gulp.task('css', ['sync', 'scss'], function() {
     .pipe(gulp.dest(path_release_slash + sites));
 });
 
-gulp.task('js', ['sync'], function() {
-  return gulp
-    .src([
+gulp.task('js', ['sync'], function(cb) {
+  pump([
+    gulp.src([
       path_release_slash + sites + '**/*.js',
       '!' + path_release_slash + sites + '**/*.min.js',
       '!' + path_release_slash + 'picchietti.io/database/**/*.js'
-    ])
-    .pipe(uglify())
-    .pipe(gulp.dest(path_release_slash + sites));
+    ]),
+    uglify(),
+    gulp.dest(path_release_slash + sites)
+  ], cb);
 });
 
 gulp.task('html', ['sync'], function() {
