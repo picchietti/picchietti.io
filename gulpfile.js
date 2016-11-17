@@ -110,7 +110,7 @@ gulp.task('html', ['sync'], function() {
     .pipe(gulp.dest(path_release_slash + sites));
 });
 
-gulp.task('watch', function(){
+gulp.task('watch', function(cb){
   // one giant watch all that checks the extension and the event to determine the action to take for the file.
   gulp.watch([
     path_server_slash + sites + '**/*'
@@ -130,7 +130,7 @@ gulp.task('watch', function(){
         .src(event.path)
         .pipe(gulp.dest(dest_path));
 
-      return process_file(event.path);
+      return process_file(event.path, cb);
     }
 
     if(event.type == 'renamed'){
@@ -142,7 +142,7 @@ gulp.task('watch', function(){
         .pipe(gulp.dest(dest_path));
 
       // in case an ext is added.
-      process_file(event.path);
+      process_file(event.path, cb);
 
       return del.sync(dest_old, {
         force: true
@@ -150,12 +150,12 @@ gulp.task('watch', function(){
     }
 
     if(event.type == 'changed'){
-      return process_file(event.path);
+      return process_file(event.path, cb);
     }
   })
 });
 
-function process_file(event_path){
+function process_file(event_path, cb){
   var dest_file = event_path.replace(path_server, path_release);
   var dest_path = dest_file.substring(0, dest_file.lastIndexOf("/"));
 
@@ -193,10 +193,11 @@ function process_file(event_path){
           .pipe(gulp.dest(dest_path));
       break;
       case 'js':
-        return gulp
-          .src(event_path)
-          .pipe(uglify())
-          .pipe(gulp.dest(dest_path));
+        pump([
+          gulp.src(event_path),
+          uglify(),
+          gulp.dest(dest_path)
+        ], cb);
       break;
     }
   }
