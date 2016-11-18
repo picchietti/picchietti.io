@@ -6,14 +6,15 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ~/Desktop/server:/usr/src/app/source
-      - ~/Desktop/release:/usr/src/app/release
-      - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/release/picchietti.io/private/letsencrypt/privkey.pem
-      - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/release/picchietti.io/private/letsencrypt/fullchain.pem
+      - ~/Desktop/release:/usr/src/app
+      - /usr/src/app/picchietti.io/node_modules # otherwise prev volume overwrites
+      - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/picchietti.io/private/letsencrypt/privkey.pem
+      - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/picchietti.io/private/letsencrypt/fullchain.pem
     depends_on:
       - mysql
     links:
       - mysql
+    command: npm start
 
   mysql:
     image: mysql:latest
