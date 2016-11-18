@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var htmlmin = require('gulp-htmlmin');
 var uglify = require('gulp-uglify');
 var changed = require('gulp-changed');
-var minify_css = require('gulp-minify-css');
+var minify_css = require('gulp-clean-css');
 var include_file = require('gulp-file-include');
 var pump = require('pump');
 
