@@ -13,7 +13,7 @@ RUN npm install nodemon -g
 COPY picchietti.io/package.json .
 RUN npm install
 
-COPY cron_scripts/picchietti.io/daily/daily-analytics /etc/cron.daily
+COPY cron_scripts/daily/daily-analytics /etc/cron.daily
 
 # # gets lets encrypt certs and sets up autorenew
 # RUN echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
