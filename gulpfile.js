@@ -21,8 +21,6 @@ var path_server_slash = path_server + '/';
 var path_release_slash = path_release + '/';
 var sites = 'picchietti.io/';
 
-// consider adding banner to files
-
 function array_diff(a, b){
   var hash = {};
   b.forEach(function (v) { hash[v] = true });
@@ -193,7 +191,7 @@ function process_file(event_path, cb){
           .pipe(gulp.dest(dest_path));
       break;
       case 'js':
-        pump([
+        return pump([
           gulp.src(event_path),
           uglify(),
           gulp.dest(dest_path)

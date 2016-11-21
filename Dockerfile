@@ -6,15 +6,14 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # Available to other docker containers
 EXPOSE 80 443
 
-# cwd for all subsequent commands!
+# cwd for all subsequent commands
 WORKDIR /usr/src/app/picchietti.io
-RUN cd /usr/src/app/picchietti.io
 
 RUN npm install nodemon -g
 COPY picchietti.io/package.json .
 RUN npm install
 
-# COPY cron_scripts/picchietti.io/daily/daily-analytics.sh /etc/cron.daily
+COPY cron_scripts/picchietti.io/daily/daily-analytics /etc/cron.daily
 
 # # gets lets encrypt certs and sets up autorenew
 # RUN echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
