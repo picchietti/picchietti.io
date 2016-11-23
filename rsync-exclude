@@ -4,3 +4,4 @@ picchietti.io/public/pages/bookmarks/icons/
 ./rsync-exclude
 db/
 .git/
+node_modules/

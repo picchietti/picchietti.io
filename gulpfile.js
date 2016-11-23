@@ -8,6 +8,7 @@ var changed = require('gulp-changed');
 var minify_css = require('gulp-clean-css');
 var include_file = require('gulp-file-include');
 var pump = require('pump');
+var jsonminify = require('gulp-jsonminify');
 
 var del = require('del');
 var glob = require("glob");
@@ -88,11 +89,18 @@ gulp.task('js', ['sync'], function(cb) {
     gulp.src([
       path_release_slash + sites + '**/*.js',
       '!' + path_release_slash + sites + '**/*.min.js',
-      '!' + path_release_slash + 'picchietti.io/database/**/*.js'
+      '!' + path_release_slash + 'node_modules/**/*.js'
     ]),
     uglify(),
     gulp.dest(path_release_slash + sites)
   ], cb);
+});
+
+gulp.task('json', ['sync'], function () {
+    return gulp
+      .src(path_release_slash + sites + '**/*.json')
+      .pipe(jsonminify())
+      .pipe(gulp.dest(path_release_slash + sites));
 });
 
 gulp.task('html', ['sync'], function() {
@@ -197,12 +205,18 @@ function process_file(event_path, cb){
           gulp.dest(dest_path)
         ], cb);
       break;
+      case 'json':
+        return gulp
+          .src(event_path)
+          .pipe(jsonminify())
+          .pipe(gulp.dest(dest_path));
+      break;
     }
   }
 }
 
 gulp.task('build', function(){
-  gulp.start('css', 'js', 'html');
+  gulp.start('css', 'js', 'html', 'json');
 });
 
 gulp.task('default', function(){
