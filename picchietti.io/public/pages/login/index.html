@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<title>Login</title>
+@@include('../../includes/head')
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+@@include('../../includes/header')
+<div id="content">
+	<div id="feedback"></div>
+
+	<div id="signin" class="wrap-centered">
+		<div class="wrap-centered">
+			Login<br>
+			<input type="email" id="email1" placeholder="Email"><br>
+			<div class="wrap-password">
+				<input type="password" id="pass1" placeholder="Password">
+				<div id="strength" class="strength"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="access" class="wrap-centered">
+	Oh noes! You've reached a restricted, super secret area of this website that is protected by magic, robots, and other awesome stuff ... or just a login system. Whatever. The point is: if you think you should have access, please contact <a href="mailto:jon@picchietti.email">Jon</a>.
+	</div>
+</div>
+@@include('../../includes/footer')
+<script src="/scripts/account.js"></script>
+<script>window.addEventListener("load", Account.setupPage, false);</script>
+<script defer src="/scripts/analytics.js"></script>
+</body></html>

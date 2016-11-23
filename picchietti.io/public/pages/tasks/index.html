@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jon's To-Do</title>
+@@include('../../includes/head')
+<link rel="stylesheet" href="/css/tasks.css">
+</head>
+<body>
+@@include('../../includes/header')
+<div id="content">
+	<div class="alignc">
+		<input type="text" id="global" placeholder="To do..." />
+	</div>
+
+	<div id="tasks"></div>
+</div>
+
+@@include('../../includes/footer')
+<script defer src="/lib/underscore.min.js"></script>
+<script defer src="/scripts/task.js"></script>
+</body></html>

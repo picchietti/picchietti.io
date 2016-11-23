@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<title>Upload Files</title>
+@@include('../../includes/head')
+<style>
+#url{text-align:center;width:85%;font-size:16pt;padding:3px;}
+</style>
+</head>
+<body>
+@@include('../../includes/header')
+<div id="content">
+	<div class="alignc" style="margin:20px 0;">
+		<input type="text" id="url" placeholder="Upload from URL..." onkeypress="checkEnter(event);" />
+	</div>
+
+	<div id="uploads"></div>
+</div>
+
+@@include('../../includes/footer')
+<script defer src="/scripts/upload.js"></script>
+</body></html>
