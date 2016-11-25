@@ -24,7 +24,7 @@ services:
       - ./db/data:/var/lib/mysql
       - ./db/backup/picchietti_db.sql:/docker-entrypoint-initdb.d/picchietti_db_dump.sql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: ${PICCHIETTI_MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${PICCHIETTI_MYSQL_DATABASE}
       MYSQL_USER: ${PICCHIETTI_MYSQL_USER}
       MYSQL_PASSWORD: ${PICCHIETTI_MYSQL_PASSWORD}

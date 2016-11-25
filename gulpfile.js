@@ -203,7 +203,7 @@ function process_file(event_path, cb){
           gulp.src(event_path),
           uglify(),
           gulp.dest(dest_path)
-        ], cb);
+        ]);
       break;
       case 'json':
         return gulp
