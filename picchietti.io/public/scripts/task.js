@@ -38,80 +38,93 @@ make:function(id,task){
 	item.id = id;
 	item.className = 'item no-select';
 
+	var hammer_swipe = new Hammer(about);
+	var hammer_scroll = new Hammer(tasks, {
+		touchAction: 'auto',
+		threshold: 15,
+		recognizers: [
+			[Hammer.Pan,{ direction: Hammer.DIRECTION_VERTICAL }],
+		]
+	});
+
+	hammer_scroll.on('panstart', function(event){
+		if(hammer_scroll.locked){
+			event.preventDefault();
+			return;
+		}
+		hammer_swipe.locked = true;
+	});
+
+	hammer_scroll.on('panend', function(event){
+		if(hammer_scroll.locked){
+			event.preventDefault();
+			return;
+		}
+		hammer_swipe.locked = false;
+	});
+
 	about.innerHTML += task.replace('<','&lt;').replace('>','&gt;');
 	about.className = 'about';
 
-  about.pointer_down = function(event){
-    this.startX = event.clientX || event.touches.item(0).clientX;
-    document.addEventListener('mousemove', about.point_move, false);
-    document.addEventListener('mouseup', about.pointer_up, false);
-    document.addEventListener('touchmove', about.point_move, false);
-    document.addEventListener('touchend', about.pointer_up, false);
+	hammer_swipe.on('tap', function(event){
+		var textarea = document.createElement('textarea');
+		textarea.className = 'overlay';
+		textarea.value = about.innerHTML;
+		// dont let the events bubble up to the about.
+		textarea.addEventListener('mousedown', function(event){event.stopPropagation();}, false);
+		textarea.addEventListener('mousemove', function(event){event.stopPropagation();}, false);
+		textarea.addEventListener('mouseup', function(event){event.stopPropagation();}, false);
+		textarea.addEventListener('touchstart', function(event){event.stopPropagation();}, false);
+		textarea.addEventListener('touchmove', function(event){event.stopPropagation();}, false);
+		textarea.addEventListener('touchend', function(event){event.stopPropagation();}, false);
+		textarea.addEventListener('keydown', function(e){
+			if(e.keyCode == 13){ // press enter
+				var changed = this.value;
+				Task.edit(this.parentNode.parentNode.id, changed);
+				this.parentNode.innerHTML = changed.replace('<','&lt;').replace('>','&gt;');
+			}
+			else if(e.keyCode == 27){ // press esc(ape)
+				textarea.parentNode.removeChild(textarea);
+			}
+		}, false);
+		about.appendChild(textarea);
+		textarea.focus();
+	});
 
-    // event.preventDefault();
-	}
+	hammer_swipe.on('panstart', function(event){
+		hammer_scroll.locked = true;
+		document.onselectstart=function(){return false;};
+	});
 
-  about.point_move = function(event){
+  hammer_swipe.on('panmove', function(event){
+		if(hammer_swipe.locked){
+			return;
+		}
     var quarter_width = about.clientWidth * 0.25;
-    var clientX = event.clientX || event.touches.item(0).clientX;
-    var diff = clientX - about.startX;
+		var diff = event.deltaX;
     about.style.left = Math.max(0, diff) + 'px';
     if(diff >= quarter_width)
       check.classList.add('deleting');
     else
       check.classList.remove('deleting');
+  });
 
-    event.preventDefault();
-  }
-
-  about.pointer_up = function(event){
-		if(event.touches && event.touches.length > 0)
-			return; // haven't released all fingers from target
-
-		document.removeEventListener('mousemove', about.point_move, false);
-    document.removeEventListener('mouseup', about.pointer_up, false);
-    document.removeEventListener('touchmove', about.pointer_up, false);
-    document.removeEventListener('touchend', about.pointer_up, false);
-
+  hammer_swipe.on('panend', function(event){
+		if(hammer_swipe.locked){
+			hammer_swipe.locked = false;
+			return;
+		}
     var quarter_width = about.clientWidth * 0.25;
-    var clientX = event.clientX || event.changedTouches.item(0).clientX;
-    var diff = clientX - about.startX;
+		var diff = event.deltaX;
     if(diff >= quarter_width){
       Task.check(check);
       return;
     }
-    else if(Math.abs(diff) <= 3){ // for when it is 'clicked'
-      var textarea = document.createElement('textarea');
-  		textarea.className = 'overlay';
-  		textarea.value = about.innerHTML;
-			// dont let the events bubble up to the about.
-  		textarea.addEventListener('mousedown', function(event){event.stopPropagation();}, false);
-  		textarea.addEventListener('mousemove', function(event){event.stopPropagation();}, false);
-  		textarea.addEventListener('mouseup', function(event){event.stopPropagation();}, false);
-  		textarea.addEventListener('touchstart', function(event){event.stopPropagation();}, false);
-  		textarea.addEventListener('touchmove', function(event){event.stopPropagation();}, false);
-  		textarea.addEventListener('touchend', function(event){event.stopPropagation();}, false);
-  		textarea.addEventListener('keydown', function(e){
-  			if(e.keyCode == 13){ // press enter
-  				var changed = this.value;
-  				Task.edit(this.parentNode.parentNode.id, changed);
-  				this.parentNode.innerHTML = changed.replace('<','&lt;').replace('>','&gt;');
-  			}
-				else if(e.keyCode == 27){ // press esc(ape)
-					textarea.parentNode.removeChild(textarea);
-				}
-  		}, false);
-  		about.appendChild(textarea);
-  		textarea.focus();
-    }
 
     about.style.left = "0px";
-
-    event.preventDefault();
-  }
-
-	about.addEventListener('mousedown', about.pointer_down, false);
-	about.addEventListener('touchstart', about.pointer_down, false);
+		hammer_scroll.locked = false;
+		document.onselectstart=function(){return true;};
+  });
 
 	item.appendChild(check);
 	item.appendChild(about);
@@ -131,7 +144,7 @@ getAll:function(){
 	xhr.open('GET', '/tasks/list', true);
 	xhr.send(null);
 
-	xhr.onreadystatechange=function(){
+	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var response = JSON.parse(xhr.responseText);
 
@@ -147,7 +160,7 @@ getAll:function(){
 
 function load(){
 	var input = $('global');
-	input.onkeydown=function(e){
+	input.onkeydown = function(e){
 		if(e.keyCode == 13 && this.value != ''){
 			Task.add(this.value);
 		}
