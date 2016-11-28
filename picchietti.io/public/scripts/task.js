@@ -67,9 +67,11 @@ make:function(id,task){
 	about.className = 'about';
 
 	hammer_swipe.on('tap', function(event){
-		var textarea = document.createElement('textarea');
+		var textarea = document.createElement('div');
 		textarea.className = 'overlay';
-		textarea.value = about.innerHTML;
+		textarea.setAttribute('contenteditable', 'true');
+		textarea.innerHTML = about.innerHTML;
+		textarea.cached_text = about.innerHTML;
 		// dont let the events bubble up to the about.
 		textarea.addEventListener('mousedown', function(event){event.stopPropagation();}, false);
 		textarea.addEventListener('mousemove', function(event){event.stopPropagation();}, false);
@@ -77,17 +79,26 @@ make:function(id,task){
 		textarea.addEventListener('touchstart', function(event){event.stopPropagation();}, false);
 		textarea.addEventListener('touchmove', function(event){event.stopPropagation();}, false);
 		textarea.addEventListener('touchend', function(event){event.stopPropagation();}, false);
-		textarea.addEventListener('keydown', function(e){
-			if(e.keyCode == 13){ // press enter
-				var changed = this.value;
-				Task.edit(this.parentNode.parentNode.id, changed);
-				this.parentNode.innerHTML = changed.replace('<','&lt;').replace('>','&gt;');
+		textarea.addEventListener('keydown', function(event){
+			if(event.keyCode == 13){ // press enter
+				if(this.innerHTML == this.cached_text){
+					event.preventDefault();
+					item.removeChild(this);
+					return;
+				}
+				var changed = this.innerHTML;
+				Task.edit(this.parentNode.id, changed);
+				item.removeChild(this);
 			}
-			else if(e.keyCode == 27){ // press esc(ape)
-				textarea.parentNode.removeChild(textarea);
+			else if(event.keyCode == 27){ // press esc(ape)
+				about.innerHTML = this.cached_text
+				item.removeChild(this);
 			}
 		}, false);
-		about.appendChild(textarea);
+		textarea.addEventListener('keyup', function(e){
+			about.innerHTML = this.innerHTML.replace('<','&lt;').replace('>','&gt;');;
+		}, false);
+		item.appendChild(textarea);
 		textarea.focus();
 	});
 
