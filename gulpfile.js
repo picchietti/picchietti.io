@@ -15,7 +15,19 @@ var glob = require("glob");
 
 // var babel = require('gulp-babel');
 // var rename = require('gulp-rename');
-var path_one_up = process.env['HOME'] + '/Desktop/';
+
+var home = '/home/';
+
+if(process.env['SUDO_USER'] != ''){
+	home += process.env['SUDO_USER'];
+}
+else{
+	home += process.env['USER'];
+}
+
+console.log('home', process.env['HOME']);
+// can't use process.env['HOME'] because running as superuser will be /root
+var path_one_up = home + '/Desktop/';
 var path_server = path_one_up + 'server';
 var path_release = path_one_up + 'release';
 var path_server_slash = path_server + '/';
