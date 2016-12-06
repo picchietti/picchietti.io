@@ -3,8 +3,6 @@
 <title>Upload Files</title>
 @@include('../../includes/head')
 <link rel="stylesheet" href="/css/upload.css">
-<style>
-</style>
 </head>
 <body>
 @@include('../../includes/header')
@@ -12,8 +10,9 @@
 	<div class="alignc space">
 		<input type="text" id="url" placeholder="Upload from URL..." onkeypress="checkEnter(event);" />
 	</div>
-
+	<div id="droparea" class="droparea"></div>
 	<div id="uploads"></div>
+	<div id="previews"></div>
 </div>
 
 @@include('../../includes/footer')
