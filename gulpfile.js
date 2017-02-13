@@ -16,17 +16,8 @@ var glob = require("glob");
 // var babel = require('gulp-babel');
 // var rename = require('gulp-rename');
 
-var home = '/home/';
 
-if(process.env['SUDO_USER'] != ''){
-	home += process.env['SUDO_USER'];
-}
-else{
-	home += process.env['USER'];
-}
-
-console.log('home', process.env['HOME']);
-// can't use process.env['HOME'] because running as superuser will be /root
+var home = process.env['HOME'];
 var path_one_up = home + '/Desktop/';
 var path_server = path_one_up + 'server';
 var path_release = path_one_up + 'release';
@@ -232,5 +223,5 @@ gulp.task('build', function(){
 });
 
 gulp.task('default', function(){
-  console.log("try 'dev build' or 'dev watch' instead.");
+  console.log("try 'gulp build' or 'gulp watch' instead.");
 });
