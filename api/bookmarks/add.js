@@ -6,9 +6,9 @@ var url_lib = require('url');
 var fs = require('fs');
 var DOMParser = require('xmldom').DOMParser;
 var router = express.Router();
-var db = require('/usr/src/app/picchietti.io/private/database.js');
+var db = require('/usr/src/app/secret/database.js');
 
-const root_dir = '/usr/src/app/picchietti.io';
+const root_dir = '/usr/src/app';
 
 // Have a problem entering websites without www. or an equivalent.
 // Definitely have problem with websites without http://

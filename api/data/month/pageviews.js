@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('/usr/src/app/picchietti.io/private/database.js');
+var db = require('/usr/src/app/secret/database.js');
 var moment = require('moment');
 
 router.get('/', function(req, res){
@@ -14,15 +14,15 @@ router.get('/', function(req, res){
 
   db.getConnection(function(err, conn){
     // get the total of every record before the most recent thirty days
-    conn.query("SELECT sum(users) AS users FROM impact_analytics WHERE ymd < ?", [thirtyDays], function(err, rows, fields){
-      results.one = rows[0]['users'];
+    conn.query("SELECT sum(pageviews) AS pageviews FROM impact_analytics WHERE ymd < ?", [thirtyDays], function(err, rows, fields){
+      results.one = rows[0]['pageviews'];
 
       if(!!results.one && !!results.two)
         queriesComplete();
     });
 
     // get the 30 most recent records
-    conn.query("SELECT sum(users) AS count, ymd AS `date` FROM impact_analytics WHERE ymd > ? GROUP BY ymd", [thirtyDays], function(err, rows, fields){
+    conn.query("SELECT sum(pageviews) AS count, ymd AS `date` FROM impact_analytics WHERE ymd > ? GROUP BY ymd", [thirtyDays], function(err, rows, fields){
       results.two = rows;
 
       if(!!results.one && !!results.two)

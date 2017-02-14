@@ -1,7 +1,5 @@
 'use strict';
 
-const root_dir = '/usr/src/app/picchietti.io';
-
 // // App
 const express = require('express');
 const app = express();
@@ -44,19 +42,18 @@ const router = express.Router();
 require('./routes.js')(router, passport, uploader);
 
 // Static Resources - AFTER ROUTES.js so restricted access routes have priority.
-router.use(express.static(root_dir + '/public/'));
+router.use(express.static('./public/'));
 
 
 // 404 redirect.
 router.use(function (req, res, next) {
-  res.status(404).sendFile(root_dir + '/public/pages/404/index.html');
+  res.status(404).sendFile('./public/pages/404/index.html');
 });
 
 app.use('/', router);
 
-
-var privateKey  = fs.readFileSync('/usr/src/app/picchietti.io/private/letsencrypt/privkey.pem', 'utf8');
-var certificate = fs.readFileSync('/usr/src/app/picchietti.io/private/letsencrypt/fullchain.pem', 'utf8');
+var privateKey  = fs.readFileSync('./private/letsencrypt/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('./private/letsencrypt/fullchain.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 spdy.createServer(credentials, app).listen(443); // https + http2
 

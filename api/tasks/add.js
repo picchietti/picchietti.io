@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('/usr/src/app/picchietti.io/private/database.js');
+var db = require('/usr/src/app/secret/database.js');
 
 router.post('/', function(req, res){
 

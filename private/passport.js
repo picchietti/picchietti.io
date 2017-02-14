@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const LocalStrategy = require('passport-local').Strategy;
 
-var db = require('/usr/src/app/picchietti.io/private/database.js');
+var db = require('/usr/src/app/secret/database.js');
 
 function sha512(data) {
   return crypto.createHash("sha512").update(data).digest("hex");

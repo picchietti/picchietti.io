@@ -5,7 +5,7 @@ var https = require('https');
 var url = require('url');
 var fs = require('fs');
 
-const root_dir = '/usr/src/app/picchietti.io';
+const root_dir = '/usr/src/app';
 
 router.post('/', function(req, res){
   var file_url = req.body.url;

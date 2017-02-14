@@ -1,9 +1,9 @@
-const root_dir = '/usr/src/app/picchietti.io';
+const root_dir = '/usr/src/app';
 
 module.exports = function(multer){
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, root_dir + '/private/uploads/');
+      cb(null, root_dir + '/secret/uploads/');
     },
     filename: function (req, file, cb) {
       cb(null, Date.now() + ' - ' + file.originalname);

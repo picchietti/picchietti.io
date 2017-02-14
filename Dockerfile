@@ -7,11 +7,11 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 EXPOSE 80 443
 
 # cwd for all subsequent commands
-WORKDIR /usr/src/app/picchietti.io
+WORKDIR /usr/src/app
 
 RUN npm install nodemon -g
-COPY picchietti.io/package.json .
-RUN npm install
+COPY package.json .
+RUN npm install --only=production
 
 COPY cron_scripts/daily/daily-analytics /etc/cron.daily
 

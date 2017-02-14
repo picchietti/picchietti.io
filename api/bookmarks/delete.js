@@ -1,9 +1,9 @@
 var express = require('express');
 var fs = require('fs');
-var db = require('/usr/src/app/picchietti.io/private/database.js');
+var db = require('/usr/src/app/secret/database.js');
 var router = express.Router();
 
-const root_dir = '/usr/src/app/picchietti.io';
+const root_dir = '/usr/src/app';
 
 router.post('/', function(req, res){
   var url = decodeURIComponent(req.body.url);

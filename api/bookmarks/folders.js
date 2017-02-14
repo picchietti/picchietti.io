@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router({mergeParams: true});
-var db = require('/usr/src/app/picchietti.io/private/database.js');
+var db = require('/usr/src/app/secret/database.js');
 
 router.get('/', function(req, res){
   db.getConnection(function(err, conn){
