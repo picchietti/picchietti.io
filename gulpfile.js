@@ -16,8 +16,8 @@ var glob = require("glob");
 // var babel = require('gulp-babel');
 // var rename = require('gulp-rename');
 
-var home = process.env['HOME'];
-var path_one_up = home + '/Desktop/';
+var cwd = process.env['PWD']
+var path_one_up = cwd.substring(0, cwd.lastIndexOf('/') + 1);
 var path_input = path_one_up + 'server';
 var path_output = path_one_up + 'release';
 var path_input_slash = path_input + '/';
@@ -55,6 +55,7 @@ gulp.task('sync', ['clean'], function() {
     .src([
       path_input_slash + '**',
       '!' + path_input_slash + '{node_modules,node_modules/**}',
+      '!' + path_input_slash + '.{git,git/**}'
     ], {
       dot: true
     })

@@ -6,6 +6,8 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # Available to other docker containers
 EXPOSE 80 443
 
+RUN apt-get update && apt-get install -y cron
+
 # cwd for all subsequent commands
 WORKDIR /usr/src/app
 
@@ -13,7 +15,7 @@ RUN npm install nodemon -g
 COPY package.json .
 RUN npm install --only=production
 
-COPY cron_scripts/daily/daily-analytics /etc/cron.daily
+COPY cron/daily/bin /etc/cron.daily/
 
 # # gets lets encrypt certs and sets up autorenew
 # RUN echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
