@@ -28,15 +28,15 @@ var Analytics = {
     }
 
     analytics.data.ga.get(params, function(err, response){
-      row = response.rows[0];
-      Analytics.store(response.rows[0], source);
+      totals = response.totalsForAllResults;
+      Analytics.store(totals, source);
     });
   },
 
-  store: function(results, source){
+  store: function(totals, source){
     db.getConnection(function(err, conn){
-      var users = parseInt(results[0]);
-      var pageviews = parseInt(results[1]);
+      var users = parseInt(totals['ga:users']);
+      var pageviews = parseInt(totals['ga:pageviews']);
 
       conn.query("INSERT INTO impact_analytics (pageviews, users, source, ymd) VALUES (?, ?, ?, ?)", [pageviews, users, source, Analytics.start_end], function(err, result){
         Analytics.todo--;

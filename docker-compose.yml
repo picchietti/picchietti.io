@@ -1,10 +1,23 @@
-version: '2'
+version: '3'
 services:
+  mysql:
+    image: mysql:latest
+    ports:
+     - 3306:3306
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/backup/picchietti_db.sql:/docker-entrypoint-initdb.d/picchietti_db_dump.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PICCHIETTI_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${PICCHIETTI_MYSQL_DATABASE}
+      MYSQL_USER: ${PICCHIETTI_MYSQL_USER}
+      MYSQL_PASSWORD: ${PICCHIETTI_MYSQL_PASSWORD}
+
   node:
     build: .
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
       - ~/Desktop/picchietti.io/release:/usr/src/app
       - /usr/src/app/node_modules # otherwise prev volume overwrites
@@ -14,17 +27,4 @@ services:
       - mysql
     links:
       - mysql
-    command: npm start
-
-  mysql:
-    image: mysql:latest
-    ports:
-     - '3306:3306'
-    volumes:
-      - ./db/data:/var/lib/mysql
-      - ./db/backup/picchietti_db.sql:/docker-entrypoint-initdb.d/picchietti_db_dump.sql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${PICCHIETTI_MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${PICCHIETTI_MYSQL_DATABASE}
-      MYSQL_USER: ${PICCHIETTI_MYSQL_USER}
-      MYSQL_PASSWORD: ${PICCHIETTI_MYSQL_PASSWORD}
+    command: /usr/bin/supervisord

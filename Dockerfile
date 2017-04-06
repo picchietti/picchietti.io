@@ -1,12 +1,7 @@
 FROM node:latest
 
-# use bash instead of sh for all future commands
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
 # Available to other docker containers
 EXPOSE 80 443
-
-RUN apt-get update && apt-get install -y cron
 
 # cwd for all subsequent commands
 WORKDIR /usr/src/app
@@ -15,7 +10,12 @@ RUN npm install nodemon -g
 COPY package.json .
 RUN npm install --only=production
 
+RUN apt-get update && apt-get install -y supervisor cron
+RUN mkdir -p /var/run/cron /var/log/supervisor
+
 COPY cron/daily/bin /etc/cron.daily/
+RUN chmod 777 /etc/cron.daily/*
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # # gets lets encrypt certs and sets up autorenew
 # RUN echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \

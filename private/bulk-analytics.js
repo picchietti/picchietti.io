@@ -31,21 +31,21 @@ var Analytics = {
 
     	Analytics.get(params, source);
     	since.add(1, 'days');
-    	sleep.sleep(1);
+    	sleep.sleep(2);
     }
   },
 
   get: function(params, source){
     analytics.data.ga.get(params, function(err, response){
-      row = response.rows[0];
-      Analytics.store(response.rows[0], source, params['start-date']);
+      totals = response.totalsForAllResults;
+      Analytics.store(totals, source, params['start-date']);
     });
   },
 
-  store: function(results, source, when){
+  store: function(totals, source, when){
     db.getConnection(function(err, conn){
-      var users = parseInt(results[0]);
-      var pageviews = parseInt(results[1]);
+      var users = parseInt(totals['ga:users']);
+      var pageviews = parseInt(totals['ga:pageviews']);
 
       conn.query("INSERT INTO impact_analytics (pageviews, users, source, ymd) VALUES (?, ?, ?, ?)", [pageviews, users, source, when], function(err, result){
         conn.release();
@@ -60,9 +60,10 @@ jwtClient.authorize(function (err, tokens) {
     return;
   }
 
-  Analytics.save('41469908', 'siualumni.com', '2013-10-30'); // since '2013-10-30'
-  Analytics.save('82388800', 'dnadiscovery.net', '2014-02-18'); // since '2014-02-18'
-  Analytics.save('118734877', 'picchietti.io', '2016-03-26'); // since '2016-03-26'
-  Analytics.save('71729805', 'jonpicchietti.com', '2013-04-26'); // since '2013-04-26'
-  Analytics.save('74075825', 'msknighteducation.com', '2013-07-02'); // since '2013-07-02'
+  Analytics.save('41469908', 'siualumni.com', '2016-11-22'); // established '2013-10-30'
+  Analytics.save('82388800', 'dnadiscovery.net', '2016-11-22'); // established '2014-02-18'
+  Analytics.save('118734877', 'picchietti.io', '2016-11-22'); // established '2016-03-26'
+  
+  // Analytics.save('74075825', 'msknighteducation.com', '2016-11-22'); // established '2013-07-02'
+  // Analytics.save('71729805', 'jonpicchietti.com', '2016-11-22'); // established '2013-04-26'
 });
