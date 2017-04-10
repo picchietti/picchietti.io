@@ -18,8 +18,10 @@ var Analytics = {
   todo: [], // each item is an array with id, source, and since strings
 
   doAll: function(){
-    if(!Analytics.todo.length)
+    if(!Analytics.todo.length){
+      db.end();
       return;
+    }
 
     var todo = Analytics.todo.shift();
     var source = todo[1];

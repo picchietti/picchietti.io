@@ -14,9 +14,9 @@ function abbreviate(num){
 }
 
 function growth_overview (container_select, data_url, x_label, compound) {
-  var margin = {top: 10, right: 0, bottom: 20, left: 35},
+  var margin = {top: 10, right: 0, bottom: 20, left: 0},
       width = 175 - margin.left - margin.right,
-      height = 100 - margin.top - margin.bottom;
+      height = 120 - margin.top - margin.bottom;
 
   var formatDate = d3.time.format("%Y-%m-%d");
 
@@ -34,10 +34,12 @@ function growth_overview (container_select, data_url, x_label, compound) {
       .scale(y)
       .orient("left")
       .tickSize(5, 0)
-      .ticks(2)
-      .tickFormat(function (d) {
-          return abbreviate(d);
-      });
+      .ticks(0)
+
+  var area = d3.svg.area()
+    .x(function(d) { return x(d.date); })
+    .y0(height)
+    .y1(function(d) { return y(d.count); });
 
   var line = d3.svg.line()
       .x(function(d) { return x(d.date); })
@@ -78,17 +80,22 @@ function growth_overview (container_select, data_url, x_label, compound) {
             .call(xAxis)
           .append("text")
             .attr("text-anchor", "middle")
-            .attr("x", width/2)
+            .attr("x", width / 2)
             .attr("y", "1.5em")
             .text(x_label);
 
         svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
+          .attr("class", "y axis")
+          .call(yAxis)
 
         svg.append("path")
-            .datum(data)
-            .attr("class", "line")
-            .attr("d", line);
+          .datum(data)
+          .attr("class", "area")
+          .attr("d", area);
+
+        svg.append("path")
+          .datum(data)
+          .attr("class", "line")
+          .attr("d", line);
       });
 }
