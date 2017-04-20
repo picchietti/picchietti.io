@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('/usr/src/app/secret/database.js');
+var db = require('/usr/src/app/private/database.js');
 var moment = require('moment');
 
 router.get('/', function(req, res){

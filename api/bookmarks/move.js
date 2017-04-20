@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('/usr/src/app/secret/database.js');
+var db = require('/usr/src/app/private/database.js');
 
 router.post('/', function(req, res){
   var from_url = decodeURIComponent(req.body.from);

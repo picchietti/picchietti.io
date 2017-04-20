@@ -6,12 +6,7 @@ services:
      - 3306:3306
     volumes:
       - ./db/data:/var/lib/mysql
-      - ./db/backup/picchietti_db.sql:/docker-entrypoint-initdb.d/picchietti_db_dump.sql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${PICCHIETTI_MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${PICCHIETTI_MYSQL_DATABASE}
-      MYSQL_USER: ${PICCHIETTI_MYSQL_USER}
-      MYSQL_PASSWORD: ${PICCHIETTI_MYSQL_PASSWORD}
+    env_file: ./secret/config.env
 
   node:
     build: .
@@ -23,6 +18,7 @@ services:
       - /usr/src/app/node_modules # otherwise prev volume overwrites
       - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/private/letsencrypt/privkey.pem
       - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/private/letsencrypt/fullchain.pem
+    env_file: ./secret/config.env
     depends_on:
       - mysql
     links:

@@ -5,11 +5,6 @@ module.exports = function(router, passport, allowUpload){
   router.post('/upload/file', restrictAccess, allowUpload);
   router.use('/upload/url', restrictAccess, require(root_dir + '/api/upload/url.js'));
 
-  router.use('/tasks/add', restrictAccess, require(root_dir + '/api/tasks/add.js'));
-  router.use('/tasks/delete', restrictAccess, require(root_dir + '/api/tasks/delete.js'));
-  router.use('/tasks/edit', restrictAccess, require(root_dir + '/api/tasks/edit.js'));
-  router.use('/tasks/list', restrictAccess, require(root_dir + '/api/tasks/list.js'));
-
   router.use('/bookmarks/delete', restrictAccess, require(root_dir + '/api/bookmarks/delete.js'));
   router.use('/bookmarks/update', restrictAccess, require(root_dir + '/api/bookmarks/update.js'));
   router.use('/bookmarks/move', restrictAccess, require(root_dir + '/api/bookmarks/move.js'));
@@ -40,9 +35,6 @@ module.exports = function(router, passport, allowUpload){
   });
   router.get('/pages/upload', restrictAccess, function(req, res) {
     res.sendFile(root_dir + '/public/pages/upload/');
-  });
-  router.get('/pages/tasks', restrictAccess, function(req, res) {
-    res.sendFile(root_dir + '/public/pages/tasks/');
   });
 
 };

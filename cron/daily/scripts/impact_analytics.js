@@ -1,7 +1,7 @@
 var google = require('googleapis');
 var analytics = google.analytics('v3');
 var moment = require('moment');
-var db = require('/usr/src/app/secret/database.js');
+var db = require('/usr/src/app/private/database.js');
 var key = require('/usr/src/app/secret/resume-stats-a8a939419e3a.json');
 
 var jwtClient = new google.auth.JWT(

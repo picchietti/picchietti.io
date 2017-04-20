@@ -1,6 +1,6 @@
 var express = require('express');
 var fs = require('fs');
-var db = require('/usr/src/app/secret/database.js');
+var db = require('/usr/src/app/private/database.js');
 var router = express.Router();
 
 const root_dir = '/usr/src/app';

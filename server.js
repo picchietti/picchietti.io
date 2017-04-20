@@ -25,10 +25,10 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(session({
-  secret: 'pleasechangethis',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // change to true once https is enabled
+  cookie: { secure: true }
 }));
 
 app.use(passport.initialize());
