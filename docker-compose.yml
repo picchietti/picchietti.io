@@ -16,8 +16,8 @@ services:
     volumes:
       - ~/Desktop/picchietti.io/release:/usr/src/app
       - /usr/src/app/node_modules # otherwise prev volume overwrites
-      - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/private/letsencrypt/privkey.pem
-      - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/private/letsencrypt/fullchain.pem
+      - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/secret/letsencrypt/privkey.pem
+      - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/secret/letsencrypt/fullchain.pem
     env_file: ./secret/config.env
     depends_on:
       - mysql

@@ -1,7 +1,7 @@
-picchietti.io/private/letsencrypt/
-picchietti.io/public/pages/bookmarks/icons/
 ./rsync-exclude
-db/data/
 .git/
 node_modules/
+db/data/
 secret/uploads/
+secret/letsencrypt/
+public/pages/bookmarks/icons/

@@ -52,8 +52,8 @@ router.use(function (req, res, next) {
 
 app.use('/', router);
 
-var privateKey  = fs.readFileSync('./private/letsencrypt/privkey.pem', 'utf8');
-var certificate = fs.readFileSync('./private/letsencrypt/fullchain.pem', 'utf8');
+var privateKey  = fs.readFileSync('./secret/letsencrypt/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('./secret/letsencrypt/fullchain.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 spdy.createServer(credentials, app).listen(443); // https + http2
 
