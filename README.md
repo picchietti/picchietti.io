@@ -1,8 +1,3 @@
-<p style="text-align:center;">
-  <img alt="" src="https://picchietti.io/favicon.png" style="width:100px;"/>
-  <h3 style="text-align:center;margin-top:5px;">Jon Picchietti</h3>
-</p>
-
 Since 2007 I've maintained my own website. It started out as learning html via local files. In tech years, it has been a lifetime since then. I have learned a lot along the way, and I'm not close to being done.
 
 A few things to note about this repository:
