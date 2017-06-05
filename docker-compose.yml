@@ -14,7 +14,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ~/Desktop/picchietti.io/release:/usr/src/app
+      - ../release:/usr/src/app
       - /usr/src/app/node_modules # otherwise prev volume overwrites
       - /etc/letsencrypt/live/picchietti.io/privkey.pem:/usr/src/app/secret/letsencrypt/privkey.pem
       - /etc/letsencrypt/live/picchietti.io/fullchain.pem:/usr/src/app/secret/letsencrypt/fullchain.pem
