@@ -1,3 +1,8 @@
 #!/bin/bash
 
+# get environment variables for database connection
+set -o allexport
+source /usr/src/app/secret/config.env
+set +o allexport
+
 /usr/local/bin/node /usr/src/app/cron/daily/scripts/impact_analytics.js &>> /usr/src/app/cron/impact_analytics.log

@@ -35,6 +35,11 @@ var Analytics = {
 
   store: function(totals, source){
     db.getConnection(function(err, conn){
+      if (err) {
+        console.log(err);
+        return;
+      }
+
       var users = parseInt(totals['ga:users']);
       var pageviews = parseInt(totals['ga:pageviews']);
 
