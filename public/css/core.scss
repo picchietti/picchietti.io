@@ -6,7 +6,6 @@ body{-webkit-text-size-adjust:none}
 
 // variables
 $button_blue: rgb(45, 139, 215);
-// TODO: add shards
 
 ul{
 	list-style-type: disc;
@@ -14,7 +13,7 @@ ul{
 }
 
 ul li{
-	line-height:1.5;
+	line-height: 1.5;
 }
 
 ul li ul{
@@ -36,13 +35,13 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 input[type="button"], button{
-	border:2px solid $button_blue;
+	border: 2px solid $button_blue;
 	border-radius: 3px;
 	background-color: transparent;
 	color: $button_blue;
-	font-size:14px;
-	padding:5px 10px;
-	cursor:pointer;
+	font-size: 14px;
+	padding: 5px 10px;
+	cursor: pointer;
 }
 
 input[type="button"]:hover, button:hover{
@@ -83,7 +82,7 @@ body {
 	font-size: 14pt;
 	font-weight: 400;
 	line-height: 1.75em;
-	position:relative;
+	position: relative;
 }
 
 input, select, textarea{
@@ -93,12 +92,12 @@ input, select, textarea{
 a, .link {
 	color: #00f;
 	text-decoration: none;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .super{
-	font-size:12px;
-	vertical-align:super;
+	font-size: 12px;
+	vertical-align: super;
 }
 
 .no-select {
@@ -113,18 +112,41 @@ a, .link {
 #main #content {
 	padding: 1em 4em 1em 4em;
 	min-height: 100%;
-	max-width:960px;
+	max-width: 960px;
 }
 
 #header {
 	color: #000;
 	height: 100%;
-	float:left;
-	overflow:auto;
+	float: left;
+	overflow: auto;
 	width: 35%;
 	font-size: 15pt;
-	box-shadow:0 1px 8px #555;
-	background: #f6f6f6 url("/images/shards.svg") top left repeat;
+	box-shadow: 0 1px 8px #555;
+	position: relative;
+
+	#canvas {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background-color: rgb(220,220,220);
+		top: 0;
+		left: 0;
+		z-index: -1;
+		overflow: hidden;
+
+		.up, .down, .left, .right {
+			border-style: solid;
+			position: absolute;
+			width: 0px;
+			height: 0px;
+			border-color: transparent;
+		}
+	}
+
+	#links {
+		margin-top: 20px;
+	}
 
 	#profile{
 		width: 100%;
@@ -135,28 +157,10 @@ a, .link {
 			cursor: default;
 		}
 	}
-
-	#right{
-		text-align: center;
-	}
 }
 
 a .fa, #menu2 .fa, .link .fa{
 	margin-right: 10px;
-}
-
-#menu-toggle{
-	display:none;
-	cursor: default;
-	font-size: 1.4em;
-
-	.fa.fa-circle{
-		color: $button_blue;
-	}
-
-	.fa.fa-bars{
-		color: #fff;
-	}
 }
 
 .wrap-centered{
@@ -199,7 +203,7 @@ a .fa, #menu2 .fa, .link .fa{
 
 	#main {
 		max-width: none;
-		overflow:auto;
+		overflow: auto;
 
 		#content{
 			padding: 1em 3em 3em 3em;
@@ -211,111 +215,98 @@ a .fa, #menu2 .fa, .link .fa{
 // medium devices
 @media(max-width: 960px) {
 	#header {
-		padding: 1em 4em;
+		padding: 1em 2em;
 		width: 100%;
-		height:auto;
-		overflow:auto;
-		margin-bottom:15px;
+		height: auto;
+		overflow: auto;
+		margin-bottom: 15px;
 		float: none;
 
 		#profile{
-			max-width:160px;
-			max-height:122px;
-			width:auto;
+			max-width: 160px;
+			max-height: 122px;
+			width: auto;
 		}
 
 		#left{
-			float:left;
-			width:50%;
-			text-align:center;
-		}
-
-		#right{
-			float:left;
-			width:50%;
+			float: left;
+			width: 50%;
+			text-align: center;
 		}
 	}
 
 	#menu2{
-		background-color:rgba(255,255,255,.4);
-		position:fixed;
-		z-index:10;
-		top:0px;
-		height:100%;
-		width:100%;
-		left: -100%;
-
 		#links{
-			height:100%;
-			width:50%;
-			min-width:265px;
+			height: 100%;
 			padding-top: 1em;
 			text-align: center;
-			background: #f6f6f6 url("/images/shards.svg") top left repeat;
 
 			#links-centered{
-				display:inline-block;
+				display: inline-block;
 				text-align: left;
+
+				div {
+					display: inline-block;
+
+					i.fa {
+						font-size: 3em;
+					}
+				}
+			}
+
+			.text {
+				display: none;
 			}
 		}
-	}
-
-	#menu-toggle{
-		display:inline-block;
-		margin-top:50%;
 	}
 
 	#main {
 		margin: 0;
 		width: 100%;
-	}
 
-		#main #content{
+		#content {
 			padding: 0 3em 1em 3em;
 		}
+	}
+
 }
 
 // small devices
 @media(max-width: 480px) {
 	#header {
 		padding: 1em 1.5em;
-		height:auto;
-
-		#right{
-			text-align:center;
-		}
+		height: auto;
 	}
 
 	#menu2{
-		background-color:rgba(255,255,255,.4);
-		position:fixed;
-		z-index:10;
-		top:0px;
-		height:100%;
-		width:100%;
-		left: -100%;
-
 		#links{
-			height:100%;
-			width:50%;
-			min-width:265px;
-			padding-top: 1em;
+			height: 100%;
+			width: 50%;
+			padding-top: 0;
 			text-align: center;
-			background: #f6f6f6 url("/images/shards.svg") top left repeat;
+			margin-left: auto;
+			margin-right: auto;
 
 			#links-centered{
-				display:inline-block;
-				text-align: left;
+				display: inline-block;
+				text-align: center;
+
+				div {
+
+					i.fa {
+						font-size: 2em;
+						margin-right: 0;
+					}
+				}
+			}
+
+			.text {
+				display: none;
 			}
 		}
 	}
 
-	#menu-toggle{
-		display:inline-block;
-		margin-top:50%;
-	}
-
 	#main #content{
-		padding:0 1em;
+		padding: 0 1em;
 	}
 }

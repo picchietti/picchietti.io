@@ -1,23 +1,16 @@
 		<div id="header" class="alignc">
+			<div id="canvas"></div>
 			<div id="left">
 				<a href="//picchietti.io">
 					<img src="/images/profile2.png" alt="Me" id="profile" />
 				</a>
 			</div>
-			<div id="right">
-				<div class="wrap-centered">
-					<span id="menu-toggle" class="fa-stack fa-2x no-select">
-						<i class="fa fa-circle fa-stack-2x"></i>
-						<i class="fa fa-bars fa-stack-1x"></i>
-					</span>
-				</div>
-			</div>
 			<div class="wrap-centered">
 				<div id="menu2" class="alignl">
 					<div id="links">
 						<div id="links-centered">
-							<div><a href="https://github.com/picchietti" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a></div>
-							<div><a href="https://www.linkedin.com/in/picchietti/" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a></div>
+							<div><a href="https://github.com/picchietti" target="_blank"><i class="fa fa-fw fa-github"></i><span class="text"> Github</span></a></div>
+							<div><a href="https://www.linkedin.com/in/picchietti/" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i><span class="text"> LinkedIn</span></a></div>
 						</div>
 					</div>
 				</div>
