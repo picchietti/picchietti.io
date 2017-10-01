@@ -6,7 +6,6 @@ EXPOSE 80 443
 # cwd for all subsequent commands
 WORKDIR /usr/src/app
 
-RUN npm install nodemon -g
 COPY package.json .
 RUN npm install --only=production
 
