@@ -4,22 +4,11 @@ var http = require('http');
 var https = require('https');
 var url_lib = require('url');
 var fs = require('fs');
-var DOMParser = require('xmldom').DOMParser;
+var cheerio = require('cheerio');
 var router = express.Router();
 var db = require('/usr/src/app/private/database.js');
 
 const root_dir = '/usr/src/app';
-
-// Have a problem entering websites without www. or an equivalent.
-// Definitely have problem with websites without http://
-// Have a problem with relative urls still.
-//
-// file_get_contents sometimes gets 403 forbidden by some servers.
-//
-// Problems:
-//
-// http://tools.ietf.org/html/rfc6455	//file_get_contents 403 forbidden
-// http://www.w3.org/TR/html5/media-elements.html#mediaevents	//file_get_contents 403 forbidden
 
 router.post('/', function(req, res){
   var parsed_url, url, folder, ext, title, base;
@@ -54,33 +43,26 @@ router.post('/', function(req, res){
   }
 
   function process_html(html){
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(html, "text/html");
-    if(doc == undefined)
-      return error_out(500);
+    var $ = cheerio.load(html);
 
-    var head = doc.getElementsByTagName('head')[0];
-    if(head == undefined)
-      return error_out(500);
+    var title_tag = $('head title');
+    if(title_tag.length)
+      title = title_tag.text().trim();
 
-    var title_tag = head.getElementsByTagName('title')[0];
-    if(title_tag != undefined)
-      title = title_tag.textContent.trim();
-
-    var links = head.getElementsByTagName('link');
-    // search for <link> tags with a favicon
-    for(var i=0, y=links.length; i<y; i++){
-      var ele = links[i];
-      if(!ele.hasAttribute('rel'))
-        continue;
+    var links = $('head link');
+    $(links).each(function(i, link){
+      // search for <link> tags with a favicon
+      if(!$(link).attr('rel'))
+        return true;
 
       // either 'icon' or 'shortcut icon' will become 'icon'
-      var rel = ele.getAttribute('rel').slice(-4);
+      var rel = $(link).attr('rel').slice(-4);
       if(rel == 'icon'){
-        var icon = ele.getAttribute('href');
-        break;
+        var icon = $(link).attr('href');
+        return false;
       }
-    }
+    });
+
 
     if(icon != null && icon != ''){
       icon = url_lib.resolve(url, icon);
