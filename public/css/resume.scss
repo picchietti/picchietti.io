@@ -49,6 +49,10 @@ $button_blue: rgb(45, 139, 215);
 	}
 }
 
+.featured{
+	color: #FFD600 !important;
+}
+
 .spacing-top{
 	margin-top: 15px;
 }
@@ -67,6 +71,7 @@ $button_blue: rgb(45, 139, 215);
 
 #skills{
 	padding-left: 25px;
+	margin-bottom: 10px;
 }
 
 .skill{
@@ -78,7 +83,9 @@ $button_blue: rgb(45, 139, 215);
 	display: inline-block;
 }
 
-#other-experiences{display:none;}
+#other-experiences, #other-skills{
+	display: none;
+}
 
 #experiences{
 	border-left: 2px solid gray;
@@ -106,7 +113,7 @@ $button_blue: rgb(45, 139, 215);
 				font-size: 23pt;
 			}
 
-			.fa-circle.foreground{
+			.fa-circle.foreground, .fa-star.foreground{
 				color: #ddd;
 				font-size: 16pt;
 			}

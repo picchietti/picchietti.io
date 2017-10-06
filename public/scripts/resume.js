@@ -5,10 +5,26 @@ window.addEventListener('load', function(){
 }, false);
 
 window.addEventListener('DOMContentLoaded', function(){
+  hearSkillsToggle();
   hearExperiencesToggle();
   hearAnchorClicks();
   hearStageBackClick();
 }, false);
+
+function hearSkillsToggle(){
+  $('toggle-skills').addEventListener('click', function(){
+    Loader.load("/scripts/snippets/toggle.js", function(){
+      Toggle.display('other-skills');
+
+      var button = $('toggle-skills');
+      var box = $('other-skills');
+      if(box.style.display != 'none')
+        button.innerHTML = '(3) Less';
+      else
+        button.innerHTML = '(3) More';
+    });
+  }, false);
+}
 
 function hearExperiencesToggle(){
   $('toggle-experiences').addEventListener('click', function(){
