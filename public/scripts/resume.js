@@ -19,9 +19,9 @@ function hearSkillsToggle(){
       var button = $('toggle-skills');
       var box = $('other-skills');
       if(box.style.display != 'none')
-        button.innerHTML = '(3) Less';
+        button.innerHTML = '(4) Less';
       else
-        button.innerHTML = '(3) More';
+        button.innerHTML = '(4) More';
     });
   }, false);
 }
