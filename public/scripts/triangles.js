@@ -47,12 +47,10 @@ var Triangle = {
   }
 }
 
-window.addEventListener('DOMContentLoaded', function(){
-	var canvas = document.getElementById('canvas');
+function fillCanvas(){
+  var canvas = $('canvas');
   Triangle.fill(canvas);
-}, false);
+}
 
-window.addEventListener('resize', function(){
-  var canvas = document.getElementById('canvas');
-  Triangle.fill(canvas);
-}, false)
+window.addEventListener('DOMContentLoaded', fillCanvas, false);
+window.addEventListener('resize', _.debounce(fillCanvas, 300), false)
