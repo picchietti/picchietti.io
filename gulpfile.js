@@ -82,21 +82,21 @@ gulp.task('css', ['sync', 'scss'], function() {
 
   return gulp
     .src([
-      path_output_slash + '**/*.css',
-      '!' + path_output_slash + '**/*.min.css'
+      path_output_slash + 'public/**/*.css',
+      '!' + path_output_slash + 'public/**/*.min.css'
     ])
     .pipe(minify_css())
-    .pipe(gulp.dest(path_output_slash));
+    .pipe(gulp.dest(path_output_slash + 'public/'));
 });
 
 gulp.task('js', ['sync'], function(cb) {
   pump([
     gulp.src([
-      path_output_slash + '**/*.js',
-      '!' + path_output_slash + '**/*.min.js',
+      path_output_slash + 'public/**/*.js',
+      '!' + path_output_slash + 'public/**/*.min.js',
     ]),
     uglify(),
-    gulp.dest(path_output_slash)
+    gulp.dest(path_output_slash + 'public/')
   ], cb);
 });
 
