@@ -1,0 +1,3 @@
+{
+  "presets": ["../source/node_modules/babel-preset-env"],
+}

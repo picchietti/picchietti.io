@@ -9,11 +9,11 @@ var minify_css = require('gulp-clean-css');
 var include_file = require('gulp-file-include');
 var pump = require('pump');
 var jsonminify = require('gulp-jsonminify');
+var babel = require('gulp-babel');
 
 var del = require('del');
 var glob = require("glob");
 
-// var babel = require('gulp-babel');
 // var rename = require('gulp-rename');
 
 var cwd, path_input;
@@ -95,6 +95,9 @@ gulp.task('js', ['sync'], function(cb) {
       path_output_slash + 'public/**/*.js',
       '!' + path_output_slash + 'public/**/*.min.js',
     ]),
+    // babel will try to find presets installed in node_modules relative to gulp.src
+    // there is a workaround in .babelrc to get it to search elsewhere (source)
+    babel(),
     uglify(),
     gulp.dest(path_output_slash + 'public/')
   ], cb);
@@ -102,9 +105,9 @@ gulp.task('js', ['sync'], function(cb) {
 
 gulp.task('json', ['sync'], function () {
     return gulp
-      .src(path_output_slash + '**/*.json')
+      .src(path_output_slash + 'public/**/*.json')
       .pipe(jsonminify())
-      .pipe(gulp.dest(path_output_slash));
+      .pipe(gulp.dest(path_output_slash + 'public/'));
 });
 
 gulp.task('html', ['sync'], function() {

@@ -1,5 +1,5 @@
 window.addEventListener('load', function(){
-  growth_overview("#contribution-graph", "data/contributions", "Jan 2015 - Dec 2016", true);
+  growth_overview("#contribution-graph", "/pages/resume/contributions.json", "Jan 2015 - Dec 2016", true);
   growth_overview("#users-graph", "data/month/users", "Last 30 days", false);
   growth_overview("#pageviews-graph", "data/month/pageviews", "Last 30 days", false);
 }, false);

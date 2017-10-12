@@ -16,9 +16,6 @@ module.exports = function(router, passport, allowUpload){
 
   router.use('/data/month/users', require(root_dir + '/api/data/month/users.js'));
   router.use('/data/month/pageviews', require(root_dir + '/api/data/month/pageviews.js'));
-  router.get('/data/contributions', function(req, res){
-    res.sendFile(root_dir + '/api/data/contributions.json');
-  });
 
   router.post('/login', passport.authenticate('local'), function(req, res){
     var referrer = req.session.referrer;
