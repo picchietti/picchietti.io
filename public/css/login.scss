@@ -1,34 +1,41 @@
-#access, #signin{
-  float: left;
-  width: 50%;
-}
-#signin input{
-  margin: 2px 0;
-}
-.wrap-password{
-  position: relative;
-  margin: 4px auto;
-}
-.strength{
-  position: absolute;
-  bottom: 2px;
-  height: 2px;
-  width: 0;
-  transition: width .4s;
-  z-index: 5;
-}
-#feedback{
-  text-align: center;
-  color: #f00;
+#access,
+#signin {
+	float: left;
+	width: 50%;
 }
 
-@media(max-width: 625px){
-  #access, #signin{
-    float: none;
-    width: 100%;
-    margin: 0 auto;
-  }
-  #access{
-    margin-top: 25px;
-  }
+#signin input {
+	margin: 2px 0;
+}
+
+.wrap-password {
+	position: relative;
+	margin: 4px auto;
+}
+
+.strength {
+	position: absolute;
+	bottom: 2px;
+	height: 2px;
+	width: 0;
+	transition: width 0.4s;
+	z-index: 5;
+}
+
+#feedback {
+	text-align: center;
+	color: #f00;
+}
+
+@media (max-width: 625px) {
+	#access,
+	#signin {
+		float: none;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	#access {
+		margin-top: 25px;
+	}
 }

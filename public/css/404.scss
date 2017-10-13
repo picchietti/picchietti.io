@@ -1,21 +1,21 @@
-#message404{
-  text-align:center;
-  margin-top:140px;
+#message404 {
+  text-align: center;
+  margin-top: 140px;
   line-height: 1.3;
 
-  .large{
-    font-size:2em;
+  .large {
+    font-size: 2em;
   }
 
-  .medium{
-    font-size:1.5em;
+  .medium {
+    font-size: 1.5em;
   }
 
-  .small{
-    font-size:1em;
+  .small {
+    font-size: 1em;
   }
 }
 
-@media(max-width:960px){
-  #message404{margin-top:15px;}
+@media (max-width: 960px) {
+  #message404 { margin-top: 15px; }
 }

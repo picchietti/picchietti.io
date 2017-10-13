@@ -1,56 +1,57 @@
-body.dragging .droparea{
-  pointer-events: none;
-  border: 4px dashed #364a67;
+body.dragging .droparea {
+	pointer-events: none;
+	border: 4px dashed #364a67;
 }
 
-#url{
-  text-align: center;
-  width: 95%;
-  font-size: 16pt;
-  padding: 3px;
+#url {
+	text-align: center;
+	width: 95%;
+	font-size: 16pt;
+	padding: 3px;
 }
 
-#uploads{
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -2000px;
-  top: -2000px;
+#uploads {
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: -2000px;
+	top: -2000px;
 }
 
 #previews {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 
-  .preview{
-    height: 125px;
-    width: auto;
-  }
-  .not-image{
-    display: inline-block;
-    height: 125px;
-    width: 125px;
-    background-color: #ddd;
+	.preview {
+		height: 125px;
+		width: auto;
+	}
 
-    i{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-  }
+	.not-image {
+		display: inline-block;
+		height: 125px;
+		width: 125px;
+		background-color: #ddd;
+
+		i {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+		}
+	}
 }
 
-.droparea{
-  width: 100%;
-  min-height: 200px;
-  border: 4px dashed transparent;
-  background-image: url('/images/droparea.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
+.droparea {
+	width: 100%;
+	min-height: 200px;
+	border: 4px dashed transparent;
+	background-image: url('/images/droparea.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
 }
 
-.space{
-  margin: 20px 0;
+.space {
+	margin: 20px 0;
 }

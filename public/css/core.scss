@@ -1,40 +1,47 @@
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,section,summary,time,mark,audio,video
-{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
-:focus {outline:none;}
-::-moz-focus-inner {border:0;}
-body{-webkit-text-size-adjust:none}
+/* stylelint-disable */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+/* stylelint-enable */
+
+:focus { outline: none; }
+::-moz-focus-inner { border: 0; }
+body { -webkit-text-size-adjust: none; }
 
 // variables
 $button_blue: rgb(45, 139, 215);
 
-ul{
+ul {
 	list-style-type: disc;
 	padding-left: 40px;
 }
 
-ul li{
+ul li {
 	line-height: 1.5;
 }
 
-ul li ul{
+ul li ul {
 	list-style-type: circle;
 	padding-left: 30px;
 }
 
-input[type="text"], input[type="email"], input[type="password"]{
-	color: rgb(77,77,77);
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+	color: rgb(77, 77, 77);
 	font-size: 16px;
 	padding: 10px;
-  border: 1px solid #eee;
-  border-bottom: solid 2px #c9c9c9;
-  transition: border 0.3s;
+	border: 1px solid #eee;
+	border-bottom: solid 2px #c9c9c9;
+	transition: border 0.3s;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-  border-bottom: solid 2px #969696;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+	border-bottom: solid 2px #969696;
 }
 
-input[type="button"], button{
+input[type="button"],
+button {
 	border: 2px solid $button_blue;
 	border-radius: 3px;
 	background-color: transparent;
@@ -44,16 +51,21 @@ input[type="button"], button{
 	cursor: pointer;
 }
 
-input[type="button"]:hover, button:hover{
+input[type="button"]:hover,
+button:hover {
 	background-color: $button_blue;
-	color:#fff;
+	color: #fff;
 }
 
-strong, b, .bold {
+strong,
+b,
+.bold {
 	font-weight: bold;
 }
 
-em, i, .italic {
+em,
+i,
+.italic {
 	font-style: italic;
 }
 
@@ -61,19 +73,25 @@ p {
 	margin: 0 0 2em 0;
 }
 
-.alignl{text-align:left;}
-.alignr{text-align:right;}
-.alignc{text-align:center;}
-.clearb{clear:both;}
+.alignl { text-align: left; }
+.alignr { text-align: right; }
+.alignc { text-align: center; }
+.clearb { clear: both; }
 
 /* Include padding in width */
-*, *:before, *:after {
+*,
+*::before,
+*::after {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-html, body, #main{height:100%;}
+html,
+body,
+#main {
+	height: 100%;
+}
 
 body {
 	color: #000;
@@ -85,29 +103,32 @@ body {
 	position: relative;
 }
 
-input, select, textarea{
+input,
+select,
+textarea {
 	font-family: Helvetica, sans-serif;
 }
 
-a, .link {
+a,
+.link {
 	color: #00f;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-.super{
+.super {
 	font-size: 12px;
 	vertical-align: super;
 }
 
 .no-select {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-.hidden{display:none;}
+.hidden { display: none; }
 
 #main #content {
 	padding: 1em 4em 1em 4em;
@@ -129,17 +150,18 @@ a, .link {
 		position: absolute;
 		height: 100%;
 		width: 100%;
-		background-color: rgb(220,220,220);
+		background-color: rgb(220, 220, 220);
 		top: 0;
 		left: 0;
 		z-index: -1;
 		overflow: hidden;
 
-		.up, .down, .left, .right {
+		.up,
+		.down {
 			border-style: solid;
 			position: absolute;
-			width: 0px;
-			height: 0px;
+			width: 0;
+			height: 0;
 			border-color: transparent;
 		}
 	}
@@ -148,55 +170,60 @@ a, .link {
 		margin-top: 20px;
 	}
 
-	#profile{
+	#profile {
 		width: 100%;
 	}
 
-	#left{
-		a{
+	#left {
+		a {
 			cursor: default;
 		}
 	}
 }
 
-a .fa, #menu2 .fa, .link .fa{
+a .fa,
+#menu2 .fa,
+.link .fa {
 	margin-right: 10px;
 }
 
-.wrap-centered{
+.wrap-centered {
 	display: inline-block;
 	text-align: center;
 }
 
-.fa{color:#000;}
+.fa { color: #000; }
 
-.on-print, .on-print-block, .on-print-inline{
+.on-print,
+.on-print-block,
+.on-print-inline {
 	display: none !important;
 }
 
 @media print {
-	.no-print{
+	.no-print {
 		display: none !important;
 	}
 
-	.on-print, .on-print-block{
+	.on-print,
+	.on-print-block {
 		display: block !important;
 	}
 
-	.on-print-inline{
+	.on-print-inline {
 		display: inline !important;
 	}
 }
 
 // large devices
-@media(min-width: 961px) {
+@media (min-width: 961px) {
 	#header {
 		padding: 4em 0 3em 0;
 		width: 30%;
 		max-width: 305px;
 	}
 
-	#left{
+	#left {
 		width: 65%;
 		display: inline-block;
 	}
@@ -205,15 +232,14 @@ a .fa, #menu2 .fa, .link .fa{
 		max-width: none;
 		overflow: auto;
 
-		#content{
+		#content {
 			padding: 1em 3em 3em 3em;
 		}
 	}
 }
 
-
 // medium devices
-@media(max-width: 960px) {
+@media (max-width: 960px) {
 	#header {
 		padding: 1em 2em;
 		width: 100%;
@@ -222,26 +248,26 @@ a .fa, #menu2 .fa, .link .fa{
 		margin-bottom: 15px;
 		float: none;
 
-		#profile{
+		#profile {
 			max-width: 160px;
 			max-height: 122px;
 			width: auto;
 		}
 
-		#left{
+		#left {
 			float: left;
 			width: 50%;
 			text-align: center;
 		}
 	}
 
-	#menu2{
-		#links{
+	#menu2 {
+		#links {
 			height: 100%;
 			padding-top: 1em;
 			text-align: center;
 
-			#links-centered{
+			#links-centered {
 				display: inline-block;
 				text-align: left;
 
@@ -268,18 +294,17 @@ a .fa, #menu2 .fa, .link .fa{
 			padding: 0 3em 1em 3em;
 		}
 	}
-
 }
 
 // small devices
-@media(max-width: 480px) {
+@media (max-width: 480px) {
 	#header {
 		padding: 1em 1.5em;
 		height: auto;
 	}
 
-	#menu2{
-		#links{
+	#menu2 {
+		#links {
 			height: 100%;
 			width: 50%;
 			padding-top: 0;
@@ -287,12 +312,11 @@ a .fa, #menu2 .fa, .link .fa{
 			margin-left: auto;
 			margin-right: auto;
 
-			#links-centered{
+			#links-centered {
 				display: inline-block;
 				text-align: center;
 
 				div {
-
 					i.fa {
 						font-size: 2em;
 						margin-right: 0;
@@ -306,7 +330,7 @@ a .fa, #menu2 .fa, .link .fa{
 		}
 	}
 
-	#main #content{
+	#main #content {
 		padding: 0 1em;
 	}
 }
