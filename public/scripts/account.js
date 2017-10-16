@@ -8,7 +8,7 @@ var Account = {
 
 		email1.addEventListener("keyup", Account.ready, false);
 		pass1.addEventListener("keyup", Account.ready, false);
-		pass1.addEventListener("input", Password.safety, false);
+		pass1.addEventListener("input", Password.strength, false);
 
 		$("email1").focus();
 	},
@@ -45,47 +45,29 @@ var Account = {
 
 };
 
-var Password={
-	safety:function(){
+var Password = {
+	strength: function(){
 		var password = $("pass1").value;
-		var hasymbols = /[^a-zA-Z]+/;
-		if(password.length == 0){
-			Password.reset();
-			return;
-		}
-		else if(password.length < 8){
-			Password.isBad();
-			return;
-		}
+		var has_symbols = /[^a-zA-Z]+/;
+		const symbols_points = 2;
+		const recommended_length = 16;
+		const max_points = recommended_length + symbols_points;
+		var points = 0;
 
-		if(password.length >= 12 || hasymbols.test(password)){
-			Password.isGood();
+		points += Math.min(password.length, recommended_length);
 
-			if(password.length >= 16 && hasymbols.test(password))
-				Password.isAwesome();
-		}
+		if(has_symbols.test(password))
+			points += symbols_points;
 
-	},
-
-	reset:function(){
-		$("strength").style.width = "0px";
-	},
-
-	isBad:function(){
 		var indicator = $("strength");
-		indicator.style.width = "33.3%";
-		indicator.style.backgroundColor = "#f00";
-	},
+		var points_percentage = points / max_points * 100;
+		indicator.style.width = points_percentage + '%';
 
-	isGood:function(){
-		var indicator = $("strength");
-		indicator.style.width = "66.6%";
-		indicator.style.backgroundColor = "rgb(255,207,12)";
-	},
-
-	isAwesome:function(){
-		var indicator = $("strength");
-		indicator.style.width = "100%";
-		indicator.style.backgroundColor = "#6f0";
+		if(points_percentage < 40) // bad
+			indicator.style.backgroundColor = "#f00";
+		else if(points_percentage < 70) // good
+			indicator.style.backgroundColor = "rgb(255, 207, 12)";
+		else // awesome
+			indicator.style.backgroundColor = "#6f0";
 	}
 };
