@@ -14,6 +14,8 @@ const spdy = require('spdy');
 const shrinkray = require('shrink-ray');
 // const helmet = require('helmet');
 
+const root_dir = '/usr/src/app';
+
 require('./private/passport.js')(passport);
 var uploader = require('./private/multer.js')(multer);
 
@@ -47,7 +49,7 @@ router.use(express.static('./public/'));
 
 // 404 redirect.
 router.use(function (req, res, next) {
-  res.status(404).sendFile('./public/pages/404/index.html');
+  res.status(404).sendFile(root_dir + '/public/pages/404/index.html');
 });
 
 app.use('/', router);

@@ -1,4 +1,4 @@
-const root_dir = '/usr/src/app'; // can probably remove this
+const root_dir = '/usr/src/app';
 
 module.exports = function(router, passport, allowUpload){
 
