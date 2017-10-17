@@ -1,3 +1,5 @@
 {
   "presets": ["../source/node_modules/babel-preset-env"],
+  "compact": true,
+  "minified": true
 }
