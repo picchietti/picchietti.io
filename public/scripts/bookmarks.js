@@ -2,11 +2,11 @@ function $(id){
 	return document.getElementById(id);
 }
 
-var BookMark={
+var BookMark = {
 	currentItem: false,
 	moved: new Array(3),
 
-	_make:function(folder,url,title,favicon){
+	_make: function(folder,url,title,favicon){
 		var mark = document.createElement("a");
 		mark.style.backgroundImage = "url('/pages/bookmarks/icons/"+ favicon +"')";
 
@@ -41,20 +41,20 @@ var BookMark={
 		return mark;
 	},
 
-	make:function(folder,url,title,favicon){
+	make: function(folder,url,title,favicon){
 		var mark = this._make(folder,url,title,favicon);
 		mark.innerHTML = title;
 		$("bookmarks").appendChild(mark);
 	},
 
-	makeBar:function(folder,url,title,favicon){
+	makeBar: function(folder,url,title,favicon){
 		var mark = this._make(folder,url,title,favicon);
 
 		mark.title = title + "\n" + url;
 
 		mark.addEventListener('dragstart',function(event){event.preventDefault();},false);
 
-		mark.onmousedown=function(event){
+		mark.onmousedown = function(event){
 			document.onselectstart=function(){return false;}
 			startprev = mark.previousSibling;
 			marksBoxX = $("bar").offsetLeft;
@@ -63,7 +63,7 @@ var BookMark={
 			window.addEventListener("mouseup", mark.mouseup, false);
 		}
 
-		mark.mousemove=function(event){
+		mark.mousemove = function(event){
 			var nextEle, prevEle;
 			var mouseRelParentX = event.pageX - marksBoxX;
 			var mouseRelParentY = event.pageY - marksBoxY;
@@ -102,7 +102,7 @@ var BookMark={
 			}
 		}
 
-		mark.mouseup=function(){
+		mark.mouseup = function(){
 			document.onselectstart=function(){return true;}
 
 			if(startprev != mark.previousSibling){
@@ -119,46 +119,51 @@ var BookMark={
 		$("bar").appendChild(mark);
 	},
 
-	add:function(url){
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/bookmarks/add", true);
-		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		xhr.send("url="+encodeURIComponent(url) + "&folder="+encodeURIComponent(Folders.current));
+	add: function(url){
+		var xhr2 = new XHR2('POST', '/bookmarks/add');
+		xhr2.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
-		xhr.onreadystatechange=function(){if(xhr.readyState == 4 && xhr.status == 200){
-			var response = JSON.parse(xhr.responseText); //folder, url, title, icon
-			if(response.length != 4)
-				return;
+		xhr2.onload = function(){
+			if(xhr2.status == 200){
+				var response = JSON.parse(xhr2.responseText); //folder, url, title, icon
+				if(response.length != 4)
+					return;
 
-			if(response[0] == Folders.current || response[0] == "Bookmark Bar")
-				BookMark.make(response[0], response[1], response[2], response[3]);
+				if(response[0] == Folders.current || response[0] == "Bookmark Bar")
+					BookMark.make(response[0], response[1], response[2], response[3]);
 
-			$("global").value = "";
-		}}
+				$("global").value = "";
+			}
+		}
+
+		xhr2.send("url="+encodeURIComponent(url) + "&folder="+encodeURIComponent(Folders.current));
 	},
 
-	getUrl:function(){
+	getUrl: function(){
 		return encodeURIComponent(BookMark.currentItem.url);
 	},
 
-	getAll:function(){
-		var xhr = new XMLHttpRequest();
+	getAll: function(){
 		var amount;
 		Pager.total = amount = parseInt((window.innerHeight - 42) / 26) + 5;
-		xhr.open("GET", "/bookmarks/get/"+encodeURIComponent(Folders.current)+'/'+amount, true);
-		xhr.send(null);
+		var url = '/bookmarks/get/' + encodeURIComponent(Folders.current) + '/' + amount;
+		var xhr2 = new XHR2('GET', url);
 
-		xhr.onreadystatechange=function(){if(xhr.readyState==4 && xhr.status==200){
-			var response=JSON.parse(xhr.responseText); //url, title, icon
-			for(var i=0,y=response.bar.length;i<y;i++)
-				BookMark.makeBar("Bookmark Bar", response.bar[i].url, response.bar[i].title, response.bar[i].icon);
+		xhr2.onload = function(){
+			if(xhr2.status == 200){
+				var response = JSON.parse(xhr2.responseText); //url, title, icon
+				for(var i=0,y=response.bar.length;i<y;i++)
+					BookMark.makeBar("Bookmark Bar", response.bar[i].url, response.bar[i].title, response.bar[i].icon);
 
-			for(var i=0,y=response.other.length;i<y;i++)
-				BookMark.make("Other", response.other[i].url, response.other[i].title, response.other[i].icon);
-		}}
+				for(var i=0,y=response.other.length;i<y;i++)
+					BookMark.make("Other", response.other[i].url, response.other[i].title, response.other[i].icon);
+			}
+		}
+
+		xhr2.send(null);
 	},
 
-	getList:function(){
+	getList: function(){
 		var xhr = new XMLHttpRequest();
 		var amount;
 		Pager.total = amount = parseInt( (window.innerHeight - 42) / 26 ) + 5;
@@ -170,7 +175,7 @@ var BookMark={
 			BookMark.make(Folders.current, response[i].url, response[i].title, response[i].icon);
 	},
 
-	getMore:function(amount){
+	getMore: function(amount){
 		if(Pager.total == -1)
 			return;
 		var xhr = new XMLHttpRequest();
@@ -188,18 +193,18 @@ var BookMark={
 		Pager.total += amount;
 	},
 
-	newTab:function(){
+	newTab: function(){
 		window.open(BookMark.currentItem.href, '_blank');
 	},
 
-	move:function(from, to){
+	move: function(from, to){
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", "/bookmarks/move", false);
 		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		xhr.send("from="+encodeURIComponent(from.url)+"&to="+encodeURIComponent(to.url));
 	},
 
-	remove:function(){
+	remove: function(){
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", "/bookmarks/delete", false);
 		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -208,7 +213,7 @@ var BookMark={
 			BookMark.currentItem.parentNode.removeChild(BookMark.currentItem);
 	},
 
-	edit:function(){
+	edit: function(){
 		var edit = $("edit");
 		var inputs = edit.getElementsByTagName("input");
 		var menuLeft = $("menu").style.left.split("px")[0];
@@ -221,7 +226,7 @@ var BookMark={
 		edit.style.display = "flex";
 	},
 
-	update:function(){
+	update: function(){
 		var xhr = new XMLHttpRequest();
 		var post = "";
 		var inputs = $("edit").getElementsByTagName("input");

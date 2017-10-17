@@ -25,22 +25,19 @@ var Account = {
 	login:function(){
 		var email = $("email1").value;
 		var pass = $("pass1").value;
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/login", true);
-		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		xhr.send('username='+email + '&password='+pass);
-		xhr.onreadystatechange=function(){
-			if(xhr.readyState == 4){
-				if(xhr.status == 401){
-					$("feedback").innerHTML = "Incorrect username or password.";
-					$("pass1").value = "";
-					$("pass1").focus();
-				}
-				else if(xhr.status == 200){
-					location.href = xhr.responseText;
-				}
+		var xhr2 = new XHR2('POST', '/login');
+		xhr2.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		xhr2.onload = function(){
+			if(xhr2.status == 401){
+				$("feedback").innerHTML = "Incorrect username or password.";
+				$("pass1").value = "";
+				$("pass1").focus();
+			}
+			else if(xhr2.status == 200){
+				location.href = xhr2.responseText;
 			}
 		}
+		xhr2.send('username=' + email + '&password=' + pass);
 	}
 
 };

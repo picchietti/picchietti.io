@@ -17,16 +17,15 @@ function another(){
 
 		formData.append(this.name, this.files[0]);
 
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/upload/file", true);
-		xhr.onload = function(){
+		var xhr2 = new XHR2('POST', '/upload/file');
+		xhr2.onload = function(){
 			$('uploads').removeChild(input);
 			setTimeout(function(){
 				$('previews').removeChild($(input.name));
 			}, 700);
 		}
 
-		xhr.send(formData);
+		xhr2.send(formData);
 		another();
 	}, false);
 	last_input = input;
@@ -71,25 +70,26 @@ function clickDropArea(){
 function checkEnter(event){
 	if(event.keyCode == 13){
 		var url = document.getElementById("url");
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/upload/url", false);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send("url=" + url.value);
-		url.value = "";
+		var xhr2 = new XHR2('POST', '/upload/url');
+		xhr2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr2.onload = function(){
+			url.value = "";
+		}
+		xhr2.send("url=" + url.value);
 	}
 }
 
 window.addEventListener("dragenter",function(event){
 	document.body.classList.add('dragging');
 	event.preventDefault();
-},false);
+}, false);
 window.addEventListener("dragover",function(event){
 	event.preventDefault();
-},false);
+}, false);
 window.addEventListener("dragleave",function(event){
 	document.body.classList.remove('dragging');
 	event.preventDefault();
-},false);
+}, false);
 window.addEventListener("drop",function(event){
 	event.preventDefault();
 	var files = event.dataTransfer.files;
@@ -100,17 +100,16 @@ window.addEventListener("drop",function(event){
 			formData.append('drop' + i, files[i]);
 		}
 
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', '/upload/file');
+		var xhr2 = new XHR2('POST', '/upload/file');
 
-		xhr.onload = function(){
-			if(xhr.status === 204){
+		xhr2.onload = function(){
+			if(xhr2.status === 204){
 				document.body.classList.remove('dragging');
 			}
 		};
 
-		xhr.send(formData);
+		xhr2.send(formData);
 	}
-},false);
+}, false);
 
 window.addEventListener("DOMContentLoaded", clickDropArea, false);
