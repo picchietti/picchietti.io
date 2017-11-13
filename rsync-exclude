@@ -1,7 +1,8 @@
+source/
 ./rsync-exclude
 .git/
 node_modules/
 db/data/
-secret/uploads/
-secret/letsencrypt/
-public/pages/bookmarks/icons/
+build/secret/uploads/
+build/secret/letsencrypt/
+build/public/pages/bookmarks/icons/

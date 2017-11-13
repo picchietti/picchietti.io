@@ -6,7 +6,7 @@ services:
      - 3306:3306
     volumes:
       - ./db/data:/var/lib/mysql
-    env_file: ./secret/config.env
+    env_file: ./build/secret/config.env
 
   node:
     build: .
@@ -14,10 +14,11 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ../release:/usr/src/app
+      - ./build:/usr/src/app
       - /usr/src/app/node_modules # otherwise prev volume overwrites
-      - ./secret/letsencrypt:/etc/letsencrypt
-    env_file: ./secret/config.env
+      - ./package.json:/usr/src/app/package.json # otherwise prev volume overwrites
+      - ./build/secret/letsencrypt:/etc/letsencrypt
+    env_file: ./build/secret/config.env
     depends_on:
       - mysql
     links:

@@ -1,4 +1,6 @@
+build/
 db/data/
 node_modules/
 secret/
-public/pages/bookmarks/icons
+source/secret/
+source/public/pages/bookmarks/icons

@@ -14,12 +14,9 @@ var babel = require('gulp-babel');
 var del = require('del');
 var glob = require("glob");
 
-// var rename = require('gulp-rename');
-
-var cwd, path_input;
-cwd = path_input = process.env['PWD'];
-var path_one_up = cwd.substring(0, cwd.lastIndexOf('/') + 1);
-var path_output = path_one_up + 'release';
+var cwd = process.env['PWD'] + '/';
+var path_input = cwd + 'source';
+var path_output = cwd + 'build';
 var path_input_slash = path_input + '/';
 var path_output_slash = path_output + '/';
 
@@ -53,9 +50,7 @@ gulp.task('clean', function() {
 gulp.task('sync', ['clean'], function() {
   return gulp
     .src([
-      path_input_slash + '**',
-      '!' + path_input_slash + '{node_modules,node_modules/**}',
-      '!' + path_input_slash + '.{git,git/**}'
+      path_input_slash + '**'
     ], {
       dot: true
     })
