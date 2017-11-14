@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    resume: './build/public/pages/resume/index.js',
+    app: './build/public/index.js'
   },
   output: {
     filename: '[name].js',
@@ -49,7 +49,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['babel-preset-env']
+            presets: ['babel-preset-env', 'babel-preset-react']
           }
         }
       },

@@ -4,7 +4,7 @@ window.addEventListener('load', function(){
   growth_overview("#pageviews-graph", "data/month/pageviews", "Last 30 days", false);
 }, false);
 
-window.addEventListener('DOMContentLoaded', function(){
+window.addEventListener('load', function(){
   hearSkillsToggle();
   hearExperiencesToggle();
   hearAnchorClicks();
