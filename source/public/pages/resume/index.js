@@ -2,6 +2,8 @@ import React from 'react';
 
 import GrowthGraph from '../../components/graphs/growth';
 
+import './index.css';
+
 export default class Resume extends React.Component {
   constructor(props) {
     super(props);
