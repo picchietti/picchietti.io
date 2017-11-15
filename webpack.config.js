@@ -13,6 +13,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
+          { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: {
@@ -25,6 +26,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: {

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import GrowthGraph from '../../components/graphs/growth';
+
 export default class Resume extends React.Component {
   constructor(props) {
     super(props);
@@ -200,15 +202,15 @@ export default class Resume extends React.Component {
               <div id="impacts">
                 <div className="impact growth-overview">
                   <div className="growth-overview-title">Github Contributions</div>
-                  <div id="contribution-graph"></div>
+                  <GrowthGraph data_url="/pages/resume/contributions.json" x_label="Jan 2015 - Dec 2016" compound={true} />
                 </div>
                 <div className="impact growth-overview">
                   <div className="growth-overview-title">Websites User Audience <i className="fa fa-info-circle" title="Data from a subset of the websites I've worked on."></i></div>
-                  <div id="users-graph"></div>
+                  <GrowthGraph data_url="data/month/users" x_label="Last 30 days" compound={false} />
                 </div>
                 <div className="impact growth-overview">
                   <div className="growth-overview-title">Websites Webpage Views <i className="fa fa-info-circle" title="Data from a subset of the websites I've worked on."></i></div>
-                  <div id="pageviews-graph"></div>
+                  <GrowthGraph data_url="data/month/pageviews" x_label="Last 30 days" compound={false} />
                 </div>
               </div>
             </div>
