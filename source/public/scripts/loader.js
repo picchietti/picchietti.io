@@ -1,7 +1,10 @@
-var Loader = {
-	//need to check if its loading
-	loaded: [],
-	load:function(file, callback){
+//need to check if its loading
+export default class Loader {
+	constructor() {
+		this.loaded = [];
+	}
+
+	load(file, callback) {
 		if(this.loaded[file] == true){
 			callback();
 			return;

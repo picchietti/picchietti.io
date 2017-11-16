@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { bindAll } from 'lodash';
 
 import GrowthGraph from '../../components/graphs/growth';
 
@@ -9,7 +10,26 @@ export default class Resume extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      showSkills: false,
+      showExperiences: false
+    }
+
     this.years_of_experience = parseInt((new Date()).getFullYear()) - 2007;
+
+    _.bindAll(this, ['onSkillsToggle', 'onExperiencesToggle']);
+  }
+
+  onSkillsToggle() {
+    this.setState(prevState => {
+      return {showSkills: !prevState.showSkills};
+    });
+  }
+
+  onExperiencesToggle() {
+    this.setState(prevState => {
+      return {showExperiences: !prevState.showExperiences};
+    });
   }
 
   render() {
@@ -57,8 +77,9 @@ export default class Resume extends React.Component {
                   <span className="skill">Git</span>
                   <span className="skill">Docker</span>
                   <span className="skill">Bootstrap</span>
-                <div id="other-skills">
-                  <div className="subtitle">Other Skills</div>
+                {this.state.showSkills &&
+                  <div id="other-skills">
+                    <div className="subtitle">Other Skills</div>
                     <span className="skill">CoffeeScript</span>
                     <span className="skill">Backbone</span>
                     <span className="skill">Handlebars</span>
@@ -68,19 +89,20 @@ export default class Resume extends React.Component {
                     <span className="skill">Bash</span>
                     <span className="skill">Lets Encrypt</span>
                     <span className="skill">MomentJS</span>
-                  <div className="subtitle">Deprecated Skills</div>
+                    <div className="subtitle">Deprecated Skills</div>
                     <span className="skill">Vagrant</span>
                     <span className="skill">PHP</span>
-                  <div className="subtitle">Main Operating System</div>
+                    <div className="subtitle">Main Operating System</div>
                     <span className="skill">Ubuntu Linux</span>
-                  <div className="subtitle">Tools</div>
+                    <div className="subtitle">Tools</div>
                     <span className="skill">Atom</span>
                     <span className="skill">Gitkraken</span>
                     <span className="skill">Android Studio</span>
-                </div>
+                  </div>
+                }
               </div>
               <div className="indent">
-                <button id="toggle-skills">(4) More</button>
+                <button id="toggle-skills" onClick={this.onSkillsToggle}>(4) {this.state.showSkills ? 'Less' : 'More'}</button>
               </div>
             </div>
 
@@ -134,44 +156,45 @@ export default class Resume extends React.Component {
                     </ul>
                   </div>
                 </div>
-
-                <div id="other-experiences">
-                  <div className="experience">
-                    <div className="when fa-stack fa-2x" title="2010 - 2011">
-                      <i className="fa fa-stack-1x fa-circle background"></i>
-                      <i className="fa fa-stack-1x fa-circle foreground"></i>
-                      <i className="fa year">10-11</i>
+                {this.state.showExperiences &&
+                  <div id="other-experiences">
+                    <div className="experience">
+                      <div className="when fa-stack fa-2x" title="2010 - 2011">
+                        <i className="fa fa-stack-1x fa-circle background"></i>
+                        <i className="fa fa-stack-1x fa-circle foreground"></i>
+                        <i className="fa year">10-11</i>
+                      </div>
+                      <div className="what">
+                        <i className="fa fa-caret-left"></i>
+                        <span className="bold">Computer Lab Manager</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a>
+                        <ul>
+                          <li>Administered and networked 25 Apple iMacs.</li>
+                          <li>Taught students web development.</li>
+                        </ul>
+                      </div>
                     </div>
-                    <div className="what">
-                      <i className="fa fa-caret-left"></i>
-                      <span className="bold">Computer Lab Manager</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a>
-                      <ul>
-                        <li>Administered and networked 25 Apple iMacs.</li>
-                        <li>Taught students web development.</li>
-                      </ul>
+
+                    <div className="experience">
+                      <div className="when fa-stack fa-2x" title="2009 - 2011">
+                        <i className="fa fa-stack-1x fa-circle background"></i>
+                        <i className="fa fa-stack-1x fa-circle foreground"></i>
+                        <i className="fa year">09-11</i>
+                      </div>
+                      <div className="what">
+                        <i className="fa fa-caret-left"></i>
+                        <span className="bold">Lead Web Developer</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a>
+                        <ul>
+                          <li>Only student with expertise and trust to work on <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">school website</a>.</li>
+                          <li>Edited several hundred webpages.</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="experience">
-                    <div className="when fa-stack fa-2x" title="2009 - 2011">
-                      <i className="fa fa-stack-1x fa-circle background"></i>
-                      <i className="fa fa-stack-1x fa-circle foreground"></i>
-                      <i className="fa year">09-11</i>
-                    </div>
-                    <div className="what">
-                      <i className="fa fa-caret-left"></i>
-                      <span className="bold">Lead Web Developer</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a>
-                      <ul>
-                        <li>Only student with expertise and trust to work on <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">school website</a>.</li>
-                        <li>Edited several hundred webpages.</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                }
               </div>
 
               <div className="alignc">
-                <button id="toggle-experiences">(2) More</button>
+                <button id="toggle-experiences" onClick={this.onExperiencesToggle}>(2) {this.state.showExperiences ? 'Less' : 'More'}</button>
               </div>
             </div>
 
