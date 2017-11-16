@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import GrowthGraph from '../../components/graphs/growth';
 
@@ -35,7 +36,7 @@ export default class Resume extends React.Component {
               <div id="education">
                 <div>2015</div>
                 <div className="alignc">
-                  <a className="popup" href="/pages/resume/diploma.png">B.S. Computer Science</a>
+                  <Link to="/pages/resource/diploma.png">B.S. Computer Science</Link>
                 </div>
                 <div className="alignr">Southern Illinois University Carbondale (<a href="http://www.abet.org/about-abet/" target="_blank">ABET</a> accredited)</div>
               </div>
@@ -225,9 +226,9 @@ export default class Resume extends React.Component {
                   At a startup incubator in <a href="http://researchpark.siu.edu/" target="_blank">SIU's Research Park</a>.
                 </div>
 
-                <a className="popup" href="/pages/resume/office.jpg">
+                <Link to="/pages/resource/office.jpg">
                   <img className="thumbnail" src="/pages/resume/office_small.png" alt="Professional workspace" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -235,19 +236,12 @@ export default class Resume extends React.Component {
               <div className="title">Awards &amp; Certification</div>
               <ul>
                 <li>Academic Dean's List, <a href="/pages/awards/deans-list/2014.pdf">2014</a> - <a href="/pages/awards/deans-list/2015.pdf">2015</a></li>
-                <li>Google Analytics Certification &ndash; <a className="popup" href="/images/certifications/analytics/ecommerce/certificate.png">Ecommerce Analytics</a>, <a className="popup" href="/images/certifications/analytics/platform/certificate.png">Platform Principles</a>, <a className="popup" href="/images/certifications/analytics/fundamentals/certificate.png">Analytics Fundamentals</a></li>
-                <li><a className="popup" href="/images/awards/wyse/medal.jpg">Computer Science Sectional Champion</a> &ndash; Worldwide Youth in Science and Engineering, 2011</li>
+                <li>Google Analytics Certification &ndash; <Link to="/pages/resource/certifications/analytics/ecommerce/certificate.png">Ecommerce Analytics</Link>, <Link to="/pages/resource/certifications/analytics/platform/certificate.png">Platform Principles</Link>, <Link to="/pages/resource/certifications/analytics/fundamentals/certificate.png">Analytics Fundamentals</Link></li>
+                <li><Link to="/pages/resource/awards/wyse/medal.jpg">Computer Science Sectional Champion</Link> &ndash; Worldwide Youth in Science and Engineering, 2011</li>
                 <li>Technological Achievement Award &ndash; Microsoft's University of Illinois Gamebuilder's Hackathon, 2011</li>
               </ul>
             </div>
           </div>
-        </div>
-        <div id="stage">
-          <div className="back alignc">
-            <i className="fa fa-arrow-left"></i>
-            Back
-          </div>
-          <div className="item"></div>
         </div>
       </div>
     );
