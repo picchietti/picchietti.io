@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import './index.css';
+import './index.scss';
 
 export default class Resource extends React.Component {
   constructor(props){

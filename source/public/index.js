@@ -9,7 +9,7 @@ import Uploader from './pages/uploader';
 import Resource from './pages/resource';
 
 import 'font-awesome/css/font-awesome.css';
-import './index.css';
+import './index.scss';
 
 ReactDOM.render(
   <HashRouter>

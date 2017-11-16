@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import GrowthGraph from '../../components/graphs/growth';
 
-import './index.css';
+import './index.scss';
 
 export default class Resume extends React.Component {
   constructor(props) {

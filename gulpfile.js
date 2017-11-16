@@ -1,11 +1,9 @@
 'use strict';
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
 var htmlmin = require('gulp-htmlmin');
 var uglify = require('gulp-uglify');
 var changed = require('gulp-changed');
-var minify_css = require('gulp-clean-css');
 var pump = require('pump');
 var jsonminify = require('gulp-jsonminify');
 var babel = require('gulp-babel');
@@ -57,30 +55,6 @@ gulp.task('sync', ['clean'], function() {
       hasChanged: changed.compareSha1Digest
     }))
     .pipe(gulp.dest(path_output_slash));
-});
-
-gulp.task('scss', ['sync'], function(){
-  return gulp
-    .src([
-      path_output_slash + '**/*.scss',
-    ])
-    .pipe(sass())
-    .pipe(gulp.dest(path_output_slash));
-});
-
-gulp.task('css', ['sync', 'scss'], function() {
-  // don't leave scss files
-  del.sync(path_output_slash + '**/*.scss', {
-    force: true
-  });
-
-  return gulp
-    .src([
-      path_output_slash + 'public/**/*.css',
-      '!' + path_output_slash + 'public/**/*.min.css'
-    ])
-    .pipe(minify_css())
-    .pipe(gulp.dest(path_output_slash + 'public/'));
 });
 
 gulp.task('js', ['sync'], function(cb) {
@@ -175,20 +149,6 @@ function process_file(event_path, cb){
   while(exts.length != 0){
     var last_ext = exts.pop();
     switch (last_ext) {
-      case 'scss':
-      // updates css but not scss in output... not exactly a problem. should get rid of scss files in output anyways.
-        return gulp
-          .src(event_path)
-          .pipe(sass())
-          .pipe(minify_css())
-          .pipe(gulp.dest(dest_path));
-      break;
-      case 'css':
-        return gulp
-          .src(event_path)
-          .pipe(minify_css())
-          .pipe(gulp.dest(dest_path));
-      break;
       case 'html':
         return gulp
           .src(event_path)
@@ -215,7 +175,7 @@ function process_file(event_path, cb){
 }
 
 gulp.task('build', function(){
-  gulp.start('css', 'js', 'html', 'json');
+  gulp.start('js', 'html', 'json');
 });
 
 gulp.task('default', function(){
