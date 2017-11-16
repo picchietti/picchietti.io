@@ -8,11 +8,11 @@ export default class NotFound extends React.Component {
     return (
       <div id="main">
     		<div id="content">
-    			<div class="centered">
+    			<div className="centered">
     				<div id="message404">
-    					<div class="large">Something's missing!</div>
-    					<div class="small">This page may have been moved or removed.</div>
-    					<div class="small">Please check your spelling.</div>
+    					<div className="large">Something's missing!</div>
+    					<div className="small">This page may have been moved or removed.</div>
+    					<div className="small">Please check your spelling.</div>
     					<Link to="/">
     						<button>Take me to the homepage</button>
     					</Link>
