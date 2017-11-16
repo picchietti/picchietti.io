@@ -6,7 +6,6 @@ var htmlmin = require('gulp-htmlmin');
 var uglify = require('gulp-uglify');
 var changed = require('gulp-changed');
 var minify_css = require('gulp-clean-css');
-var include_file = require('gulp-file-include');
 var pump = require('pump');
 var jsonminify = require('gulp-jsonminify');
 var babel = require('gulp-babel');
@@ -111,7 +110,6 @@ gulp.task('html', ['sync'], function() {
       path_output_slash + '**/*.html',
       '!' + path_output_slash + 'google1341bc3277bdc766.html'
     ])
-    .pipe(include_file())
     .pipe(htmlmin({
       collapseWhitespace: true
     }))
@@ -194,7 +192,6 @@ function process_file(event_path, cb){
       case 'html':
         return gulp
           .src(event_path)
-          .pipe(include_file())
           .pipe(htmlmin({
             collapseWhitespace: true
           }))
