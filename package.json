@@ -52,7 +52,6 @@
     "gulp-clean-css": "^3.0.2",
     "gulp-htmlmin": "^3.0.0",
     "gulp-jsonminify": "^1.0.0",
-    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
     "html-loader": "^0.5.1",
