@@ -2,11 +2,8 @@
 
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
-var uglify = require('gulp-uglify');
 var changed = require('gulp-changed');
-var pump = require('pump');
 var jsonminify = require('gulp-jsonminify');
-var babel = require('gulp-babel');
 
 var del = require('del');
 var glob = require("glob");
@@ -57,20 +54,6 @@ gulp.task('sync', ['clean'], function() {
     .pipe(gulp.dest(path_output_slash));
 });
 
-gulp.task('js', ['sync'], function(cb) {
-  pump([
-    gulp.src([
-      path_output_slash + 'public/**/*.js',
-      '!' + path_output_slash + 'public/**/*.min.js',
-    ]),
-    // babel will try to find presets installed in node_modules relative to gulp.src
-    // there is a workaround in .babelrc to get it to search elsewhere (source)
-    babel(),
-    uglify(),
-    gulp.dest(path_output_slash + 'public/')
-  ], cb);
-});
-
 gulp.task('json', ['sync'], function () {
     return gulp
       .src(path_output_slash + 'public/**/*.json')
@@ -90,94 +73,10 @@ gulp.task('html', ['sync'], function() {
     .pipe(gulp.dest(path_output_slash));
 });
 
-gulp.task('watch', function(cb){
-  // one giant watch all that checks the extension and the event to determine the action to take for the file.
-  gulp.watch([
-    path_input_slash + '**/*'
-    // '!' + 'server/' + 'google1341bc3277bdc766.html' // not likely to ever be added, renamed, removed, changed
-  ], {cwd: path_one_up}, function(event){
-    var dest_file = event.path.replace(path_input, path_output);
-    var dest_path = dest_file.substring(0, dest_file.lastIndexOf("/"));
-
-    if(event.type == 'deleted'){
-      return del.sync(dest_file, {
-        force: true
-      });
-    }
-
-    if(event.type == 'added'){
-      gulp
-        .src(event.path)
-        .pipe(gulp.dest(dest_path));
-
-      return process_file(event.path, cb);
-    }
-
-    if(event.type == 'renamed'){
-      var dest_old = event.old.replace(path_input, path_output);
-
-      // TODO: get gulp rename to work instead of copy and deleting.
-      gulp
-        .src(event.path)
-        .pipe(gulp.dest(dest_path));
-
-      // in case an ext is added.
-      process_file(event.path, cb);
-
-      return del.sync(dest_old, {
-        force: true
-      });
-    }
-
-    if(event.type == 'changed'){
-      return process_file(event.path, cb);
-    }
-  })
-});
-
-function process_file(event_path, cb){
-  var dest_file = event_path.replace(path_input, path_output);
-  var dest_path = dest_file.substring(0, dest_file.lastIndexOf("/"));
-
-  var base_name = event_path.substring(event_path.lastIndexOf('/')+1);
-  var exts = base_name.substring(base_name.indexOf('.')+1).split('.');
-
-  // for now, for my needs, don't bother with .min files
-  if(exts.indexOf('min') !== -1)
-    return;
-
-  while(exts.length != 0){
-    var last_ext = exts.pop();
-    switch (last_ext) {
-      case 'html':
-        return gulp
-          .src(event_path)
-          .pipe(htmlmin({
-            collapseWhitespace: true
-          }))
-          .pipe(gulp.dest(dest_path));
-      break;
-      case 'js':
-        return pump([
-          gulp.src(event_path),
-          uglify(),
-          gulp.dest(dest_path)
-        ]);
-      break;
-      case 'json':
-        return gulp
-          .src(event_path)
-          .pipe(jsonminify())
-          .pipe(gulp.dest(dest_path));
-      break;
-    }
-  }
-}
-
 gulp.task('build', function(){
-  gulp.start('js', 'html', 'json');
+  gulp.start('html', 'json');
 });
 
 gulp.task('default', function(){
-  console.log("try 'gulp build' or 'gulp watch' instead.");
+  console.log("try 'npm run build' instead.");
 });

@@ -1,0 +1,36 @@
+#main #content {
+	padding: 1em 4em 1em 4em;
+	min-height: 100%;
+	max-width: 960px;
+}
+
+// large devices
+@media (min-width: 961px) {
+	#main {
+		max-width: none;
+		overflow: auto;
+
+		#content {
+			padding: 1em 3em 3em 3em;
+		}
+	}
+}
+
+// medium devices
+@media (max-width: 960px) {
+	#main {
+		margin: 0;
+		width: 100%;
+
+		#content {
+			padding: 0 3em 1em 3em;
+		}
+	}
+}
+
+// small devices
+@media (max-width: 480px) {
+	#main #content {
+		padding: 0 1em;
+	}
+}
