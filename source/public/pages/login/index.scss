@@ -8,20 +8,6 @@
 	margin: 2px 0;
 }
 
-.wrap-password {
-	position: relative;
-	margin: 4px auto;
-}
-
-.strength {
-	position: absolute;
-	bottom: 2px;
-	height: 2px;
-	width: 0;
-	transition: width 0.4s;
-	z-index: 5;
-}
-
 #feedback {
 	text-align: center;
 	color: #f00;
