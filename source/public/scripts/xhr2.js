@@ -1,8 +1,4 @@
-function $(id){
-  return document.getElementById(id);
-}
-
-class XHR2 {
+export default class XHR2 {
   constructor(method, url) {
     var xhr = new XMLHttpRequest();
 

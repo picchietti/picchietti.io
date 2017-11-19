@@ -19,9 +19,9 @@ function another(){
 
 		var xhr2 = new XHR2('POST', '/upload/file');
 		xhr2.onload = function(){
-			$('uploads').removeChild(input);
+			document.getElementById('uploads').removeChild(input);
 			setTimeout(function(){
-				$('previews').removeChild($(input.name));
+				document.getElementById('previews').removeChild(document.getElementById(input.name));
 			}, 700);
 		}
 
@@ -29,7 +29,7 @@ function another(){
 		another();
 	}, false);
 	last_input = input;
-	$("uploads").appendChild(input);
+	document.getElementById("uploads").appendChild(input);
 	input.click();
 }
 
@@ -54,7 +54,7 @@ function imagePreview(input){
 					preview.innerHTML = '<i class="fa fa-2x fa-file-text-o"></i>'
 					preview.id = input.name;
 			}
-      $('previews').appendChild(preview);
+      document.getElementById('previews').appendChild(preview);
     }
 
     reader.readAsDataURL(input.files[0]);
@@ -62,7 +62,7 @@ function imagePreview(input){
 }
 
 function clickDropArea(){
-	$('droparea').addEventListener('click', function(){
+	document.getElementById('droparea').addEventListener('click', function(){
 		another();
 	}, false);
 }

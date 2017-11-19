@@ -48,7 +48,7 @@ var Triangle = {
 }
 
 function fillCanvas(){
-  var canvas = $('canvas');
+  var canvas = document.getElementById('canvas');
   Triangle.fill(canvas);
 }
 
