@@ -34,37 +34,39 @@ export default class Resume extends React.Component {
 
   render() {
     return (
-      <div id="content">
-        <div id="paper">
+      <div className="content">
+        <div className="resume">
           <div>
-            <div id="name2">
-              <div id="full">Jon Picchietti</div>
-              <div id="pronunciation2">(pronounced <span className="italic">Pa</span>-<span className="italic">ketty</span>)</div>
+            <div className="name">
+              <div className="full">Jon Picchietti</div>
+              <div className="pronunciation">(pronounced <span className="italic">Pa-ketty</span>)</div>
             </div>
-            <div id="right2">
-              <img src="/images/qrcode.svg" id="qr" alt="qrcode to picchietti.io" />
-              <div className="qr-contact"><i className="fa fa-phone"></i> <a href="tel:+13093709036">(309) 370-9036</a><br /><i className="fa fa-envelope"></i> <a href="mailto:jon@picchietti.email">jon@picchietti.email</a><br /><i className="fa fa-map-marker"></i> Carbondale, IL</div>
+            <div className="contact-badge">
+              <img src="/images/qrcode.svg" className="qr" alt="qrcode to picchietti.io" />
+              <div className="contact-info"><i className="fa fa-phone"></i> <a href="tel:+13093709036">(309) 370-9036</a><br /><i className="fa fa-envelope"></i> <a href="mailto:jon@picchietti.email">jon@picchietti.email</a><br /><i className="fa fa-map-marker"></i> Carbondale, IL</div>
             </div>
 
             <div className="clearb"></div>
           </div>
-          <div id="content2">
+          <div>
             <div className="section alignc"><span className="bold">My objective</span> is to solve problems with technology in a collaborative, evolving, and professional manner.</div>
 
             <div className="section">
               <div className="title">Education</div>
-              <div id="education">
+              <div className="education">
                 <div>2015</div>
                 <div className="alignc">
                   <Link to="/pages/resource/diploma.png">B.S. Computer Science</Link>
                 </div>
-                <div className="alignr">Southern Illinois University Carbondale (<a href="http://www.abet.org/about-abet/" target="_blank">ABET</a> accredited)</div>
+                <div className="alignr">
+                  Southern Illinois University Carbondale (<a href="http://www.abet.org/about-abet/" target="_blank">ABET</a> accredited)
+                </div>
               </div>
             </div>
 
             <div className="section">
               <div className="title">Experience</div>
-              <div id="skills">
+              <div className="skills">
                 <div className="subtitle"><i className="fa fa-star featured"></i> Featured Skills</div>
                   <span className="skill">JavaScript</span>
                   <span className="skill">NodeJS</span>
@@ -78,7 +80,7 @@ export default class Resume extends React.Component {
                   <span className="skill">Docker</span>
                   <span className="skill">Bootstrap</span>
                 {this.state.showSkills &&
-                  <div id="other-skills">
+                  <div className="other-skills">
                     <div className="subtitle">Other Skills</div>
                     <span className="skill">CoffeeScript</span>
                     <span className="skill">Backbone</span>
@@ -103,13 +105,13 @@ export default class Resume extends React.Component {
                 }
               </div>
               <div className="indent">
-                <button id="toggle-skills" onClick={this.onSkillsToggle}>(4) {this.state.showSkills ? 'Less' : 'More'}</button>
+                <button onClick={this.onSkillsToggle}>(4) {this.state.showSkills ? 'Less' : 'More'}</button>
               </div>
             </div>
 
             <div className="section">
               <div className="title">Employment</div>
-              <div id="experiences">
+              <div className="experiences">
                 <div className="experience">
                   <div className="when fa-stack fa-2x" title="2015 - Current">
                     <i className="fa fa-stack-1x fa-circle background"></i>
@@ -158,7 +160,7 @@ export default class Resume extends React.Component {
                   </div>
                 </div>
                 {this.state.showExperiences &&
-                  <div id="other-experiences">
+                  <div className="other-experiences">
                     <div className="experience">
                       <div className="when fa-stack fa-2x" title="2010 - 2011">
                         <i className="fa fa-stack-1x fa-circle background"></i>
@@ -195,7 +197,7 @@ export default class Resume extends React.Component {
               </div>
 
               <div className="alignc">
-                <button id="toggle-experiences" onClick={this.onExperiencesToggle}>(2) {this.state.showExperiences ? 'Less' : 'More'}</button>
+                <button onClick={this.onExperiencesToggle}>(2) {this.state.showExperiences ? 'Less' : 'More'}</button>
               </div>
             </div>
 
@@ -226,7 +228,7 @@ export default class Resume extends React.Component {
             <div className="section">
               <div className="title">Impact</div>
               <div className="indent">Over <span className="bold">{this.years_of_experience} years</span> of programming has led me to edit millions of lines of code, positively impacting countless users.</div>
-              <div id="impacts">
+              <div className="impacts">
                 <div className="impact growth-overview">
                   <div className="growth-overview-title">Github Contributions</div>
                   <GrowthGraph data_url="/pages/resume/contributions.json" x_label="Jan 2015 - Dec 2016" compound={true} />
@@ -244,7 +246,7 @@ export default class Resume extends React.Component {
 
             <div className="section">
               <div className="title">Accommodations</div>
-              <div id="office">
+              <div className="office">
                 <div className="description">
                   <div className="bold">Has 24/7 access to a professional, private office.</div>
                   At a startup incubator in <a href="http://researchpark.siu.edu/" target="_blank">SIU's Research Park</a>.

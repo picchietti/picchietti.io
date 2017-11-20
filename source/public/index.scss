@@ -12,15 +12,15 @@ $button_blue: rgb(45, 139, 215);
 ul {
 	list-style-type: disc;
 	padding-left: 40px;
-}
 
-ul li {
-	line-height: 1.5;
-}
+	li {
+		line-height: 1.5;
 
-ul li ul {
-	list-style-type: circle;
-	padding-left: 30px;
+		ul {
+			list-style-type: circle;
+			padding-left: 30px;
+		}
+	}
 }
 
 input[type="text"],
@@ -90,7 +90,7 @@ p {
 html,
 body,
 .app,
-#main {
+.page {
 	height: 100%;
 }
 

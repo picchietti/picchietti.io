@@ -71,19 +71,19 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div id="main">
-        <div id="content">
+      <div className="content">
+        <div className="login">
         	{this.state.feedback &&
             <div className="feedback">{this.state.feedback}</div>
           }
-        	<div id="signin" className="wrap-centered">
+        	<div className="form wrap-centered">
         		<div className="wrap-centered">
         			Login<br />
         			<input type="email" placeholder="Email" value={this.state.username} onChange={this.usernameChanged} onKeyUp={this.checkReady} /><br />
         			<PasswordStrength value={this.state.password} onChange={this.passwordChanged} onKeyUp={this.checkReady} />
         		</div>
         	</div>
-        	<div id="access" className="wrap-centered">
+        	<div className="no-access wrap-centered">
         	You've reached a restricted, top secret area of this website that is protected by level 99 shadow warlocks, robots, and an overworked intern named Jeff ... or just a login system. Whatever.
         	</div>
         </div>

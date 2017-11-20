@@ -12,7 +12,7 @@ import './index.scss';
 export default class Pages extends React.Component {
   render() {
     return (
-      <div id="main">
+      <div className="page">
         <HashRouter>
           <Switch>
             <Route exact path="/" component={Resume} />

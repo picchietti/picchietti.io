@@ -1,4 +1,4 @@
-#main #content {
+.page .content {
 	padding: 1em 4em 1em 4em;
 	min-height: 100%;
 	max-width: 960px;
@@ -6,11 +6,11 @@
 
 // large devices
 @media (min-width: 961px) {
-	#main {
+	.page {
 		max-width: none;
 		overflow: auto;
 
-		#content {
+		.content {
 			padding: 1em 3em 3em 3em;
 		}
 	}
@@ -18,11 +18,11 @@
 
 // medium devices
 @media (max-width: 960px) {
-	#main {
+	.page {
 		margin: 0;
 		width: 100%;
 
-		#content {
+		.content {
 			padding: 0 3em 1em 3em;
 		}
 	}
@@ -30,7 +30,7 @@
 
 // small devices
 @media (max-width: 480px) {
-	#main #content {
+	.page .content {
 		padding: 0 1em;
 	}
 }

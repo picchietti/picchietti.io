@@ -1,26 +1,28 @@
-#message404 {
-	padding: 15px;
-	background-color: rgba(255, 255, 255, 0.85);
+.notfound {
+	.centered {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-image: url('/pages/404/missing.jpg');
+		width: 100%;
+		min-height: 500px;
 
-	.large,
-	.small {
-		margin-bottom: 10px;
+		.message {
+			padding: 15px;
+			background-color: rgba(255, 255, 255, 0.85);
+
+			.large,
+			.small {
+				margin-bottom: 10px;
+			}
+
+			.large {
+				font-size: 2em;
+			}
+
+			.small {
+				font-size: 1em;
+			}
+		}
 	}
-
-	.large {
-		font-size: 2em;
-	}
-
-	.small {
-		font-size: 1em;
-	}
-}
-
-.centered {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-image: url('/pages/404/missing.jpg');
-	width: 100%;
-	min-height: 500px;
 }

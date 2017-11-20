@@ -1,197 +1,197 @@
 $button_blue: rgb(45, 139, 215);
 
-#paper a:hover {
-	text-decoration: underline;
-}
-
-#paper {
+.resume {
 	line-height: 1.3;
 	font-size: 9pt;
 	overflow: auto;
 	position: relative;
 	padding: 50px 90px;
-}
 
-#name2 {
-	position: relative;
-	float: left;
-	font-weight: bold;
-	font-size: 30pt;
-}
-
-#pronunciation2 {
-	font-size: 10pt;
-	text-align: right;
-}
-
-#right2 {
-	float: right;
-	text-align: right;
-	overflow: auto;
-	font-size: 11pt;
-}
-
-#education {
-	display: flex;
-	justify-content: space-between;
-}
-
-#education div {
-	padding: 0 6px;
-}
-
-.section {
-	margin-top: 20px;
-
-	.title {
-		font-size: 12pt;
-		font-weight: bold;
-		margin-bottom: 12px;
+	a:hover {
+		text-decoration: underline;
 	}
 
-	.subtitle {
-		text-transform: uppercase;
-		font-size: 12px;
-		margin: 6px 0;
-	}
-}
-
-.featured {
-	color: #ffd600 !important;
-}
-
-.spacing-top {
-	margin-top: 15px;
-}
-
-#qr {
-	float: right;
-	width: 100px;
-	height: 100px;
-	margin-left: 10px;
-}
-
-.qr-contact {
-	float: right;
-	line-height: 2;
-	margin-top: 6px;
-}
-
-#skills {
-	padding-left: 25px;
-	margin-bottom: 10px;
-}
-
-.skill {
-	background-color: #eee;
-	padding: 6px 9px;
-	margin: 4px 0;
-	border-radius: 4px;
-	font-size: 13px;
-	display: inline-block;
-}
-
-#experiences {
-	border-left: 2px solid gray;
-	margin-left: 57px;
-	padding: 10px 0;
-	padding-left: 25px;
-	min-height: 70px;
-
-	.experience {
-		margin-left: -25px;
-		margin-bottom: 10px;
-		padding-left: 35px;
+	.name {
 		position: relative;
+		float: left;
+		font-weight: bold;
+		font-size: 30pt;
 
-		.when {
-			position: absolute;
-			top: 50%;
-			margin-top: -1em;
-			left: -35px;
-			cursor: default;
-			font-size: 2.8em;
+		.pronunciation {
+			font-size: 10pt;
+			text-align: right;
+		}
+	}
 
-			.fa-circle.background {
-				color: #fff;
-				font-size: 23pt;
-			}
+	.contact-badge {
+		float: right;
+		text-align: right;
+		overflow: auto;
+		font-size: 11pt;
 
-			.fa-circle.foreground,
-			.fa-star.foreground {
-				color: #ddd;
-				font-size: 16pt;
-			}
-
-			.year {
-				color: #000;
-				font-family: monospace;
-				font-size: 12px;
-				margin-left: -25px;
-				position: relative;
-				top: -7px;
-			}
+		.qr {
+			float: right;
+			width: 100px;
+			height: 100px;
+			margin-left: 10px;
 		}
 
-		.what {
-			position: relative;
-			background-color: #eee;
-			padding: 10px;
+		.contact-info {
+			float: right;
+			line-height: 2;
+			margin-top: 6px;
+		}
+	}
 
-			.fa-caret-left {
+	.education {
+		display: flex;
+		justify-content: space-between;
+
+		div {
+			padding: 0 6px;
+		}
+	}
+
+	.section {
+		margin-top: 20px;
+
+		.title {
+			font-size: 12pt;
+			font-weight: bold;
+			margin-bottom: 12px;
+		}
+
+		.subtitle {
+			text-transform: uppercase;
+			font-size: 12px;
+			margin: 6px 0;
+		}
+	}
+
+	.featured {
+		color: #ffd600 !important;
+	}
+
+	.spacing-top {
+		margin-top: 15px;
+	}
+
+	.skills {
+		padding-left: 25px;
+		margin-bottom: 10px;
+
+		.skill {
+			background-color: #eee;
+			padding: 6px 9px;
+			margin: 2px;
+			border-radius: 4px;
+			font-size: 13px;
+			display: inline-block;
+		}
+	}
+
+	.experiences {
+		border-left: 2px solid gray;
+		margin-left: 57px;
+		padding: 10px 0;
+		padding-left: 25px;
+		min-height: 70px;
+
+		.experience {
+			margin-left: -25px;
+			margin-bottom: 10px;
+			padding-left: 35px;
+			position: relative;
+
+			.when {
 				position: absolute;
 				top: 50%;
-				right: 100%;
-				color: #eee;
-				font-size: 30px;
-				margin-top: -15px;
-				margin-right: -1px;
+				margin-top: -1em;
+				left: -35px;
+				cursor: default;
+				font-size: 2.8em;
+
+				.fa-circle.background {
+					color: #fff;
+					font-size: 23pt;
+				}
+
+				.fa-circle.foreground,
+				.fa-star.foreground {
+					color: #ddd;
+					font-size: 16pt;
+				}
+
+				.year {
+					color: #000;
+					font-family: monospace;
+					font-size: 12px;
+					margin-left: -25px;
+					position: relative;
+					top: -7px;
+				}
+			}
+
+			.what {
+				position: relative;
+				background-color: #eee;
+				padding: 10px;
+
+				.fa-caret-left {
+					position: absolute;
+					top: 50%;
+					right: 100%;
+					color: #eee;
+					font-size: 30px;
+					margin-top: -15px;
+					margin-right: -1px;
+				}
 			}
 		}
 	}
-}
 
-.indent {
-	padding-left: 25px;
-}
-
-#impacts {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-
-	.impact {
-		min-width: 175px;
-
-		.fa.fa-info-circle {
-			cursor: help;
-		}
+	.indent {
+		padding-left: 25px;
 	}
-}
 
-#office {
-	text-align: center;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	overflow: auto;
+	.impacts {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
 
-	.description {
-		max-width: 350px;
-		float: left;
-		margin: 0 10px;
-		font-size: 14px;
+		.impact {
+			min-width: 175px;
 
-		.bold {
-			margin-bottom: 10px;
+			.fa.fa-info-circle {
+				cursor: help;
+			}
 		}
 	}
 
-	img.thumbnail {
-		width: 260px;
-		float: right;
-		margin: 10px;
+	.office {
+		text-align: center;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		overflow: auto;
+
+		.description {
+			max-width: 350px;
+			float: left;
+			margin: 0 10px;
+			font-size: 14px;
+
+			.bold {
+				margin-bottom: 10px;
+			}
+		}
+
+		img.thumbnail {
+			width: 260px;
+			float: right;
+			margin: 10px;
+		}
 	}
 }
 
@@ -205,43 +205,19 @@ $button_blue: rgb(45, 139, 215);
 		color: #000;
 	}
 
-	#paper {
+	.resume {
 		padding: 0;
 		margin-bottom: 0;
-	}
-
-	#header {
-		display: none;
 	}
 }
 
 @media screen and (max-width: 976px) {
-	#paper {
+	.resume {
 		margin: 0 auto;
 		padding: 5%;
-	}
 
-	#name2 {
-		margin-bottom: 15px;
-	}
-
-	#namebox,
-	#center {
-		width: 100%;
-	}
-
-	#center {
-		padding: 0;
-	}
-
-	#namebox {
-		text-align: center;
-	}
-
-	#namebox,
-	#occupation {
-		display: block;
-		margin: 0 auto;
-		float: none;
+		.name {
+			margin-bottom: 15px;
+		}
 	}
 }

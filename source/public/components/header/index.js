@@ -86,15 +86,15 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <div id="header" className="alignc">
+      <div className="header no-print">
         <div id="canvas"></div>
-        <div id="left">
-          <img src="/images/profile2.png" alt="Me" id="profile" />
+        <div className="profile">
+          <img src="/images/profile2.png" alt="Me" className="picture" />
         </div>
         <div className="wrap-centered">
-          <div id="menu2" className="alignl">
-            <div id="links">
-              <div id="links-centered">
+          <div className="menu alignl">
+            <div className="links">
+              <div className="links-centered">
                 <div><a href="https://github.com/picchietti" target="_blank"><i className="fa fa-fw fa-github"></i><span className="text"> Github</span></a></div>
                 <div><a href="https://www.linkedin.com/in/picchietti/" target="_blank"><i className="fa fa-fw fa-linkedin-square"></i><span className="text"> LinkedIn</span></a></div>
               </div>

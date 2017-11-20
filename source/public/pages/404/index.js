@@ -6,10 +6,10 @@ import './index.scss';
 export default class NotFound extends React.Component {
   render() {
     return (
-      <div id="main">
-    		<div id="content">
+  		<div className="content">
+        <div className="notfound">
     			<div className="centered">
-    				<div id="message404">
+    				<div className="message">
     					<div className="large">Something's missing!</div>
     					<div className="small">This page may have been moved or removed.</div>
     					<div className="small">Please check your spelling.</div>
@@ -18,8 +18,8 @@ export default class NotFound extends React.Component {
     					</Link>
     				</div>
     			</div>
-    		</div>
-      </div>
+        </div>
+  		</div>
     );
   }
 }
