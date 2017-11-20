@@ -89,9 +89,7 @@ export default class Header extends React.Component {
       <div id="header" className="alignc">
         <div id="canvas"></div>
         <div id="left">
-          <a href="//picchietti.io">
-            <img src="/images/profile2.png" alt="Me" id="profile" />
-          </a>
+          <img src="/images/profile2.png" alt="Me" id="profile" />
         </div>
         <div className="wrap-centered">
           <div id="menu2" className="alignl">
