@@ -98,6 +98,7 @@ export default class Resume extends React.Component {
                     <span className="skill">Atom</span>
                     <span className="skill">Gitkraken</span>
                     <span className="skill">Android Studio</span>
+                    <span className="skill">Slack</span>
                   </div>
                 }
               </div>
