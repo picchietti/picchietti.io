@@ -16,16 +16,16 @@ export default class Login extends React.Component {
       password: ''
     };
 
-    _.bindAll(this, ['hearUsernameChange', 'hearPasswordChange', 'checkReady']);
+    _.bindAll(this, ['usernameChanged', 'passwordChanged', 'checkReady']);
   }
 
-  hearUsernameChange(event) {
+  usernameChanged(event) {
     this.setState({
       username: event.target.value
     });
   }
 
-  hearPasswordChange(event) {
+  passwordChanged(event) {
     this.setState({
       password: event.target.value
     });
@@ -79,8 +79,8 @@ export default class Login extends React.Component {
         	<div id="signin" className="wrap-centered">
         		<div className="wrap-centered">
         			Login<br />
-        			<input type="email" placeholder="Email" value={this.state.username} onChange={this.hearUsernameChange} onKeyUp={this.checkReady} /><br />
-        			<PasswordStrength value={this.state.password} onChange={this.hearPasswordChange} onKeyUp={this.checkReady} />
+        			<input type="email" placeholder="Email" value={this.state.username} onChange={this.usernameChanged} onKeyUp={this.checkReady} /><br />
+        			<PasswordStrength value={this.state.password} onChange={this.passwordChanged} onKeyUp={this.checkReady} />
         		</div>
         	</div>
         	<div id="access" className="wrap-centered">

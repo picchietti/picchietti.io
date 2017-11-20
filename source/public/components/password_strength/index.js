@@ -1,18 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { bindAll } from 'lodash';
 
 import './index.scss';
 
 export default class PasswordStrength extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      indicator_style: {}
+    }
+
+    _.bindAll(this, ['passwordChanged']);
   }
 
-  componentDidMount() {
+  passwordChanged(event) {
+    if(typeof this.props.onChange === "function"){
+      // parent needs a chance to update the value
+      this.props.onChange(event);
+    }
+
+    this.calculate(event);
   }
 
-  calculate() {
-		var password = document.getElementById("pass1").value;
+  calculate(event) {
+    var password = event.target.value;
 		var has_symbols = /[^a-zA-Z]+/;
 		const symbols_points = 2;
 		const recommended_length = 16;
@@ -24,23 +36,29 @@ export default class PasswordStrength extends React.Component {
 		if(has_symbols.test(password))
 			points += symbols_points;
 
-		var indicator = document.getElementById("strength");
 		var points_percentage = points / max_points * 100;
-		indicator.style.width = points_percentage + '%';
 
+    var backgroundColor;
 		if(points_percentage < 40) // bad
-			indicator.style.backgroundColor = "#f00";
+			backgroundColor = "#f00";
 		else if(points_percentage < 70) // good
-			indicator.style.backgroundColor = "rgb(255, 207, 12)";
+			backgroundColor = "rgb(255, 207, 12)";
 		else // awesome
-			indicator.style.backgroundColor = "#6f0";
+			backgroundColor = "#6f0";
+
+    this.setState({
+      indicator_style: {
+        width: points_percentage + '%',
+        backgroundColor: backgroundColor
+      }
+    });
   }
 
   render() {
     return (
       <div className="wrap-password">
-        <input type="password" className="password-input" placeholder="Password" {...this.props} />
-        <div className="strength"></div>
+        <input {...this.props} type="password" className="password-input" placeholder="Password" onChange={this.passwordChanged} />
+        <div className="strength" style={this.state.indicator_style}></div>
       </div>
     );
   }
