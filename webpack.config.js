@@ -1,8 +1,14 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  plugins: [
+    new CleanWebpackPlugin('./build'),
+    new CopyWebpackPlugin([{from: './source', to: '../../'}])
+  ],
   entry: {
-    app: './build/public/index.js'
+    app: './source/public/index.js'
   },
   output: {
     filename: '[name].js',
