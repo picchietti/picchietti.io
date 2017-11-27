@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NotFound from '../../pages/404';
 import Resume from '../../pages/resume';
@@ -13,7 +13,7 @@ export default class Pages extends React.Component {
   render() {
     return (
       <div className="page">
-        <HashRouter>
+        <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Resume} />
             <Route exact path="/pages/login" component={Login} />
@@ -21,7 +21,7 @@ export default class Pages extends React.Component {
             <Route path="/pages/resource" component={Resource} />
             <Route component={NotFound} />
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     );
   }

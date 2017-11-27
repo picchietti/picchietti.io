@@ -12,14 +12,12 @@ const nodeadmin = require('nodeadmin');
 const fs = require('fs');
 const spdy = require('spdy');
 const shrinkray = require('shrink-ray');
-// const helmet = require('helmet');
 
 const root_dir = '/usr/src/app';
 
 require('./private/passport.js')(passport);
 var uploader = require('./private/multer.js')(multer);
 
-// app.use(helmet.hsts());
 app.use(shrinkray());
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -46,10 +44,9 @@ require('./routes.js')(router, passport, uploader);
 // Static Resources - AFTER ROUTES.js so restricted access routes have priority.
 router.use(express.static('./public/'));
 
-
-// 404 redirect.
+// send user the homepage with a react router that decides what page component to load
 router.use(function (req, res, next) {
-  res.redirect('/#/pages/404');
+  res.sendFile(root_dir + '/public/index.html');
 });
 
 app.use('/', router);

@@ -18,8 +18,8 @@ module.exports = function(router, passport, allowUpload){
     res.redirect('/');
   });
 
-  router.get('/pages/upload', restrictAccess, function(req, res) {
-    res.sendFile(root_dir + '/public/pages/upload/');
+  router.get('/pages/uploader', restrictAccess, function(req, res) {
+    res.sendFile(root_dir + '/public/index.html');
   });
 
 };
