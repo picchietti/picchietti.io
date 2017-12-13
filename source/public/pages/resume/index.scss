@@ -107,33 +107,6 @@ $button_blue: rgb(45, 139, 215);
 			}
 		}
 	}
-
-	.office {
-		text-align: center;
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		overflow: auto;
-
-		.description {
-			max-width: 350px;
-			float: left;
-			margin: 0 10px;
-			font-size: 14px;
-
-			.bold {
-				margin-bottom: 10px;
-			}
-		}
-
-		img.thumbnail {
-			width: 260px;
-			max-width: 100%;
-			float: right;
-			margin: 10px;
-		}
-	}
 }
 
 @media print {

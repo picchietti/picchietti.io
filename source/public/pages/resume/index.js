@@ -166,20 +166,6 @@ export default class Resume extends React.Component {
             </div>
 
             <div className="section">
-              <div className="title">Accommodations</div>
-              <div className="office">
-                <div className="description">
-                  <div className="bold">Has 24/7 access to a professional, private office.</div>
-                  At a startup incubator in <a href="http://researchpark.siu.edu/" target="_blank">SIU's Research Park</a>.
-                </div>
-
-                <Link to="/pages/resource/office.jpg">
-                  <img className="thumbnail" src="/pages/resume/office_small.png" alt="Professional workspace" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="section">
               <div className="title">Awards &amp; Certification</div>
               <ul>
                 <li>Academic Dean's List, <a href="/pages/awards/deans-list/2014.pdf">2014</a> - <a href="/pages/awards/deans-list/2015.pdf">2015</a></li>
