@@ -43,7 +43,13 @@ export default class Resume extends React.Component {
             </div>
             <div className="contact-badge">
               <img src="/images/qrcode.svg" className="qr" alt="qrcode to picchietti.io" />
-              <div className="contact-info"><i className="fa fa-phone"></i> <a href="tel:+13093709036">(309) 370-9036</a><br /><i className="fa fa-envelope"></i> <a href="mailto:jon@picchietti.email">jon@picchietti.email</a><br /><i className="fa fa-map-marker"></i> Carbondale, IL</div>
+              <div className="contact-info">
+                <i className="fa fa-phone"></i> <a href="tel:+13093709036">(309) 370-9036</a>
+                <br />
+                <i className="fa fa-envelope"></i> <a href="mailto:jon@picchietti.email">jon@picchietti.email</a>
+                <br />
+                <i className="fa fa-map-marker"></i> St. Charles, MO
+              </div>
             </div>
 
             <div className="clearb"></div>
