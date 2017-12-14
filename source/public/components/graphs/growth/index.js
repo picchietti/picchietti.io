@@ -1,10 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
 export default class GrowthGraph extends React.Component {
+  static propTypes = {
+    dataUrl: PropTypes.string.isRequired, // where to fetch graph data
+    xLabel: PropTypes.string.isRequired,
+    // You want the data to accumulate to show the growth. Set to false if data is already accumulated.
+    accumulate: PropTypes.bool.isRequired
+  }
+
   constructor(props) {
     super(props);
   }
@@ -31,9 +39,9 @@ export default class GrowthGraph extends React.Component {
   build () {
     this.container = ReactDOM.findDOMNode(this);
     var selected_container = d3.select(this.container);
-    var data_url = this.props.data_url;
-    var x_label = this.props.x_label;
-    var compound = this.props.compound;
+    var data_url = this.props.dataUrl;
+    var x_label = this.props.xLabel;
+    var accumulate = this.props.accumulate;
 
     var margin = {top: 10, right: 0, bottom: 20, left: 0},
         width = 175 - margin.left - margin.right,
@@ -68,19 +76,20 @@ export default class GrowthGraph extends React.Component {
         d3.json(data_url, (error, data) => {
           if (error) throw error;
 
-          var running_count = 0;
+          var running_total = 0;
           for (var i=0, j=data.length; i<j; i++) {
             data[i].date = formatDate(data[i].date);
-            if(compound)
-              data[i].count = running_count += data[i].count;
+            if(accumulate)
+              data[i].count = running_total += data[i].count;
           }
 
-          if(!compound && data.length)
-            running_count = data[data.length-1].count;
+          if(!accumulate && data.length){
+            running_total = data[data.length-1].count;
+          }
 
           selected_container.append('span')
             .attr('class', 'growth-overview-total')
-            .text(this.abbreviate(running_count));
+            .text(this.abbreviate(running_total));
 
           x.domain(d3.extent(data, function(d) {return d.date;}));
           y.domain(d3.extent(data, function(d) {return d.count;}));

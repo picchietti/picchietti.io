@@ -1,5 +1,0 @@
-{
-  "presets": ["./node_modules/babel-preset-env", "./node_modules/babel-preset-react"],
-  "compact": true,
-  "minified": true
-}

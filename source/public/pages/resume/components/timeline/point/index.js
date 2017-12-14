@@ -1,6 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Point extends React.Component {
+  static propTypes = {
+    from: PropTypes.string.isRequired, // string with YYYY at end
+    to: PropTypes.string.isRequired, // string with YYYY at end
+    description: PropTypes.any.isRequired, // string or jsx
+    bullets: PropTypes.array.isRequired // array of (strings or jsx)
+  }
+
   constructor(props) {
     super(props);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { bindAll } from 'lodash';
 
 import Point from './point';
@@ -6,6 +7,10 @@ import Point from './point';
 import './index.scss';
 
 export default class Timeline extends React.Component {
+  static propTypes = {
+    points: PropTypes.array.isRequired // array of objects that will be used as timeline point props
+  }
+
   constructor(props) {
     super(props);
 
