@@ -1,63 +1,63 @@
 .timeline {
-	border-left: 2px solid gray;
-	margin-left: 57px;
-	padding: 10px 0;
-	padding-left: 25px;
-	min-height: 70px;
+  border-left: 2px solid gray;
+  margin-left: 57px;
+  padding: 10px 0;
+  padding-left: 25px;
+  min-height: 70px;
 
-	.point {
-		margin-left: -25px;
-		margin-bottom: 10px;
-		padding-left: 35px;
-		position: relative;
+  .point {
+    margin-left: -25px;
+    margin-bottom: 10px;
+    padding-left: 35px;
+    position: relative;
 
-		.when {
-			position: absolute;
-			top: 50%;
-			margin-top: -1em;
-			left: -35px;
-			cursor: default;
-			font-size: 2.8em;
+    .when {
+      position: absolute;
+      top: 50%;
+      margin-top: -1em;
+      left: -35px;
+      cursor: default;
+      font-size: 2.8em;
 
-			.fa-circle.background {
-				color: #fff;
-				font-size: 23pt;
-			}
+      .fa-circle.background {
+        color: #fff;
+        font-size: 23pt;
+      }
 
-			.fa-circle.foreground,
-			.fa-star.foreground {
-				color: #ddd;
-				font-size: 16pt;
-			}
+      .fa-circle.foreground,
+      .fa-star.foreground {
+        color: #ddd;
+        font-size: 16pt;
+      }
 
-			.year {
-				color: #000;
-				font-family: monospace;
-				font-size: 12px;
-				margin-left: -25px;
-				position: relative;
-				top: -7px;
-			}
-		}
+      .year {
+        color: #000;
+        font-family: monospace;
+        font-size: 12px;
+        margin-left: -25px;
+        position: relative;
+        top: -7px;
+      }
+    }
 
-		.what {
-			position: relative;
-			background-color: #eee;
-			padding: 10px;
+    .what {
+      position: relative;
+      background-color: #eee;
+      padding: 10px;
 
-			.fa-caret-left {
-				position: absolute;
-				top: 50%;
-				right: 100%;
-				color: #eee;
-				font-size: 30px;
-				margin-top: -15px;
-				margin-right: -1px;
-			}
-		}
-	}
+      .fa-caret-left {
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        color: #eee;
+        font-size: 30px;
+        margin-top: -15px;
+        margin-right: -1px;
+      }
+    }
+  }
 
-	.point:last-child {
-		margin-bottom: 0;
-	}
+  .point:last-child {
+    margin-bottom: 0;
+  }
 }

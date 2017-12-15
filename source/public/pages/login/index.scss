@@ -1,36 +1,36 @@
 .login {
-	.no-access,
-	.form {
-		float: left;
-		width: 50%;
-	}
+  .no-access,
+  .form {
+    float: left;
+    width: 50%;
+  }
 
-	.form input {
-		margin: 2px 0;
-	}
+  .form input {
+    margin: 2px 0;
+  }
 
-	.feedback {
-		color: #a94442;
-		background-color: #f2dede;
-		border-color: #ebccd1;
-		text-align: center;
-		border-radius: 4px;
-		padding: 10px;
-		margin-bottom: 15px;
-	}
+  .feedback {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    text-align: center;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
 }
 
 @media (max-width: 625px) {
-	.login {
-		.no-access,
-		.form {
-			float: none;
-			width: 100%;
-			margin: 0 auto;
-		}
+  .login {
+    .no-access,
+    .form {
+      float: none;
+      width: 100%;
+      margin: 0 auto;
+    }
 
-		.no-access {
-			margin-top: 25px;
-		}
-	}
+    .no-access {
+      margin-top: 25px;
+    }
+  }
 }
