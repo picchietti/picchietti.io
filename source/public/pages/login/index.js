@@ -16,7 +16,7 @@ export default class Login extends React.Component {
       password: ''
     };
 
-    _.bindAll(this, ['usernameChanged', 'passwordChanged', 'checkReady']);
+    bindAll(this, ['usernameChanged', 'passwordChanged', 'checkReady']);
   }
 
   usernameChanged(event) {
@@ -51,7 +51,7 @@ export default class Login extends React.Component {
     var password = this.state.password;
 
     var xhr2 = new XHR2('POST', '/login');
-    xhr2.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xhr2.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr2.onload = () => {
       if(xhr2.status == 401){
         this.setState({
@@ -73,19 +73,19 @@ export default class Login extends React.Component {
     return (
       <div className="content">
         <div className="login">
-        	{this.state.feedback &&
+          {this.state.feedback &&
             <div className="feedback">{this.state.feedback}</div>
           }
-        	<div className="form wrap-centered">
-        		<div className="wrap-centered">
-        			Login<br />
-        			<input type="email" placeholder="Email" value={this.state.username} onChange={this.usernameChanged} onKeyUp={this.checkReady} /><br />
-        			<PasswordStrength value={this.state.password} onChange={this.passwordChanged} onKeyUp={this.checkReady} />
-        		</div>
-        	</div>
-        	<div className="no-access wrap-centered">
-        	You've reached a restricted, top secret area of this website that is protected by level 99 shadow warlocks, robots, and an overworked intern named Jeff ... or just a login system. Whatever.
-        	</div>
+          <div className="form wrap-centered">
+            <div className="wrap-centered">
+              Login<br />
+              <input type="email" placeholder="Email" value={this.state.username} onChange={this.usernameChanged} onKeyUp={this.checkReady} /><br />
+              <PasswordStrength value={this.state.password} onChange={this.passwordChanged} onKeyUp={this.checkReady} />
+            </div>
+          </div>
+          <div className="no-access wrap-centered">
+          You&apos;ve reached a restricted, top secret area of this website that is protected by level 99 shadow warlocks, robots, and an overworked intern named Jeff ... or just a login system. Whatever.
+          </div>
         </div>
       </div>
     );

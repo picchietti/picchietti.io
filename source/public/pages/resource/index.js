@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './index.scss';
 
 export default class Resource extends React.Component {
+  static propTypes = {
+    location: PropTypes.object.isRequired
+  }
+
   constructor(props){
     super(props);
     this.state = {
@@ -13,7 +18,7 @@ export default class Resource extends React.Component {
 
   componentDidMount() {
     // resource should be passed in url like: /pages/resource/diploma.png
-    var path = this.props.location.pathname.split('/pages/resource/')
+    var path = this.props.location.pathname.split('/pages/resource/');
 
     if(path[1]){
       this.setState({
@@ -24,7 +29,7 @@ export default class Resource extends React.Component {
 
   render() {
     return (
-  		<div className="content">
+      <div className="content">
         <div className="resource">
           <Link to="/">
             <div className="back alignc">

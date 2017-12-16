@@ -10,7 +10,7 @@ export default class Loader {
 			return;
 		}
 
-		var newScript = document.createElement("script");
+		var newScript = document.createElement('script');
 		newScript.src = location.origin + '/' + file;
 
 		newScript.onload = function(){

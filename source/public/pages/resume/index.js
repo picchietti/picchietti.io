@@ -16,16 +16,16 @@ export default class Resume extends React.Component {
     }
 
     this.employmentHistory = [
-      {from: '2015', to: '2018', description: <span><span className="bold">Software Engineer</span>, <a href="http://www.greplytix.com/" target="_blank">Greplytix</a></span>, bullets: [<span><a href="/pages/resume/greplytix-recommendation-online.pdf">Letter of recommendation</a>.<span className="on-print-inline"> (online)</span></span>, <span>Component-based, MVC web application development.</span>, <span>Promoted to lead client-side developer.</span>], isFeatured: true},
-      {from: '2013', to: '2015', description: <span><span className="bold">Webmaster</span>, <a href="http://www.siualumni.com/" target="_blank">Southern Illinois University Alumni Association</a></span>, bullets: [<span>Handled all website tasks.</span>, <span>Assisted clients with technical problems.</span>, <span>Utilized analytical data for informed, money-saving decisions.</span>], isFeatured: false},
-      {from: '2011', to: '2012', description: <span><span className="bold">Information Technology</span>, <a href="http://infotech.siu.edu/" target="_blank">Southern Illinois University IT</a></span>, bullets: [<span>Inspected thousands of code files for malicious code.</span>, <span>Trained new employees.</span>], isFeatured: false},
-      {from: '2010', to: '2011', description: <span><span className="bold">Computer Lab Manager</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a></span>, bullets: [<span>Administered and networked 25 Apple iMacs.</span>, <span>Taught students web development.</span>], isFeatured: false},
-      {from: '2009', to: '2011', description: <span><span className="bold">Lead Web Developer</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">Champaign Central High School</a></span>, bullets: [<span>Only student with expertise and trust to work on <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank">school website</a>.</span>, <span>Edited several hundred webpages.</span>], isFeatured: false}
+      {from: '2015', to: '2018', description: <span><span className="bold">Software Engineer</span>, <a href="http://www.greplytix.com/" target="_blank" rel="noopener noreferrer">Greplytix</a></span>, bullets: [<span><a href="/pages/resume/greplytix-recommendation-online.pdf">Letter of recommendation</a>.<span className="on-print-inline"> (online)</span></span>, <span>Component-based, MVC web application development.</span>, <span>Promoted to lead client-side developer.</span>], isFeatured: true},
+      {from: '2013', to: '2015', description: <span><span className="bold">Webmaster</span>, <a href="http://www.siualumni.com/" target="_blank" rel="noopener noreferrer">Southern Illinois University Alumni Association</a></span>, bullets: [<span>Handled all website tasks.</span>, <span>Assisted clients with technical problems.</span>, <span>Utilized analytical data for informed, money-saving decisions.</span>]},
+      {from: '2011', to: '2012', description: <span><span className="bold">Information Technology</span>, <a href="http://infotech.siu.edu/" target="_blank" rel="noopener noreferrer">Southern Illinois University IT</a></span>, bullets: [<span>Inspected thousands of code files for malicious code.</span>, <span>Trained new employees.</span>]},
+      {from: '2010', to: '2011', description: <span><span className="bold">Computer Lab Manager</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank" rel="noopener noreferrer">Champaign Central High School</a></span>, bullets: [<span>Administered and networked 25 Apple iMacs.</span>, <span>Taught students web development.</span>]},
+      {from: '2009', to: '2011', description: <span><span className="bold">Lead Web Developer</span>, <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank" rel="noopener noreferrer">Champaign Central High School</a></span>, bullets: [<span>Only student with expertise and trust to work on <a href="http://www2.champaignschools.org/schools/home/?id=32" target="_blank" rel="noopener noreferrer">school website</a>.</span>, <span>Edited several hundred webpages.</span>]}
     ];
 
     this.years_of_experience = parseInt((new Date()).getFullYear()) - 2007;
 
-    _.bindAll(this, ['onSkillsToggle']);
+    bindAll(this, ['onSkillsToggle']);
   }
 
   onSkillsToggle() {
@@ -67,7 +67,7 @@ export default class Resume extends React.Component {
                   <Link to="/pages/resource/diploma.png">B.S. Computer Science</Link>
                 </div>
                 <div className="alignr">
-                  Southern Illinois University Carbondale (<a href="http://www.abet.org/about-abet/" target="_blank">ABET</a> accredited)
+                  Southern Illinois University Carbondale (<a href="http://www.abet.org/about-abet/" target="_blank" rel="noopener noreferrer">ABET</a> accredited)
                 </div>
               </div>
             </div>
@@ -125,22 +125,22 @@ export default class Resume extends React.Component {
             <div className="section">
               <div className="title">Software &amp; Projects</div>
               <ul>
-                <li>Hamlbars - Open-source <a href="https://atom.io/packages/language-hamlbars" target="_blank">Atom</a> and <a href="https://packagecontrol.io/packages/Hamlbars" target="_blank">Sublime Text 3</a> editor plugins.</li>
+                <li>Hamlbars - Open-source <a href="https://atom.io/packages/language-hamlbars" target="_blank" rel="noopener noreferrer">Atom</a> and <a href="https://packagecontrol.io/packages/Hamlbars" target="_blank" rel="noopener noreferrer">Sublime Text 3</a> editor plugins.</li>
                 <li>Websites:
                   <ul>
-                    <li><a href="https://dnadiscovery.net/" target="_blank">DNA Discovery</a></li>
+                    <li><a href="https://dnadiscovery.net/" target="_blank" rel="noopener noreferrer">DNA Discovery</a></li>
                   </ul>
                 </li>
-                <li>Extra websites I've worked on but no longer maintain:
+                <li>Extra websites I&apos;ve worked on but no longer maintain:
                   <ul>
-                    <li><a href="http://www.stlaurs.org/" target="_blank">Stlaurs</a></li>
-                    <li><a href="http://www2.cs.siu.edu/~HPCLab/" target="_blank">SIU HPC Lab</a></li>
+                    <li><a href="http://www.stlaurs.org/" target="_blank" rel="noopener noreferrer">Stlaurs</a></li>
+                    <li><a href="http://www2.cs.siu.edu/~HPCLab/" target="_blank" rel="noopener noreferrer">SIU HPC Lab</a></li>
                   </ul>
                 </li>
               </ul>
 
               <div className="indent spacing-top">
-                <a href="https://github.com/picchietti" target="_blank">
+                <a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer">
                   <button><i className="fa fa-github"></i> More on Github</button>
                 </a>
               </div>
@@ -168,10 +168,10 @@ export default class Resume extends React.Component {
             <div className="section">
               <div className="title">Awards &amp; Certification</div>
               <ul>
-                <li>Academic Dean's List, <a href="/pages/awards/deans-list/2014.pdf">2014</a> - <a href="/pages/awards/deans-list/2015.pdf">2015</a></li>
+                <li>Academic Dean&apos;s List, <a href="/pages/awards/deans-list/2014.pdf">2014</a> - <a href="/pages/awards/deans-list/2015.pdf">2015</a></li>
                 <li>Google Analytics Certification &ndash; <Link to="/pages/resource/certifications/analytics/ecommerce/certificate.png">Ecommerce Analytics</Link>, <Link to="/pages/resource/certifications/analytics/platform/certificate.png">Platform Principles</Link>, <Link to="/pages/resource/certifications/analytics/fundamentals/certificate.png">Analytics Fundamentals</Link></li>
                 <li><Link to="/pages/resource/awards/wyse/medal.jpg">Computer Science Sectional Champion</Link> &ndash; Worldwide Youth in Science and Engineering, 2011</li>
-                <li>Technological Achievement Award &ndash; Microsoft's University of Illinois Gamebuilder's Hackathon, 2011</li>
+                <li>Technological Achievement Award &ndash; Microsoft&apos;s University of Illinois Gamebuilder&apos;s Hackathon, 2011</li>
               </ul>
             </div>
           </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { debounce } from 'lodash';
 
 import './index.scss';
@@ -80,7 +79,7 @@ export default class Header extends React.Component {
 
   componentDidMount() {
     this.fillCanvas();
-    window.addEventListener('resize', _.debounce(this.fillCanvas, 300), false);
+    window.addEventListener('resize', debounce(this.fillCanvas, 300), false);
   }
 
 
@@ -95,8 +94,8 @@ export default class Header extends React.Component {
           <div className="menu alignl">
             <div className="links">
               <div className="links-centered">
-                <div><a href="https://github.com/picchietti" target="_blank"><i className="fa fa-fw fa-github"></i><span className="text"> Github</span></a></div>
-                <div><a href="https://www.linkedin.com/in/picchietti/" target="_blank"><i className="fa fa-fw fa-linkedin-square"></i><span className="text"> LinkedIn</span></a></div>
+                <div><a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer"><i className="fa fa-fw fa-github"></i><span className="text"> Github</span></a></div>
+                <div><a href="https://www.linkedin.com/in/picchietti/" target="_blank" rel="noopener noreferrer"><i className="fa fa-fw fa-linkedin-square"></i><span className="text"> LinkedIn</span></a></div>
               </div>
             </div>
           </div>

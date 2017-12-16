@@ -12,7 +12,7 @@ export default class Page extends React.Component {
   constructor(props) {
     super(props);
 
-    this.filtered_props = _.omit(props, ['load'])
+    this.filtered_props = omit(props, ['load'])
 
     this.state = {
       component: null

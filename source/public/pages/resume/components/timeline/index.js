@@ -24,7 +24,7 @@ export default class Timeline extends React.Component {
       points: initialPoints
     }
 
-    _.bindAll(this, ['handleToggle']);
+    bindAll(this, ['handleToggle']);
   }
 
   handleToggle() {

@@ -20,15 +20,15 @@ var Analytics = {
     Analytics.todo++;
 
     var params = {
-      "auth": jwtClient,
-      "ids": 'ga:' + id,
-      "start-date": Analytics.start_end,
-      "end-date": Analytics.start_end,
-      "metrics": 'ga:users,ga:pageviews'
+      'auth': jwtClient,
+      'ids': 'ga:' + id,
+      'start-date': Analytics.start_end,
+      'end-date': Analytics.start_end,
+      'metrics': 'ga:users,ga:pageviews'
     }
 
     analytics.data.ga.get(params, function(err, response){
-      totals = response.totalsForAllResults;
+      var totals = response.totalsForAllResults;
       Analytics.store(totals, source);
     });
   },
@@ -43,7 +43,7 @@ var Analytics = {
       var users = parseInt(totals['ga:users']);
       var pageviews = parseInt(totals['ga:pageviews']);
 
-      conn.query("INSERT INTO impact_analytics (pageviews, users, source, ymd) VALUES (?, ?, ?, ?)", [pageviews, users, source, Analytics.start_end], function(err, result){
+      conn.query('INSERT INTO impact_analytics (pageviews, users, source, ymd) VALUES (?, ?, ?, ?)', [pageviews, users, source, Analytics.start_end], function(err, result){
         Analytics.todo--;
         conn.release();
 

@@ -58,6 +58,6 @@ spdy.createServer(credentials, app).listen(443); // https + http2
 
 var http = express();
 http.get('*', function(req, res){
-  res.redirect("https://" + req.headers.host + req.url);
+  res.redirect('https://' + req.headers.host + req.url);
 });
 http.listen(80);

@@ -4,7 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 var db = require('/usr/src/app/private/database.js');
 
 function sha512(data) {
-  return crypto.createHash("sha512").update(data).digest("hex");
+  return crypto.createHash('sha512').update(data).digest('hex');
 }
 
 module.exports = function(passport){
@@ -26,7 +26,7 @@ module.exports = function(passport){
           return done(err);
         }
 
-        conn.query("SELECT password,salt FROM accounts WHERE email=?", [username], function(err, rows, fields){
+        conn.query('SELECT password,salt FROM accounts WHERE email=?', [username], function(err, rows, fields){
           if(err) {
             conn.release();
             return done(err);

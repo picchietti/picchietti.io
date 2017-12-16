@@ -1,9 +1,15 @@
 import React from 'react';
 import { bindAll } from 'lodash';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
 export default class PasswordStrength extends React.Component {
+  static propTypes = {
+    // used to update the value of the password input
+    onChange: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props);
 
@@ -11,14 +17,12 @@ export default class PasswordStrength extends React.Component {
       indicator_style: {}
     }
 
-    _.bindAll(this, ['passwordChanged']);
+    bindAll(this, ['passwordChanged']);
   }
 
   passwordChanged(event) {
-    if(typeof this.props.onChange === "function"){
-      // parent needs a chance to update the value
-      this.props.onChange(event);
-    }
+    // parent needs a chance to update the value
+    this.props.onChange(event);
 
     this.calculate(event);
   }
@@ -40,11 +44,11 @@ export default class PasswordStrength extends React.Component {
 
     var backgroundColor;
 		if(points_percentage < 40) // bad
-			backgroundColor = "#f00";
+			backgroundColor = '#f00';
 		else if(points_percentage < 70) // good
-			backgroundColor = "rgb(255, 207, 12)";
+			backgroundColor = 'rgb(255, 207, 12)';
 		else // awesome
-			backgroundColor = "#6f0";
+			backgroundColor = '#6f0';
 
     this.setState({
       indicator_style: {

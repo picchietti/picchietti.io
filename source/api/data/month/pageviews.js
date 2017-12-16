@@ -14,7 +14,7 @@ router.get('/', function(req, res){
 
   db.getConnection(function(err, conn){
     // get the total of every record before the most recent thirty days
-    conn.query("SELECT sum(pageviews) AS pageviews FROM impact_analytics WHERE ymd < ?", [thirtyDays], function(err, rows, fields){
+    conn.query('SELECT sum(pageviews) AS pageviews FROM impact_analytics WHERE ymd < ?', [thirtyDays], function(err, rows, fields){
       results.one = rows[0]['pageviews'];
 
       if(!!results.one && !!results.two)
@@ -22,7 +22,7 @@ router.get('/', function(req, res){
     });
 
     // get the 30 most recent records
-    conn.query("SELECT sum(pageviews) AS count, ymd AS `date` FROM impact_analytics WHERE ymd > ? GROUP BY ymd", [thirtyDays], function(err, rows, fields){
+    conn.query('SELECT sum(pageviews) AS count, ymd AS `date` FROM impact_analytics WHERE ymd > ? GROUP BY ymd', [thirtyDays], function(err, rows, fields){
       results.two = rows;
 
       if(!!results.one && !!results.two)

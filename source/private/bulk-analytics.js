@@ -30,7 +30,7 @@ var Analytics = {
     console.log('getting analytics for...', source);
 
     if(since.isSameOrBefore(Analytics.yesterday)) {
-    	Analytics.get(todo[0], source, since);
+      Analytics.get(todo[0], source, since);
     }
   },
 
@@ -39,16 +39,16 @@ var Analytics = {
 
     var since_string = since.format('YYYY-MM-DD');
     var params = {
-      "auth": jwtClient,
-      "ids": 'ga:' + id,
-      "start-date": since_string,
-      "end-date": since_string,
-      "metrics": 'ga:users,ga:pageviews'
+      'auth': jwtClient,
+      'ids': 'ga:' + id,
+      'start-date': since_string,
+      'end-date': since_string,
+      'metrics': 'ga:users,ga:pageviews'
     };
 
     analytics.data.ga.get(params, function(err, response){
       console.log('got analytics for', source, since_string);
-      totals = response.totalsForAllResults;
+      var totals = response.totalsForAllResults;
       Analytics.store(totals, source, since_string);
 
       since.add(1, 'days')
@@ -69,7 +69,7 @@ var Analytics = {
       var users = parseInt(totals['ga:users']);
       var pageviews = parseInt(totals['ga:pageviews']);
 
-      conn.query("INSERT INTO impact_analytics (pageviews, users, source, ymd) VALUES (?, ?, ?, ?)", [pageviews, users, source, when], function(err, result){
+      conn.query('INSERT INTO impact_analytics (pageviews, users, source, ymd) VALUES (?, ?, ?, ?)', [pageviews, users, source, when], function(err, result){
         if(err) throw err;
         conn.release();
       });

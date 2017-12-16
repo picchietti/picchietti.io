@@ -6,7 +6,8 @@ export default class Point extends React.Component {
     from: PropTypes.string.isRequired, // string with YYYY at end
     to: PropTypes.string.isRequired, // string with YYYY at end
     description: PropTypes.any.isRequired, // string or jsx
-    bullets: PropTypes.array.isRequired // array of (strings or jsx)
+    bullets: PropTypes.array.isRequired, // array of (strings or jsx)
+    isFeatured: PropTypes.bool
   }
 
   constructor(props) {

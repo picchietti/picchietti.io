@@ -47,7 +47,7 @@ export default class GrowthGraph extends React.Component {
         width = 175 - margin.left - margin.right,
         height = 120 - margin.top - margin.bottom;
 
-    var formatDate = d3.timeParse("%Y-%m-%d");
+    var formatDate = d3.timeParse('%Y-%m-%d');
 
     var x = d3.scaleTime().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
@@ -67,11 +67,11 @@ export default class GrowthGraph extends React.Component {
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.count); });
 
-        var svg = selected_container.append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = selected_container.append('svg')
+          .attr('width', width + margin.left + margin.right)
+          .attr('height', height + margin.top + margin.bottom)
+          .append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
         d3.json(data_url, (error, data) => {
           if (error) throw error;
@@ -94,29 +94,29 @@ export default class GrowthGraph extends React.Component {
           x.domain(d3.extent(data, function(d) {return d.date;}));
           y.domain(d3.extent(data, function(d) {return d.count;}));
 
-          svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
+          svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0,' + height + ')')
             .call(xAxis)
 
-          svg.append("text")
-            .attr("text-anchor", "middle")
+          svg.append('text')
+            .attr('text-anchor', 'middle')
             .attr('transform', 'translate(' + (width / 2) + ',' + (height + margin.top + 5) + ')')
             .text(x_label);
 
-          svg.append("g")
-            .attr("class", "y axis")
+          svg.append('g')
+            .attr('class', 'y axis')
             .call(yAxis)
 
-          svg.append("path")
+          svg.append('path')
             .datum(data)
-            .attr("class", "area")
-            .attr("d", area);
+            .attr('class', 'area')
+            .attr('d', area);
 
-          svg.append("path")
+          svg.append('path')
             .datum(data)
-            .attr("class", "line")
-            .attr("d", line);
+            .attr('class', 'line')
+            .attr('d', line);
         });
   }
 
