@@ -18,43 +18,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          },
-          { loader: 'sass-loader' }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          }
-        ]
-      },
-      {
-        test: /\.js$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['babel-preset-env', 'babel-preset-react'],
-            plugins: ['transform-class-properties'],
-            compact: true,
-            minified: true
-          }
-        }
-      },
-      {
         test: /\.(png|jpg|gif)$/,
         use: [
           {

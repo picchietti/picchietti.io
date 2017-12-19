@@ -5,7 +5,9 @@
   "author": "Jon Picchietti <jon@picchietti.email>",
   "scripts": {
     "start": "nodemon --delay 250ms server.js",
-    "build": "webpack"
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "build": "npm run build:prod"
   },
   "dependencies": {
     "body-parser": "^1.16.1",
@@ -41,6 +43,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",
+    "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
@@ -53,6 +56,7 @@
     "node-sass": "^4.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "webpack-merge": "^4.1.1"
   }
 }
