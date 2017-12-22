@@ -1,137 +1,163 @@
 import React from 'react';
+import { bindAll, last } from 'lodash';
+
+import XHR2 from '../../scripts/xhr2.js';
 
 import './index.scss';
 
 export default class Uploader extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      url: '',
+      uploading: false,
+      uploadInputs: []
+    };
+
+    bindAll(this, ['clickedDropBox', 'filesChosen', 'handleUrlChange', 'handleUrlKeyUp', 'drop']);
+  }
+
+  clickedDropBox(event) {
+    this.addInput();
+  }
+
+  addInput() {
+    // only create a new input if a file was chosen for the last
+    var last_input = last(this.uploadInputsRef.children);
+    if(last_input && last_input.value == ''){
+      this.openFileChooser();
+      return;
+    }
+
+    var input = <input type="file" multiple="multiple" key={this.state.uploadInputs.length} onChange={this.filesChosen} />;
+    this.setState((prevState) => {
+      prevState.uploadInputs.push(input);
+
+      return {
+        uploadInputs: prevState.uploadInputs
+      }
+    }, this.openFileChooser)
+  }
+
+  openFileChooser() {
+    var lastInput = last(this.uploadInputsRef.children);
+    lastInput && lastInput.click();
+  }
+
+  filesChosen(event) {
+    var input = event.target;
+    var formData = new FormData();
+
+    for(var i=0,y=input.files.length; i<y; i++){
+      formData.append('file' + input.key + i, input.files[i]);
+    }
+
+    var xhr2 = new XHR2('POST', '/upload/file');
+    xhr2.onload = () => {
+      this.setState((prevState) => {
+        prevState.uploadInputs.splice(input.key, 1);
+
+        return {
+          uploading: false,
+          uploadInputs: prevState.uploadInputs
+        }
+      })
+    }
+
+    xhr2.send(formData);
+    this.setState({ uploading: true });
+  }
+
+  handleUrlChange(event) {
+    this.setState({
+      url: event.target.value
+    });
+  }
+
+  handleUrlKeyUp(event) {
+    if(event.keyCode == 13){
+      var xhr2 = new XHR2('POST', '/upload/url');
+      xhr2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr2.onload = () => {
+        this.setState({
+          url: ''
+        });
+      }
+      xhr2.send('url=' + this.state.url);
+    }
+  }
+
+  dragEnter(event) {
+    event.target.classList.add('dragging');
+    event.preventDefault();
+  }
+
+  dragOver(event) {
+    event.preventDefault();
+  }
+
+  dragLeave(event) {
+    event.target.classList.remove('dragging');
+    event.preventDefault();
+  }
+
+  drop(event) {
+    event.preventDefault();
+
+    var dropbox = event.target;
+    var files = event.dataTransfer.files;
+
+    // make sure they didnt drop another html element.
+    if(files.length > 0){
+      var formData = new FormData();
+      
+      for(var i=0,y=files.length; i<y; i++){
+        formData.append('drop' + i, files[i]);
+      }
+
+      var xhr2 = new XHR2('POST', '/upload/file');
+
+      xhr2.onload = () => {
+        this.setState({
+          uploading: false
+        })
+
+        if(xhr2.status === 204){
+          dropbox.classList.remove('dragging');
+        }
+      };
+
+      xhr2.send(formData);
+      this.setState({ uploading: true });
+    }
+  }
+
   render() {
     return (
       <div className="content">
         <div className="alignc space">
-          <input type="text" id="url" placeholder="Upload from URL..." onKeyPress="" />
+          <input type="text" className="url-upload" value={this.state.url} placeholder="Upload from URL..." onChange={this.handleUrlChange} onKeyUp={this.handleUrlKeyUp} />
         </div>
-        <div id="droparea" className="droparea"></div>
-        <div id="uploads"></div>
-        <div id="previews"></div>
+        <div>
+          <div className="dropbox no-select" onClick={this.clickedDropBox} onDragEnter={this.dragEnter} onDragOver={this.dragOver} onDragLeave={this.dragLeave} onDrop={this.drop}>
+            <div className="upload-inputs" ref={ (ele) => { this.uploadInputsRef = ele; } }>{this.state.uploadInputs}</div>
+            {this.state.uploading &&
+              <div>
+                <i className="fa fa-4x fa-fw fa-spin fa-circle-o-notch"></i>
+                <div className="bold">Uploading...</div>
+              </div>
+            }
+            {!this.state.uploading &&
+              <div>
+                <i className="fa fa-4x fa-cloud-upload"></i>
+                <div className="bold">Drag n&apos; drop files to upload</div>
+                <div>(or click)</div>
+              </div>
+            }
+          </div>
+        </div>
       </div>
     );
   }
 }
-
-// // old code:
-
-// var num = 0;
-// var last_input;
-//
-// function another(){
-// 	// use the unused file input instead of creating another.
-// 	if(last_input != null && last_input.value == ''){
-// 		last_input.click();
-// 		return;
-// 	}
-//
-// 	var input = document.createElement("input");
-// 	input.type = "file";
-// 	input.name = "file" + (++num);
-// 	input.addEventListener("change", function(){
-// 		imagePreview(this);
-// 		var formData = new FormData();
-//
-// 		formData.append(this.name, this.files[0]);
-//
-// 		var xhr2 = new XHR2('POST', '/upload/file');
-// 		xhr2.onload = function(){
-// 			document.getElementById('uploads').removeChild(input);
-// 			setTimeout(function(){
-// 				document.getElementById('previews').removeChild(document.getElementById(input.name));
-// 			}, 700);
-// 		}
-//
-// 		xhr2.send(formData);
-// 		another();
-// 	}, false);
-// 	last_input = input;
-// 	document.getElementById("uploads").appendChild(input);
-// 	input.click();
-// }
-//
-// function imagePreview(input){
-// 	if (input.files && input.files[0]) {
-//     var reader = new FileReader();
-//
-//     reader.onload = function(event){
-// 			console.log('input', input.value);
-// 			var preview;
-// 			var ext = input.value.substring(input.value.lastIndexOf('.') + 1);
-// 			console.log('ext', ext);
-// 			switch(ext){
-// 				case 'jpg': case 'gif': case 'png':
-// 					preview = document.createElement('img');
-// 					preview.className = 'preview';
-// 					preview.src = event.target.result;
-// 					preview.id = input.name;
-// 				break;
-// 				default:
-// 					preview = document.createElement('div');
-// 					preview.className = 'preview not-image';
-// 					preview.innerHTML = '<i class="fa fa-2x fa-file-text-o"></i>'
-// 					preview.id = input.name;
-// 			}
-//       document.getElementById('previews').appendChild(preview);
-//     }
-//
-//     reader.readAsDataURL(input.files[0]);
-// 	}
-// }
-//
-// function clickDropArea(){
-// 	document.getElementById('droparea').addEventListener('click', function(){
-// 		another();
-// 	}, false);
-// }
-//
-// function checkEnter(event){
-// 	if(event.keyCode == 13){
-// 		var url = document.getElementById("url");
-// 		var xhr2 = new XHR2('POST', '/upload/url');
-// 		xhr2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-// 		xhr2.onload = function(){
-// 			url.value = "";
-// 		}
-// 		xhr2.send("url=" + url.value);
-// 	}
-// }
-//
-// window.addEventListener("dragenter",function(event){
-// 	document.body.classList.add('dragging');
-// 	event.preventDefault();
-// }, false);
-// window.addEventListener("dragover",function(event){
-// 	event.preventDefault();
-// }, false);
-// window.addEventListener("dragleave",function(event){
-// 	document.body.classList.remove('dragging');
-// 	event.preventDefault();
-// }, false);
-// window.addEventListener("drop",function(event){
-// 	event.preventDefault();
-// 	var files = event.dataTransfer.files;
-// 	if(files.length > 0){ //wants to upload file(s) instead of drop another html element.
-// 		var formData = new FormData();
-// 		formData.append("path", this.path);
-// 		for(var i=0,y=files.length;i<y;i++){
-// 			formData.append('drop' + i, files[i]);
-// 		}
-//
-// 		var xhr2 = new XHR2('POST', '/upload/file');
-//
-// 		xhr2.onload = function(){
-// 			if(xhr2.status === 204){
-// 				document.body.classList.remove('dragging');
-// 			}
-// 		};
-//
-// 		xhr2.send(formData);
-// 	}
-// }, false);
-//
-// window.addEventListener("DOMContentLoaded", clickDropArea, false);

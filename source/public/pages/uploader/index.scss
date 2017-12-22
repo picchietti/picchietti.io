@@ -1,55 +1,42 @@
-body.dragging .droparea {
-  pointer-events: none;
-  border: 4px dashed #364a67;
-}
-
-#url {
+.url-upload {
   text-align: center;
-  width: 95%;
+  width: 100%;
   font-size: 16pt;
   padding: 3px;
 }
 
-#uploads {
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -2000px;
-  top: -2000px;
-}
-
-#previews {
-  display: flex;
-  flex-wrap: wrap;
-
-  .preview {
-    height: 125px;
-    width: auto;
-  }
-
-  .not-image {
-    display: inline-block;
-    height: 125px;
-    width: 125px;
-    background-color: #ddd;
-
-    i {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-  }
-}
-
-.droparea {
-  width: 100%;
-  min-height: 200px;
-  border: 4px dashed transparent;
-  background-image: url('/images/droparea.svg');
-  background-repeat: no-repeat;
-  background-position: center;
+.dropbox {
+  border: 4px dashed lightblue;
+  border-radius: 8px;
+  padding: 50px;
+  color: lightblue;
+  text-align: center;
   cursor: pointer;
+
+  * {
+    pointer-events: none;
+  }
+
+  i.fa {
+    color: lightblue;
+  }
+
+  .upload-inputs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -2000px;
+    top: -2000px;
+  }
+}
+
+.dropbox.dragging {
+  border: 4px solid blue;
+  color: blue;
+
+  i.fa {
+    color: blue;
+  }
 }
 
 .space {
