@@ -1,9 +1,11 @@
+# env vars used here are defined in ./.env
+
 version: '3'
 services:
   mysql:
     image: mysql:latest
     ports:
-     - 3306:3306
+     - "${HOST_MYSQL_PORT}:3306"
     volumes:
       - ./db/data:/var/lib/mysql
     env_file: ./build/secret/config.env
@@ -11,8 +13,8 @@ services:
   node:
     build: .
     ports:
-      - 80:80
-      - 443:443
+      - "${HOST_HTTP_PORT}:80"
+      - "${HOST_HTTPS_PORT}:443"
     volumes:
       - ./build:/usr/src/app
       - /usr/src/app/node_modules # otherwise prev volume overwrites
