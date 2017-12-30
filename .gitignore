@@ -4,3 +4,4 @@ node_modules/
 secret/
 source/secret/
 source/public/pages/bookmarks/icons
+.env
