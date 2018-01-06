@@ -57,8 +57,6 @@ export default class Resume extends React.Component {
             <div className="clearb"></div>
           </div>
           <div>
-            <div className="section alignc"><span className="bold">My objective</span> is to solve problems with technology in a collaborative, evolving, and professional manner.</div>
-
             <div className="section">
               <div className="title">Education</div>
               <div className="education">
