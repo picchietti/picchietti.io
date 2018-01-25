@@ -3,6 +3,7 @@ source/
 .git/
 node_modules/
 db/data/
+mongo/data/
 build/secret/uploads/
 build/secret/letsencrypt/
 build/public/pages/bookmarks/icons/

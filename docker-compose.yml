@@ -5,10 +5,18 @@ services:
   mysql:
     image: mysql:latest
     ports:
-     - "${HOST_MYSQL_PORT}:3306"
+      - "${HOST_MYSQL_PORT}:3306"
     volumes:
       - ./db/data:/var/lib/mysql
     env_file: ./build/secret/config.env
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "${HOST_MONGO_PORT}:27017"
+    volumes:
+      - ./mongo/data:/data/db
+    command: mongod --auth
 
   node:
     build: .
@@ -23,6 +31,8 @@ services:
     env_file: ./build/secret/config.env
     depends_on:
       - mysql
+      - mongo
     links:
       - mysql
+      - mongo
     command: /usr/bin/supervisord

@@ -1,5 +1,6 @@
 build/
 db/data/
+mongo/data/
 node_modules/
 secret/
 source/secret/

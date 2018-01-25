@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const multer = require('multer');
-const nodeadmin = require('nodeadmin');
 const fs = require('fs');
 const spdy = require('spdy');
 const shrinkray = require('shrink-ray');
@@ -33,8 +32,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(nodeadmin(app));
 
 // // Routes
 const router = express.Router();
