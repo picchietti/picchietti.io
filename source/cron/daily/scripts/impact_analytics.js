@@ -1,8 +1,8 @@
 var google = require('googleapis');
 var analytics = google.analytics('v3');
 var moment = require('moment');
-var db = require('/usr/src/app/private/database.js');
 var key = require('/usr/src/app/secret/resume-stats-a8a939419e3a.json');
+const mongo = require('/usr/src/app/private/mongodb.js');
 
 var jwtClient = new google.auth.JWT(
   key.client_email,
@@ -34,22 +34,19 @@ var Analytics = {
   },
 
   store: function(totals, source){
-    db.getConnection(function(err, conn){
-      if (err) {
-        console.log(err);
-        return;
-      }
-
+    mongo.getConnection().then( (db) => {
       var users = parseInt(totals['ga:users']);
       var pageviews = parseInt(totals['ga:pageviews']);
 
-      conn.query('INSERT INTO impact_analytics (pageviews, users, source, ymd) VALUES (?, ?, ?, ?)', [pageviews, users, source, Analytics.start_end], function(err, result){
-        Analytics.todo--;
-        conn.release();
-
+      db.collection('impact_analytics').insert({
+        pageviews: pageviews,
+        users: users,
+        source: source,
+        ymd: Analytics.start_end
+      }, (error, result) => {
         // or else command line script wont exit
-        if(Analytics.todo == 0)
-          db.end()
+        if(--Analytics.todo === 0)
+          db.close() // might have to call on client
       });
     });
   }
@@ -68,4 +65,3 @@ jwtClient.authorize(function (err, tokens) {
 
 // // Legacy
 // Analytics.save('71729805', 'jonpicchietti.com'); // since '2013-04-26'
-// Analytics.save('74075825', 'msknighteducation.com'); // since '2013-07-02'
