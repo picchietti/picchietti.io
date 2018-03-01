@@ -1,18 +1,6 @@
-var https = require('https');
 var moment = require('moment');
 var cheerio = require('cheerio');
-
-function html_response(incoming_message){
-  var data = '';
-
-  incoming_message.on('data', function(chunk){
-    data += chunk;
-  });
-  incoming_message.on('end', function(){
-    data = data.toString();
-    process_html(data);
-  });
-}
+var request = require('request');
 
 function process_html(html){
   var contributions = [];
@@ -34,8 +22,10 @@ function process_html(html){
 var year = process.argv[2] || moment().year();
 console.log('Getting contributions from year:', year);
 var url = 'https://github.com/users/picchietti/contributions?from=' + year + '-12-01&to=' + year + '-12-31';
-var request = https.get(url, html_response);
 
-request.on('error', function(err){
-  console.error('error', err);
+request(url, function (error, response, body) {
+  if(error)
+    console.error('error', error);
+
+  process_html(body);
 });
