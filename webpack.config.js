@@ -12,6 +12,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
+    // chunkFilename: '[hash].js',
     path: path.resolve(__dirname, './build/public/bundles'),
     publicPath: '/bundles/'
   },
@@ -19,15 +20,10 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {}
-          }
-        ]
+        use: 'file-loader'
       },
       {
-        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         use: [
           {
             loader: 'file-loader',
@@ -38,6 +34,15 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.bundle\.js$/,
+        use: {
+          loader: 'bundle-loader',
+          options: {
+            lazy: true
+          }
+        }
       }
     ]
   }

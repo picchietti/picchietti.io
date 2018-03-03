@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --delay 250ms server.js",
     "watch": "webpack --watch --config webpack.dev.js --mode development",
-    "build:dev": "webpack --config webpack.dev.js --mode development",
+    "build:dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js --mode production"
   },
   "dependencies": {
