@@ -1,14 +1,12 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 module.exports = merge(common, {
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production', // defaults to this if not set
-    }),
-    new MinifyPlugin({removeDebugger: true})
+    })
   ],
   module: {
     rules: [
@@ -39,6 +37,7 @@ module.exports = merge(common, {
       },
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
