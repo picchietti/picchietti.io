@@ -1,11 +1,13 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   plugins: [
     new CleanWebpackPlugin('./build'),
     new CopyWebpackPlugin([{from: './source', to: '../../'}])
+    // new BundleAnalyzerPlugin()
   ],
   entry: {
     app: './source/public/index.js'
@@ -30,7 +32,7 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: '../fonts/',
-              publicPath: '../'
+              publicPath: '/fonts/'
             }
           }
         ]
