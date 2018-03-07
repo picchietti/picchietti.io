@@ -1,7 +1,7 @@
 {
-  "name": "docker_node_server",
+  "name": "picchietti.io",
   "version": "1.0.0",
-  "description": "Node.js on Docker",
+  "description": "Personal website",
   "author": "Jon Picchietti <jon@picchietti.email>",
   "scripts": {
     "start": "nodemon --delay 250ms server.js",
