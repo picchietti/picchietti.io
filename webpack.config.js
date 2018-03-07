@@ -1,12 +1,28 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   plugins: [
     new CleanWebpackPlugin('./build'),
-    new CopyWebpackPlugin([{from: './source', to: '../../'}])
+    new CopyWebpackPlugin([{from: './source', to: '../../'}]),
+    new HtmlWebpackPlugin({
+      minify: {
+        html5: true,
+        useShortDoctype: true,
+        collapseWhitespace: true,
+        quoteCharacter: '"',
+        removeComments: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        sortAttributes: true
+      },
+      showErrors: false,
+      template: './source/public/index.html',
+      filename: '../index.html'
+    })
     // new BundleAnalyzerPlugin()
   ],
   entry: {
