@@ -17,11 +17,13 @@ module.exports = {
         removeComments: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        sortAttributes: true
+        sortAttributes: true,
+        collapseBooleanAttributes: true
       },
       showErrors: false,
       template: './source/public/index.html',
-      filename: '../index.html'
+      filename: '../index.html',
+      hash: true
     })
     // new BundleAnalyzerPlugin()
   ],
