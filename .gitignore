@@ -6,3 +6,4 @@ secret/
 source/secret/
 source/public/pages/bookmarks/icons
 .env
+stats.json
