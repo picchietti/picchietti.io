@@ -17,6 +17,7 @@ const root_dir = '/usr/src/app';
 require('./private/passport.js')(passport);
 var uploader = require('./private/multer.js')(multer);
 
+app.disable('x-powered-by');
 app.use(shrinkray());
 app.use(cookieParser());
 app.use(bodyParser.json());
