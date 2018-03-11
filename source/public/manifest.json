@@ -1,9 +1,25 @@
 {
   "name": "Jon Picchietti",
   "short_name": "Picchietti",
-  "icons":
-    [{
+  "theme_color": "#dfdfdf",
+  "background_color": "#000000",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
       "src": "favicon.png",
       "type": "image/png"
-    }]
+    },
+    {
+      "src": "/images/favicons/android-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicons/android-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+
 }
