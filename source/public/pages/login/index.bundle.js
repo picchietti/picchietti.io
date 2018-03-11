@@ -71,7 +71,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className="content">
+      <main>
         <div className="login">
           {this.state.feedback &&
             <div className="feedback">{this.state.feedback}</div>
@@ -87,7 +87,7 @@ export default class Login extends React.Component {
           You&apos;ve reached a restricted, top secret area of this website that is protected by level 99 shadow warlocks, robots, and an overworked intern named Jeff ... or just a login system. Whatever.
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }

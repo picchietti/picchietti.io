@@ -85,7 +85,7 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <div className="header no-print">
+      <header className="no-print">
         <div id="canvas"></div>
         <div className="profile">
           <img src="/images/profile2.png" alt="Me" className="picture" />
@@ -100,7 +100,7 @@ export default class Header extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </header>
     );
   }
 }

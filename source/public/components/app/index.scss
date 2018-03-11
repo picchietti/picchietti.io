@@ -1,4 +1,4 @@
-.page .content {
+.page main {
   padding: 1em 4em 1em 4em;
   min-height: 100%;
   max-width: 960px;
@@ -10,7 +10,7 @@
     max-width: none;
     overflow: auto;
 
-    .content {
+    main {
       padding: 1em 3em 3em 3em;
     }
   }
@@ -22,7 +22,7 @@
     margin: 0;
     width: 100%;
 
-    .content {
+    main {
       padding: 0 3em 1em 3em;
     }
   }
@@ -30,7 +30,7 @@
 
 // small devices
 @media (max-width: 480px) {
-  .page .content {
+  .page main {
     padding: 0 1em;
   }
 }

@@ -37,7 +37,7 @@ export default class Resume extends React.Component {
 
   render() {
     return (
-      <div className="content">
+      <main>
         <div className="resume">
           <div>
             <div className="name">
@@ -175,7 +175,7 @@ export default class Resume extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }

@@ -29,7 +29,7 @@ export default class Resource extends React.Component {
 
   render() {
     return (
-      <div className="content">
+      <main>
         <div className="resource">
           <Link to="/">
             <div className="back alignc">
@@ -41,7 +41,7 @@ export default class Resource extends React.Component {
             <img alt="resource" src={this.state.resource} />
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }

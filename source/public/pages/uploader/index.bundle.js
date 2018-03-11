@@ -111,7 +111,7 @@ export default class Uploader extends React.Component {
     // make sure they didnt drop another html element.
     if(files.length > 0){
       var formData = new FormData();
-      
+
       for(var i=0,y=files.length; i<y; i++){
         formData.append('drop' + i, files[i]);
       }
@@ -135,7 +135,7 @@ export default class Uploader extends React.Component {
 
   render() {
     return (
-      <div className="content">
+      <main>
         <div className="alignc space">
           <input type="text" className="url-upload" value={this.state.url} placeholder="Upload from URL..." onChange={this.handleUrlChange} onKeyUp={this.handleUrlKeyUp} />
         </div>
@@ -157,7 +157,7 @@ export default class Uploader extends React.Component {
             }
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }

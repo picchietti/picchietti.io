@@ -6,7 +6,7 @@ import './index.scss';
 export default class NotFound extends React.Component {
   render() {
     return (
-      <div className="content">
+      <main>
         <div className="notfound">
           <div className="centered">
             <div className="message">
@@ -19,7 +19,7 @@ export default class NotFound extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }
