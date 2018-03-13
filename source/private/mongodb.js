@@ -10,18 +10,31 @@ const options = {
 
 };
 
-let db_promise = new Promise(function (fulfill, reject){
+let db_client = new Promise(function (fulfill, reject){
   MongoClient.connect(url, options, function(error, client) {
     if(error)
       return reject(error);
 
     console.log('CONNECTED TO MONGO');
-    fulfill(client.db(db_name));
+    fulfill(client);
   });
 });
 
+function getConnection() {
+  return db_client;
+}
+
 module.exports = {
-  getConnection: function() {
-    return db_promise;
-  }
+  getConnection: getConnection,
+
+  getDb: () => (
+    getConnection().then( (client) => (
+      client.db(db_name)
+    ))
+  ),
+  close: () => (
+    getConnection().then( (client) => (
+      client.close()
+    ))
+  )
 };

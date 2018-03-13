@@ -19,7 +19,7 @@ module.exports = function(passport){
     function(username, password, done) {
       // find a way to throttle failed attempts or reimplement own
 
-      mongo.getConnection().then( (db) => {
+      mongo.getDb().then( (db) => {
         db.collection('users').findOne({ email: username }, function(err, user){
           if(err) {
             return done(err);

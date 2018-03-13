@@ -34,7 +34,7 @@ var Analytics = {
   },
 
   store: function(totals, source){
-    mongo.getConnection().then( (db) => {
+    mongo.getDb().then( (db) => {
       var users = parseInt(totals['ga:users']);
       var pageviews = parseInt(totals['ga:pageviews']);
 
@@ -46,7 +46,7 @@ var Analytics = {
       }, (error, result) => {
         // or else command line script wont exit
         if(--Analytics.todo === 0)
-          db.close() // might have to call on client
+          mongo.close()
       });
     });
   }

@@ -21,7 +21,7 @@ router.get('/', function(req, res){
     res.json(results.two);
   }
 
-  mongo.getConnection().then( (db) => {
+  mongo.getDb().then( (db) => {
     // get the total of every record before the most recent thirty days
     db.collection('impact_analytics').aggregate([
       {

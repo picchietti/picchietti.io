@@ -13,7 +13,7 @@ var jwtClient = new google.auth.JWT(
   null
 );
 
-mongo.getConnection().then( (db) => {
+mongo.getDb().then( (db) => {
   var Analytics = {
     yesterday: moment().subtract(1, 'days'),
     todo: [], // each item is an array with id, source, and since strings
