@@ -13,17 +13,18 @@ var jwtClient = new google.auth.JWT(
 );
 
 var Analytics = {
-  start_end: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+  start_end: moment().subtract(1, 'days'),
   todo: 0,
 
   save: function(id, source){
     Analytics.todo++;
+    const start_end_string = Analytics.start_end.format('YYYY-MM-DD');
 
     var params = {
       'auth': jwtClient,
       'ids': 'ga:' + id,
-      'start-date': Analytics.start_end,
-      'end-date': Analytics.start_end,
+      'start-date': start_end_string,
+      'end-date': start_end_string,
       'metrics': 'ga:users,ga:pageviews'
     }
 
@@ -42,7 +43,7 @@ var Analytics = {
         pageviews: pageviews,
         users: users,
         source: source,
-        ymd: Analytics.start_end
+        ymd: Analytics.start_end.toDate()
       }, (error, result) => {
         // or else command line script wont exit
         if(--Analytics.todo === 0)
