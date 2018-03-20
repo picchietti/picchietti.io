@@ -97,10 +97,13 @@ $button_blue: rgb(45, 139, 215);
   .impacts {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin: 0 -5px;
 
     .impact {
-      min-width: 175px;
+      width: 175px;
+      margin-left: 5px;
+      margin-right: 5px;
 
       .fa.fa-info-circle {
         cursor: help;
