@@ -5,4 +5,4 @@ set -o allexport
 source /usr/src/app/src/secret/config.env
 set +o allexport
 
-/usr/local/bin/node /usr/src/app/src/cron/daily/scripts/impact_analytics.js &>> /usr/src/app/src/cron/impact_analytics.log
+/usr/local/bin/node /usr/src/app/src/cron/daily/scripts/impact_analytics.js &>> /usr/src/app/src/cron/logs/impact_analytics.log

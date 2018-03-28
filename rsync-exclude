@@ -3,5 +3,6 @@
 db/data/
 mongo/data/
 node_modules/
+src/cron/logs/
 src/secret/letsencrypt/
 src/secret/uploads/
