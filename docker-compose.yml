@@ -2,14 +2,6 @@
 
 version: '3'
 services:
-  mysql:
-    image: mysql:latest
-    ports:
-      - "${HOST_MYSQL_PORT}:3306"
-    volumes:
-      - ./db/data:/var/lib/mysql
-    env_file: ./src/secret/config.env
-
   mongo:
     image: mongo:latest
     ports:
@@ -30,9 +22,7 @@ services:
       - ./package.json:/usr/src/app/package.json # otherwise prev volume overwrites
     env_file: ./src/secret/config.env
     depends_on:
-      - mysql
       - mongo
     links:
-      - mysql
       - mongo
     command: /usr/bin/supervisord
