@@ -18,7 +18,9 @@ require('./private/passport.js')(passport);
 var uploader = require('./private/multer.js')(multer);
 
 app.disable('x-powered-by');
-app.use(shrinkray());
+app.use(shrinkray({
+  threshold: 100
+}));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
