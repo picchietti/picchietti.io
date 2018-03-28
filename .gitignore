@@ -1,9 +1,8 @@
-build/
+dist/
 db/data/
 mongo/data/
 node_modules/
 secret/
-source/secret/
-source/public/pages/bookmarks/icons
+src/secret/
 .env
 stats.json

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# original command. renew will use same options.
+# /usr/src/app/src/cron/daily/scripts/certbot-auto certonly --no-self-upgrade --agree-tos --email jonpicchietti@gmail.com -d picchietti.io --webroot --webroot-path /usr/src/app/src/public -n
+
+/usr/src/app/src/cron/daily/scripts/certbot-auto renew --no-self-upgrade &>> /usr/src/app/src/cron/renew_https_cert.log

@@ -12,6 +12,6 @@ RUN npm install --only=production
 RUN apt-get update && apt-get install -y supervisor cron
 RUN mkdir -p /var/run/cron /var/log/supervisor
 
-COPY build/cron/daily/bin /etc/cron.daily/
+COPY src/cron/daily/bin /etc/cron.daily/
 RUN chmod 777 /etc/cron.daily/*
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf

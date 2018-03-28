@@ -4,9 +4,9 @@
   "description": "Personal website",
   "author": "Jon Picchietti <jon@picchietti.email>",
   "scripts": {
-    "start": "nodemon --delay 250ms server.js",
+    "start": "nodemon --delay 250ms src/server.js",
     "watch": "webpack --watch --config webpack.dev.js --mode development",
-    "build:dev": "webpack --config webpack.dev.js",
+    "build:dev": "webpack --config webpack.dev.js --mode development",
     "build": "webpack --config webpack.prod.js --mode production"
   },
   "dependencies": {

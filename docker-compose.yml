@@ -8,7 +8,7 @@ services:
       - "${HOST_MYSQL_PORT}:3306"
     volumes:
       - ./db/data:/var/lib/mysql
-    env_file: ./build/secret/config.env
+    env_file: ./src/secret/config.env
 
   mongo:
     image: mongo:latest
@@ -24,11 +24,11 @@ services:
       - "${HOST_HTTP_PORT}:80"
       - "${HOST_HTTPS_PORT}:443"
     volumes:
-      - ./build:/usr/src/app
+      - ./src:/usr/src/app/src
+      - ./dist:/usr/src/app/dist
       - /usr/src/app/node_modules # otherwise prev volume overwrites
       - ./package.json:/usr/src/app/package.json # otherwise prev volume overwrites
-      - ./build/secret/letsencrypt:/etc/letsencrypt
-    env_file: ./build/secret/config.env
+    env_file: ./src/secret/config.env
     depends_on:
       - mysql
       - mongo
