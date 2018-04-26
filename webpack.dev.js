@@ -5,7 +5,7 @@ const common = require('./webpack.config.js');
 module.exports = merge(common, {
   plugins: [
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development', // defaults to this if not set
+      NODE_ENV: 'development' // defaults to this if not set
     })
   ],
   module: {
