@@ -26,7 +26,7 @@ module.exports = {
       showErrors: true,
       template: './src/public/index.html',
       filename: '../index.html',
-      hash: true
+      inject: false
     })
     // new BundleAnalyzerPlugin()
   ],
