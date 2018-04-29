@@ -4,10 +4,10 @@
   "description": "Personal website",
   "author": "Jon Picchietti <jon@picchietti.email>",
   "scripts": {
-    "start": "nodemon --delay 250ms src/server.js",
-    "watch": "webpack --watch --config webpack.dev.js --mode development",
+    "build": "webpack --config webpack.prod.js --mode production",
     "build:dev": "webpack --config webpack.dev.js --mode development",
-    "build": "webpack --config webpack.prod.js --mode production"
+    "watch": "npm run build:dev -- --watch",
+    "start": "nodemon --delay 250ms src/server.js"
   },
   "dependencies": {
     "body-parser": "^1.16.1",
