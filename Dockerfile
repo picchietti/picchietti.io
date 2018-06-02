@@ -7,7 +7,7 @@ EXPOSE 80 443
 WORKDIR /usr/src/app
 
 COPY package.json .
-RUN npm install --only=production
+RUN npm install
 
 RUN apt-get update && apt-get install -y supervisor cron
 RUN mkdir -p /var/run/cron /var/log/supervisor

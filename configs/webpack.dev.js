@@ -2,18 +2,14 @@ const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 
 module.exports = merge(common, {
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.s?css$/,
         use: [
           { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          },
+          { loader: 'css-loader' },
           { loader: 'sass-loader' }
         ]
       },
@@ -25,8 +21,7 @@ module.exports = merge(common, {
           options: {
             presets: ['babel-preset-env', 'babel-preset-react'],
             plugins: ['transform-class-properties'],
-            compact: true,
-            minified: true
+            compact: false
           }
         }
       }

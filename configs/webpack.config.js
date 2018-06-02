@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   plugins: [
-    new CleanWebpackPlugin('./dist'),
+    new CleanWebpackPlugin('../dist'),
     new CopyWebpackPlugin([
       { from: './src/public/components/app/assets', to: '../' },
       { from: './src/public/pages/resource/assets', to: '../pages/resource/assets/' }
@@ -33,7 +33,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     // chunkFilename: '[hash].js',
-    path: path.resolve(__dirname, './dist/public/bundles'),
+    path: path.resolve(__dirname, '../dist/public/bundles'),
     publicPath: '/bundles/'
   },
   module: {

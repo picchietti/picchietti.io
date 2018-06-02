@@ -20,6 +20,7 @@ services:
       - ./dist:/usr/src/app/dist
       - /usr/src/app/node_modules # otherwise prev volume overwrites
       - ./package.json:/usr/src/app/package.json # otherwise prev volume overwrites
+      - ./configs:/usr/src/app/configs # otherwise prev volume overwrites
     env_file: ./src/secret/config.env
     depends_on:
       - mongo
