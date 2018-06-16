@@ -11,16 +11,38 @@ const multer = require('multer');
 const fs = require('fs');
 const spdy = require('spdy');
 const shrinkray = require('shrink-ray');
+const helmet = require('helmet');
 
 const root_dir = '/usr/src/app';
 
 require('./private/passport.js')(passport);
 var uploader = require('./private/multer.js')(multer);
 
-app.disable('x-powered-by');
+app.use(helmet.frameguard({ action: 'deny' }));
+app.use(helmet.hidePoweredBy());
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff());
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'www.google-analytics.com']
+  },
+  loose: true
+}));
+app.use(helmet.hsts({
+  // Must be at least 1 year to be approved
+  maxAge: 31536000,
+
+  // Must be enabled to be approved
+  includeSubDomains: true,
+  preload: true
+}))
+
+
+
 app.use(shrinkray({
   threshold: 100
 }));
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

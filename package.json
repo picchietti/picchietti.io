@@ -19,7 +19,7 @@
     "express-session": "^1.15.1",
     "font-awesome": "^4.7.0",
     "googleapis": "^16.1.0",
-    "hsts": "^2.0.0",
+    "helmet": "^3.12.1",
     "lodash": "^4.17.5",
     "moment": "^2.17.1",
     "mongodb": "^3.0.1",
