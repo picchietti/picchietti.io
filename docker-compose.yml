@@ -17,6 +17,7 @@ services:
       - "${HOST_HTTPS_PORT}:443"
     volumes:
       - ./src:/usr/src/app/src
+      - ./src/secret/letsencrypt:/etc/letsencrypt
       - ./dist:/usr/src/app/dist
       - /usr/src/app/node_modules # otherwise prev volume overwrites
       - ./package.json:/usr/src/app/package.json # otherwise prev volume overwrites
