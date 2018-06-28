@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { bindAll } from 'lodash';
 
 import GrowthGraph from '../../components/graphs/growth';
+import Skills from './components/skills';
+import SkillSet from './components/skills/skillset';
+import Skill from './components/skills/skill';
 import Timeline from './components/timeline';
 import qrcode from './images/qrcode.svg';
 import './contributions.json';
@@ -12,10 +14,6 @@ import './index.scss';
 export default class Resume extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      showSkills: false
-    }
 
     this.employmentHistory = [
       {from: '2018', description: <span><span className="bold">Software Engineer</span>, <a href="https://www.express-scripts.com/" target="_blank" rel="noopener noreferrer">Express Scripts</a></span>, bullets: [<span>Working on a complex, large scale system with a highly qualified team.</span>], isFeatured: true},
@@ -27,14 +25,6 @@ export default class Resume extends React.Component {
     ];
 
     this.years_of_experience = parseInt((new Date()).getFullYear()) - 2007;
-
-    bindAll(this, ['onSkillsToggle']);
-  }
-
-  onSkillsToggle() {
-    this.setState(prevState => {
-      return {showSkills: !prevState.showSkills};
-    });
   }
 
   render() {
@@ -75,47 +65,46 @@ export default class Resume extends React.Component {
 
             <div className="section">
               <div className="title">Experience</div>
-              <div className="skills">
-                <div className="subtitle"><i className="fa fa-star featured"></i> Featured Skills</div>
-                  <span className="skill">JavaScript</span>
-                  <span className="skill">NodeJS</span>
-                  <span className="skill">HTML</span>
-                  <span className="skill">CSS</span>
-                  <span className="skill">MySQL</span>
-                  <span className="skill">Sass</span>
-                  <span className="skill">Java &amp; Android SDK</span>
-                  <span className="skill">Ruby/Rails</span>
-                  <span className="skill">Git</span>
-                  <span className="skill">Docker</span>
-                  <span className="skill">Bootstrap</span>
-                {this.state.showSkills &&
-                  <div className="other-skills">
-                    <div className="subtitle">Other Skills</div>
-                    <span className="skill">CoffeeScript</span>
-                    <span className="skill">Backbone</span>
-                    <span className="skill">Handlebars</span>
-                    <span className="skill">Haml</span>
-                    <span className="skill">Gulp</span>
-                    <span className="skill">D3</span>
-                    <span className="skill">Bash</span>
-                    <span className="skill">Lets Encrypt</span>
-                    <span className="skill">MomentJS</span>
-                    <div className="subtitle">Deprecated Skills</div>
-                    <span className="skill">Vagrant</span>
-                    <span className="skill">PHP</span>
-                    <div className="subtitle">Main Operating System</div>
-                    <span className="skill">Ubuntu Linux</span>
-                    <div className="subtitle">Tools</div>
-                    <span className="skill">Atom</span>
-                    <span className="skill">Gitkraken</span>
-                    <span className="skill">Android Studio</span>
-                    <span className="skill">Slack</span>
-                  </div>
-                }
-              </div>
-              <div className="indent">
-                <button onClick={this.onSkillsToggle}>(4) {this.state.showSkills ? 'Less' : 'More'}</button>
-              </div>
+              <Skills>
+                <SkillSet title="Featured Skills" featured>
+                  <Skill>JavaScript</Skill>
+                  <Skill>NodeJS</Skill>
+                  <Skill>HTML</Skill>
+                  <Skill>CSS</Skill>
+                  <Skill>MySQL</Skill>
+                  <Skill>Sass</Skill>
+                  <Skill>React</Skill>
+                  <Skill>Ruby/Rails</Skill>
+                  <Skill>Git</Skill>
+                  <Skill>Docker</Skill>
+                  <Skill>Bootstrap</Skill>
+                </SkillSet>
+                <SkillSet title="Other Skills">
+                  <Skill>CoffeeScript</Skill>
+                  <Skill>Backbone</Skill>
+                  <Skill>Handlebars</Skill>
+                  <Skill>Haml</Skill>
+                  <Skill>Java &amp; Android SDK</Skill>
+                  <Skill>Gulp</Skill>
+                  <Skill>D3</Skill>
+                  <Skill>Bash</Skill>
+                  <Skill>Lets Encrypt</Skill>
+                  <Skill>MomentJS</Skill>
+                </SkillSet>
+                <SkillSet title="Deprecated Skills">
+                  <Skill>Vagrant</Skill>
+                  <Skill>PHP</Skill>
+                </SkillSet>
+                <SkillSet title="Main Operating System">
+                  <Skill>Ubuntu Linux</Skill>
+                </SkillSet>
+                <SkillSet title="Tools">
+                  <Skill>Atom</Skill>
+                  <Skill>Gitkraken</Skill>
+                  <Skill>Android Studio</Skill>
+                  <Skill>Slack</Skill>
+                </SkillSet>
+              </Skills>
             </div>
 
             <div className="section">
