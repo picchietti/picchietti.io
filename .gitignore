@@ -4,5 +4,6 @@ mongo/data/
 node_modules/
 secret/
 src/secret/
+src/cron/logs/*.log
 .env
 stats.json
