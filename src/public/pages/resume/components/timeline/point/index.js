@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Point extends React.Component {
   static propTypes = {
@@ -19,7 +20,8 @@ export default class Point extends React.Component {
 
     this.shortDateRange = this.getShortDateRange();
     this.longDateRange = props.from + ' - ' + props.to;
-    this.iconClass = 'fa fa-stack-1x foreground ' + ((props.isFeatured) ? 'featured fa-star' : 'fa-circle');
+    this.icon = (props.isFeatured) ? 'star' : 'circle';
+    this.iconClass = 'foreground' + ((props.isFeatured) ? ' featured' : '');
 
     this.bullets = props.bullets.map((bullet, i) => (
       <li key={i}>{bullet}</li>
@@ -36,13 +38,13 @@ export default class Point extends React.Component {
   render() {
     return (
       <div className="point">
-        <div className="when fa-stack fa-2x" title={this.longDateRange}>
-          <i className="fa fa-stack-1x fa-circle background"></i>
-          <i className={this.iconClass}></i>
-          <i className="fa year">{this.shortDateRange}</i>
+        <div className="when fa-layers fa-2x" title={this.longDateRange}>
+          <FontAwesomeIcon icon="circle" className="background" />
+          <FontAwesomeIcon icon={ this.icon } className={ this.iconClass } />
+          <span className="year">{this.shortDateRange}</span>
         </div>
         <div className="what">
-          <i className="fa fa-caret-left"></i>
+          <FontAwesomeIcon icon="caret-left" />
           {this.props.description}
           <ul>
             {this.bullets}

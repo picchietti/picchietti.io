@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './public/components/app';
+import setupFontAwesome from './public/scripts/font-awesome';
 
-import 'font-awesome/css/font-awesome.css';
 import './public/index.scss';
+
+setupFontAwesome();
 
 ReactDOM.render(
   <App />,

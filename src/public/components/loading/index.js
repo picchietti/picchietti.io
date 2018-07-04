@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './index.scss';
 
@@ -6,7 +7,7 @@ export default class Loading extends React.Component {
   render() {
     return (
       <div className="loading">
-        <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <FontAwesomeIcon icon="spinner" size="3x" pulse fixedWidth />
       </div>
     );
   }

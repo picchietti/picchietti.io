@@ -131,8 +131,8 @@ a,
 
 .hidden { display: none; }
 
-a .fa,
-.link .fa {
+a .svg-inline--fa,
+.link .svg-inline--fa {
   margin-right: 10px;
 }
 
@@ -141,7 +141,7 @@ a .fa,
   text-align: center;
 }
 
-.fa { color: #000; }
+.svg-inline--fa { color: #000; }
 
 .on-print,
 .on-print-block,

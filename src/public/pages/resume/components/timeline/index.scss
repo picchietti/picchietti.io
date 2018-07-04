@@ -14,27 +14,26 @@
     .when {
       position: absolute;
       top: 50%;
-      margin-top: -1em;
-      left: -35px;
+      margin-top: -0.5em;
+      left: -13px;
       cursor: default;
-      font-size: 2.8em;
 
       .fa-circle.background {
         color: #fff;
-        font-size: 23pt;
+        font-size: 1.2em;
       }
 
       .fa-circle.foreground,
       .fa-star.foreground {
         color: #ddd;
-        font-size: 16pt;
+        font-size: 0.8em;
       }
 
       .year {
         color: #000;
         font-family: monospace;
         font-size: 12px;
-        margin-left: -25px;
+        margin-left: -80px;
         position: relative;
         top: -7px;
       }

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './index.scss';
 
@@ -39,7 +40,7 @@ export default class Resource extends React.Component {
         <div className="resource">
           <Link to="/">
             <div className="back alignc">
-              <i className="fa fa-arrow-left"></i>
+              <FontAwesomeIcon icon="arrow-left" />
               Back
             </div>
           </Link>

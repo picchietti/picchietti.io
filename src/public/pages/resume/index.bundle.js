@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import GrowthGraph from '../../components/graphs/growth';
 import Skills from './components/skills';
@@ -39,11 +40,11 @@ export default class Resume extends React.Component {
             <div className="contact-badge">
               <img src={qrcode} className="qr" alt="qrcode to picchietti.io" />
               <div className="contact-info">
-                <i className="fa fa-phone"></i> <a href="tel:+13093709036">(309) 370-9036</a>
+                <FontAwesomeIcon icon="phone" flip="horizontal" /> <a href="tel:+13093709036">(309) 370-9036</a>
                 <br />
-                <i className="fa fa-envelope"></i> <a href="mailto:jon@picchietti.email">jon@picchietti.email</a>
+                <FontAwesomeIcon icon="envelope" /> <a href="mailto:jon@picchietti.email">jon@picchietti.email</a>
                 <br />
-                <i className="fa fa-map-marker"></i> St. Charles, MO
+                <FontAwesomeIcon icon="map-marker-alt" /> St. Charles, MO
               </div>
             </div>
 
@@ -131,7 +132,7 @@ export default class Resume extends React.Component {
 
               <div className="indent spacing-top">
                 <a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer">
-                  <button><i className="fa fa-github"></i> More on Github</button>
+                  <button><FontAwesomeIcon icon={ ['fab', 'github'] } /> More on Github</button>
                 </a>
               </div>
             </div>
@@ -145,11 +146,11 @@ export default class Resume extends React.Component {
                   <GrowthGraph dataUrl="/other/contributions.json" xLabel="Jan 2015 - Dec 2016" accumulate={true} />
                 </div>
                 <div className="impact growth-overview">
-                  <div className="growth-overview-title">Websites User Audience <i className="fa fa-info-circle" title="Data from a subset of the websites I've worked on."></i></div>
+                  <div className="growth-overview-title">Websites User Audience <FontAwesomeIcon icon="info-circle" title="Data from a subset of the websites I've worked on." /></div>
                   <GrowthGraph dataUrl="data/month/users" xLabel="Last 30 days" accumulate={false} />
                 </div>
                 <div className="impact growth-overview">
-                  <div className="growth-overview-title">Websites Webpage Views <i className="fa fa-info-circle" title="Data from a subset of the websites I've worked on."></i></div>
+                  <div className="growth-overview-title">Websites Webpage Views <FontAwesomeIcon icon="info-circle" title="Data from a subset of the websites I've worked on." /></div>
                   <GrowthGraph dataUrl="data/month/pageviews" xLabel="Last 30 days" accumulate={false} />
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { bindAll, last } from 'lodash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import XHR2 from '../../scripts/xhr2.js';
 
@@ -144,13 +145,13 @@ export default class Uploader extends React.Component {
             <div className="upload-inputs" ref={ (ele) => { this.uploadInputsRef = ele; } }>{this.state.uploadInputs}</div>
             {this.state.uploading &&
               <div>
-                <i className="fa fa-4x fa-fw fa-spin fa-circle-o-notch"></i>
+                <FontAwesomeIcon icon="spinner" size="4x" pulse fixedWidth />
                 <div className="bold">Uploading...</div>
               </div>
             }
             {!this.state.uploading &&
               <div>
-                <i className="fa fa-4x fa-cloud-upload"></i>
+                <FontAwesomeIcon icon="cloud-upload-alt" size="4x" />
                 <div className="bold">Drag n&apos; drop files to upload</div>
                 <div>(or click)</div>
               </div>
