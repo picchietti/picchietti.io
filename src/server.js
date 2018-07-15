@@ -28,14 +28,16 @@ app.use(helmet.contentSecurityPolicy({
   },
   loose: true
 }));
-app.use(helmet.hsts({
-  // Must be at least 1 year to be approved
-  maxAge: 31536000,
+if(process.env.NODE_ENV !== 'development'){
+  app.use(helmet.hsts({
+    // Must be at least 1 year to be approved
+    maxAge: 31536000,
 
-  // Must be enabled to be approved
-  includeSubDomains: true,
-  preload: true
-}))
+    // Must be enabled to be approved
+    includeSubDomains: true,
+    preload: true
+  }));
+}
 
 
 
@@ -83,9 +85,9 @@ router.use(function (req, res, next) {
 
 app.use('/', router);
 
-var privateKey  = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/privkey.pem', 'utf8');
-var certificate = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/fullchain.pem', 'utf8');
-var credentials = {key: privateKey, cert: certificate};
+const privateKey  = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/fullchain.pem', 'utf8');
+const credentials = {key: privateKey, cert: certificate};
 spdy.createServer(credentials, app).listen(443); // https + http2
 
 var http = express();
