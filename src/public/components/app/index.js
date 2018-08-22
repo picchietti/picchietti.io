@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from '../header';
 import Page from '../page';
+import OfflineIndicator from '../offline_indicator';
 
 import loadNotFound from '../../pages/404/index.bundle.js';
 import loadResume from '../../pages/resume/index.bundle.js';
@@ -32,6 +33,7 @@ export default class App extends React.Component {
               <Route path="/pages/resource" component={ResourcePage} />
               <Route component={NotFoundPage} />
             </Switch>
+            <OfflineIndicator />
           </div>
         </div>
       </BrowserRouter>
