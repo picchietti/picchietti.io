@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import GrowthGraph from '../../components/graphs/growth';
+import Projects from './components/projects';
+import Project from './components/projects/project';
 import Skills from './components/skills';
 import SkillSet from './components/skills/skillset';
 import Skill from './components/skills/skill';
@@ -116,26 +118,23 @@ export default class Resume extends React.Component {
 
             <div className="section">
               <div className="title">Software &amp; Projects</div>
-              <ul>
-                <li>Hamlbars - Open-source <a href="https://atom.io/packages/language-hamlbars" target="_blank" rel="noopener noreferrer">Atom</a> and <a href="https://packagecontrol.io/packages/Hamlbars" target="_blank" rel="noopener noreferrer">Sublime Text 3</a> editor plugins.</li>
-                <li>Websites:
-                  <ul>
-                    <li><a href="https://dnadiscovery.net/" target="_blank" rel="noopener noreferrer">DNA Discovery</a></li>
-                  </ul>
-                </li>
-                <li>Extra websites I&apos;ve worked on but no longer maintain:
-                  <ul>
-                    <li><a href="http://www.stlaurs.org/" target="_blank" rel="noopener noreferrer">Stlaurs</a></li>
-                    <li><a href="http://www2.cs.siu.edu/~HPCLab/" target="_blank" rel="noopener noreferrer">SIU HPC Lab</a></li>
-                  </ul>
-                </li>
-              </ul>
-
-              <div className="indent spacing-top">
-                <a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer">
-                  <button><FontAwesomeIcon icon={ ['fab', 'github'] } /> More on Github</button>
-                </a>
-              </div>
+              <Projects>
+                <Project
+                  title="DIY Wifi Router"
+                  icon="wifi"
+                  link="https://gist.github.com/picchietti/337029cf1946ff9e43b0f57aa75f6556"
+                  description="Making a wireless router with an ASUS PCE-AC88 and Linux" />
+                <Project
+                  title="Hamlbars"
+                  icon="edit"
+                  link="https://atom.io/packages/language-hamlbars"
+                  description="Open-source Atom and Sublime Text 3 editor plugins" />
+                <Project
+                  title="DNA Discovery"
+                  icon="dna"
+                  link="https://dnadiscovery.net"
+                  description="Website for the family of a friend" />
+              </Projects>
             </div>
 
             <div className="section">

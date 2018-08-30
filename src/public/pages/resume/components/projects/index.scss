@@ -1,0 +1,30 @@
+.projects {
+  margin-bottom: 10px;
+
+  .project {
+    padding: 12px 18px;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-size: 13px;
+    display: block;
+    color: #000;
+
+    .project-contents {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .project:hover {
+    transition: background-color 0.3s;
+    background-color: #eee;
+  }
+
+  a:hover {
+    text-decoration: none !important;
+  }
+}
+
+.show-more {
+  margin: 0 10px 10px 0;
+}
