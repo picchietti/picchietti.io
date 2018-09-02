@@ -60,9 +60,9 @@ export default class PasswordStrength extends React.Component {
 
   render() {
     return (
-      <div className="wrap-password">
-        <input {...this.props} type="password" className="password-input" placeholder="Password" onChange={this.passwordChanged} />
-        <div className="strength" style={this.state.indicator_style}></div>
+      <div styleName="wrap-password">
+        <input {...this.props} type="password" placeholder="Password" onChange={this.passwordChanged} />
+        <div styleName="strength" style={this.state.indicator_style}></div>
       </div>
     );
   }

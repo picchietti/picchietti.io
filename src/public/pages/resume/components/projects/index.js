@@ -41,13 +41,13 @@ export default class Projects extends React.Component {
   render() {
     return (
       <span>
-        <div className="projects indent">
+        <div className="indent" styleName="projects">
           { this.state.projects }
         </div>
 
         <div className="indent">
           {this.shownDifference > 0 &&
-            <button className="show-more" onClick={this.handleToggle}>
+            <button styleName="show-more" onClick={this.handleToggle}>
               ({this.shownDifference}) {this.state.showingMore ? 'Less' : 'More'}
             </button>
 

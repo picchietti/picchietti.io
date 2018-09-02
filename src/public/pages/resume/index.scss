@@ -61,14 +61,14 @@ $button_blue: rgb(45, 139, 215);
       margin-bottom: 12px;
     }
 
-    .subtitle {
+    :global(.subtitle) {
       text-transform: uppercase;
       font-size: 12px;
       margin: 6px 0;
     }
   }
 
-  .featured {
+  :global(.featured) {
     color: #ffd600 !important;
   }
 
@@ -76,7 +76,7 @@ $button_blue: rgb(45, 139, 215);
     margin-top: 15px;
   }
 
-  .indent {
+  :global(.indent) {
     padding-left: 25px;
   }
 
@@ -91,7 +91,7 @@ $button_blue: rgb(45, 139, 215);
       margin-left: 5px;
       margin-right: 5px;
 
-      .svg-inline--fa.fa-info-circle {
+      :global(.svg-inline--fa.fa-info-circle) {
         cursor: help;
       }
     }

@@ -39,13 +39,13 @@ export default class OfflineIndicator extends React.Component {
   render() {
     return (
       !this.state.hidden &&
-        <div className="offline-indicator">
-          <div className="wrap-text">
+        <div styleName="offline-indicator">
+          <div styleName="wrap-text">
             No internet connection.
           </div>
-          <div className="wrap-close">
+          <div styleName="wrap-close">
             <FontAwesomeIcon
-              className="close"
+              styleName="close"
               icon="times"
               onClick={ this.handleClose } />
           </div>

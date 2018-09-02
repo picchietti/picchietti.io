@@ -9,7 +9,13 @@ module.exports = merge(common, {
         test: /\.s?css$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]_[hash:base64:5]'
+            }
+          },
           { loader: 'sass-loader' }
         ]
       },
@@ -20,7 +26,17 @@ module.exports = merge(common, {
           loader: 'babel-loader',
           options: {
             presets: ['babel-preset-env', 'babel-preset-react'],
-            plugins: ['transform-class-properties'],
+            plugins: [
+              'transform-class-properties',
+              ['react-css-modules', {
+                'generateScopedName': '[local]_[hash:base64:5]',
+                'filetypes': {
+                  '.scss': {
+                    'syntax': 'postcss-scss'
+                  }
+                }
+              }]
+            ],
             compact: false
           }
         }

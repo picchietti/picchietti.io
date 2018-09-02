@@ -25,7 +25,7 @@ export default class App extends React.Component {
       <BrowserRouter>
         <div className="app">
           <Header />
-          <div className="page">
+          <div styleName="page">
             <Switch>
               <Route exact path="/" component={ResumePage} />
               <Route exact path="/pages/login" component={LoginPage} />

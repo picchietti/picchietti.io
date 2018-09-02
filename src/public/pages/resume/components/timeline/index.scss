@@ -18,13 +18,13 @@
       left: -13px;
       cursor: default;
 
-      .fa-circle.background {
+      :global(.fa-circle).background {
         color: #fff;
         font-size: 1.2em;
       }
 
-      .fa-circle.foreground,
-      .fa-star.foreground {
+      :global(.fa-circle).foreground,
+      :global(.fa-star).foreground {
         color: #ddd;
         font-size: 0.8em;
       }
@@ -44,7 +44,7 @@
       background-color: #eee;
       padding: 10px;
 
-      .fa-caret-left {
+      :global(.fa-caret-left) {
         position: absolute;
         top: 50%;
         right: 100%;

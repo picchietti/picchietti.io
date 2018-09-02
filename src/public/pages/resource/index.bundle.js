@@ -37,14 +37,14 @@ export default class Resource extends React.Component {
   render() {
     return (
       <main>
-        <div className="resource">
+        <div styleName="resource">
           <Link to="/">
-            <div className="back alignc">
+            <div styleName="back" className="alignc">
               <FontAwesomeIcon icon="arrow-left" />
               Back
             </div>
           </Link>
-          <div className="item">
+          <div styleName="item">
             <img alt="resource" src={this.state.resource} />
           </div>
         </div>

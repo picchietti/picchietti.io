@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import '../index.scss';
+
 export default class Point extends React.Component {
   static propTypes = {
     from: PropTypes.string.isRequired, // string with YYYY at end
@@ -21,7 +23,7 @@ export default class Point extends React.Component {
     this.shortDateRange = this.getShortDateRange();
     this.longDateRange = props.from + ' - ' + props.to;
     this.icon = (props.isFeatured) ? 'star' : 'circle';
-    this.iconClass = 'foreground' + ((props.isFeatured) ? ' featured' : '');
+    this.iconClass = (props.isFeatured) ? 'featured' : '';
 
     this.bullets = props.bullets.map((bullet, i) => (
       <li key={i}>{bullet}</li>
@@ -37,13 +39,13 @@ export default class Point extends React.Component {
 
   render() {
     return (
-      <div className="point">
-        <div className="when fa-layers fa-2x" title={this.longDateRange}>
-          <FontAwesomeIcon icon="circle" className="background" />
-          <FontAwesomeIcon icon={ this.icon } className={ this.iconClass } />
-          <span className="year">{this.shortDateRange}</span>
+      <div styleName="point">
+        <div styleName="when" className="fa-layers fa-2x" title={this.longDateRange}>
+          <FontAwesomeIcon icon="circle" styleName="background" />
+          <FontAwesomeIcon icon={ this.icon } styleName="foreground" className={this.iconClass} />
+          <span styleName="year">{this.shortDateRange}</span>
         </div>
-        <div className="what">
+        <div styleName="what">
           <FontAwesomeIcon icon="caret-left" />
           {this.props.description}
           <ul>

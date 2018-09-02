@@ -34,15 +34,15 @@ export default class Resume extends React.Component {
   render() {
     return (
       <main>
-        <div className="resume">
+        <div styleName="resume">
           <div>
-            <div className="name">
+            <div styleName="name">
               <div className="full">Jon Picchietti</div>
-              <div className="pronunciation">(pronounced <span className="italic">Pa-ketty</span>)</div>
+              <div styleName="pronunciation">(pronounced <span className="italic">Pa-ketty</span>)</div>
             </div>
-            <div className="contact-badge">
-              <img src={qrcode} className="qr" alt="qrcode to picchietti.io" />
-              <div className="contact-info">
+            <div styleName="contact-badge">
+              <img src={qrcode} styleName="qr" alt="qrcode to picchietti.io" />
+              <div styleName="contact-info">
                 <FontAwesomeIcon icon="phone" flip="horizontal" /> <a href="tel:+13093709036">(309) 370-9036</a>
                 <br />
                 <FontAwesomeIcon icon="envelope" /> <a href="mailto:jon@picchietti.email">jon@picchietti.email</a>
@@ -54,9 +54,9 @@ export default class Resume extends React.Component {
             <div className="clearb"></div>
           </div>
           <div>
-            <div className="section">
-              <div className="title">Education</div>
-              <div className="education">
+            <div styleName="section">
+              <div styleName="title">Education</div>
+              <div styleName="education">
                 <div>2015</div>
                 <div className="alignc">
                   <Link to="/pages/resource/diploma.png">B.S. Computer Science</Link>
@@ -67,8 +67,8 @@ export default class Resume extends React.Component {
               </div>
             </div>
 
-            <div className="section">
-              <div className="title">Experience</div>
+            <div styleName="section">
+              <div styleName="title">Experience</div>
               <Skills>
                 <SkillSet title="Featured Skills" featured>
                   <Skill>JavaScript</Skill>
@@ -111,13 +111,13 @@ export default class Resume extends React.Component {
               </Skills>
             </div>
 
-            <div className="section">
-              <div className="title">Employment</div>
+            <div styleName="section">
+              <div styleName="title">Employment</div>
               <Timeline points={this.employmentHistory} />
             </div>
 
-            <div className="section">
-              <div className="title">Software &amp; Projects</div>
+            <div styleName="section">
+              <div styleName="title">Software &amp; Projects</div>
               <Projects>
                 <Project
                   title="DIY Wifi Router"
@@ -137,27 +137,27 @@ export default class Resume extends React.Component {
               </Projects>
             </div>
 
-            <div className="section">
-              <div className="title">Impact</div>
+            <div styleName="section">
+              <div styleName="title">Impact</div>
               <div className="indent">Over <span className="bold">{this.years_of_experience} years</span> of programming has led me to edit millions of lines of code, positively impacting countless users.</div>
-              <div className="impacts">
-                <div className="impact growth-overview">
+              <div styleName="impacts">
+                <div styleName="impact" className="growth-overview">
                   <div className="growth-overview-title">Github Contributions</div>
                   <GrowthGraph dataUrl="/other/contributions.json" xLabel="Jan 2015 - Dec 2016" accumulate={true} />
                 </div>
-                <div className="impact growth-overview">
+                <div styleName="impact" className="growth-overview">
                   <div className="growth-overview-title">Websites User Audience <FontAwesomeIcon icon="info-circle" title="Data from a subset of the websites I've worked on." /></div>
                   <GrowthGraph dataUrl="data/month/users" xLabel="Last 30 days" accumulate={false} />
                 </div>
-                <div className="impact growth-overview">
+                <div styleName="impact" className="growth-overview">
                   <div className="growth-overview-title">Websites Webpage Views <FontAwesomeIcon icon="info-circle" title="Data from a subset of the websites I've worked on." /></div>
                   <GrowthGraph dataUrl="data/month/pageviews" xLabel="Last 30 days" accumulate={false} />
                 </div>
               </div>
             </div>
 
-            <div className="section">
-              <div className="title">Awards &amp; Certification</div>
+            <div styleName="section">
+              <div styleName="title">Awards &amp; Certification</div>
               <ul>
                 <li>Academic Dean&apos;s List, <a href="/pages/resource/assets/awards/deans-list/2014.pdf">2014</a> - <a href="/pages/resource/assets/awards/deans-list/2015.pdf">2015</a></li>
                 <li>Google Analytics Certification &ndash; <Link to="/pages/resource/certifications/analytics/ecommerce.png">Ecommerce Analytics</Link>, <Link to="/pages/resource/certifications/analytics/platform.png">Platform Principles</Link>, <Link to="/pages/resource/certifications/analytics/fundamentals.png">Analytics Fundamentals</Link></li>

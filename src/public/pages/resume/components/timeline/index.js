@@ -47,8 +47,8 @@ export default class Timeline extends React.Component {
   render() {
     return (
       <div>
-        <div className="timeline">
-          <div className="points">
+        <div styleName="timeline">
+          <div>
             {this.state.points}
           </div>
         </div>

@@ -1,39 +1,41 @@
-.growth-overview {
-  margin-top: 20px;
-  display: inline-block;
-  overflow: auto;
-  position: relative;
-  border-radius: 3px;
+:global {
+  .growth-overview {
+    margin-top: 20px;
+    display: inline-block;
+    overflow: auto;
+    position: relative;
+    border-radius: 3px;
 
-  .growth-overview-title {
-    font-size: 1.1em;
-    text-align: center;
-  }
+    .growth-overview-title {
+      font-size: 1.1em;
+      text-align: center;
+    }
 
-  .growth-overview-total {
-    color: #000;
-    font-size: 2.5em;
-    position: absolute;
-    top: 20%;
-    left: 6%;
-    text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.5);
-  }
+    .growth-overview-total {
+      color: #000;
+      font-size: 2.5em;
+      position: absolute;
+      top: 20%;
+      left: 6%;
+      text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.5);
+    }
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
 
-  .line {
-    fill: none;
-    stroke: #64b5f6;
-    stroke-width: 2.5px;
-  }
+    .line {
+      fill: none;
+      stroke: #64b5f6;
+      stroke-width: 2.5px;
+    }
 
-  .area {
-    fill: #e1f5fe;
-    stroke-width: 0;
+    .area {
+      fill: #e1f5fe;
+      stroke-width: 0;
+    }
   }
 }

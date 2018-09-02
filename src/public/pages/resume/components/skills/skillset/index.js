@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import '../index.scss';
+
 export default class SkillSet extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,

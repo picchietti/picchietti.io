@@ -137,12 +137,12 @@ export default class Uploader extends React.Component {
   render() {
     return (
       <main>
-        <div className="alignc space">
-          <input type="text" className="url-upload" value={this.state.url} placeholder="Upload from URL..." onChange={this.handleUrlChange} onKeyUp={this.handleUrlKeyUp} />
+        <div styleName="space" className="alignc">
+          <input type="text" styleName="url-upload" value={this.state.url} placeholder="Upload from URL..." onChange={this.handleUrlChange} onKeyUp={this.handleUrlKeyUp} />
         </div>
         <div>
-          <div className="dropbox no-select" onClick={this.clickedDropBox} onDragEnter={this.dragEnter} onDragOver={this.dragOver} onDragLeave={this.dragLeave} onDrop={this.drop}>
-            <div className="upload-inputs" ref={ (ele) => { this.uploadInputsRef = ele; } }>{this.state.uploadInputs}</div>
+          <div styleName="dropbox" className="no-select" onClick={this.clickedDropBox} onDragEnter={this.dragEnter} onDragOver={this.dragOver} onDragLeave={this.dragLeave} onDrop={this.drop}>
+            <div styleName="upload-inputs" ref={ (ele) => { this.uploadInputsRef = ele; } }>{this.state.uploadInputs}</div>
             {this.state.uploading &&
               <div>
                 <FontAwesomeIcon icon="spinner" size="4x" pulse fixedWidth />

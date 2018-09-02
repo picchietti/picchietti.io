@@ -40,7 +40,7 @@ export default class Skills extends React.Component {
   render() {
     return (
       <span>
-        <div className="skills">
+        <div styleName="skills">
           { this.state.skillsets }
         </div>
 

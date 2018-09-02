@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import '../index.scss';
+
 export default class Project extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -19,8 +21,8 @@ export default class Project extends React.Component {
   render() {
     return (
       <a href={ this.props.link }>
-        <div className="project">
-          <div className="project-contents">
+        <div styleName="project">
+          <div styleName="project-contents">
             <FontAwesomeIcon icon={ this.props.icon } size="2x" fixedWidth />
             <div>
               <div className="bold">{ this.props.title }</div>

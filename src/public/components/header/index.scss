@@ -1,4 +1,4 @@
-.app header {
+:global(.app) header {
   color: #000;
   height: 100%;
   float: left;
@@ -9,7 +9,7 @@
   position: relative;
   text-align: center;
 
-  #canvas {
+  :global(#canvas) {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -19,8 +19,8 @@
     z-index: -1;
     overflow: hidden;
 
-    .up,
-    .down {
+    :global(.up),
+    :global(.down) {
       border-style: solid;
       position: absolute;
       width: 0;
@@ -40,7 +40,7 @@
 
 // large devices
 @media (min-width: 961px) {
-  .app header {
+  :global(.app) header {
     padding: 4em 0 3em 0;
     width: 30%;
     max-width: 305px;
@@ -54,7 +54,7 @@
 
 // medium devices
 @media (max-width: 960px) {
-  .app header {
+  :global(.app) header {
     padding: 1em 2em;
     width: 100%;
     height: auto;
@@ -87,7 +87,7 @@
           div {
             display: inline-block;
 
-            .svg-inline--fa {
+            :global(.svg-inline--fa) {
               font-size: 3em;
             }
           }
@@ -103,7 +103,7 @@
 
 // small devices
 @media (max-width: 480px) {
-  .app header {
+  :global(.app) header {
     padding: 1em 1.5em;
     height: auto;
 
@@ -121,7 +121,7 @@
           text-align: center;
 
           div {
-            .svg-inline--fa {
+            :global(.svg-inline--fa) {
               font-size: 2em;
               margin-right: 0;
             }

@@ -6,7 +6,7 @@ import './index.scss';
 export default class Loading extends React.Component {
   render() {
     return (
-      <div className="loading">
+      <div styleName="loading">
         <FontAwesomeIcon icon="spinner" size="3x" pulse fixedWidth />
       </div>
     );

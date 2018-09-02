@@ -89,15 +89,15 @@ export default class Header extends React.Component {
     return (
       <header className="no-print">
         <div id="canvas"></div>
-        <div className="profile">
-          <img src={profile} alt="Me" className="picture" />
+        <div styleName="profile">
+          <img src={profile} alt="Me" styleName="picture" />
         </div>
         <div className="wrap-centered">
-          <div className="menu alignl">
-            <div className="links">
-              <div className="links-centered">
-                <div><a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={ ['fab', 'github'] } fixedWidth /><span className="text"> Github</span></a></div>
-                <div><a href="https://www.linkedin.com/in/picchietti/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={ ['fab', 'linkedin'] } fixedWidth /><span className="text"> LinkedIn</span></a></div>
+          <div styleName="menu" className="alignl">
+            <div styleName="links">
+              <div styleName="links-centered">
+                <div><a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={ ['fab', 'github'] } fixedWidth /><span styleName="text"> Github</span></a></div>
+                <div><a href="https://www.linkedin.com/in/picchietti/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={ ['fab', 'linkedin'] } fixedWidth /><span styleName="text"> LinkedIn</span></a></div>
               </div>
             </div>
           </div>
