@@ -3,7 +3,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acron
 /* stylelint-enable */
 
 // variables
-$button_blue: rgb(45, 139, 215);
+$button_blue: rgb(36, 121, 193);
 
 // Include padding in width
 *,
@@ -41,29 +41,34 @@ input[type="password"] {
   border: 1px solid #eee;
   border-bottom: solid 2px #c9c9c9;
   transition: border 0.3s;
-}
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border-bottom: solid 2px #969696;
+  &:focus {
+    border-bottom: solid 2px #969696;
+  }
 }
 
 input[type="button"],
 button {
   border: 2px solid $button_blue;
-  border-radius: 3px;
-  background-color: transparent;
+  border-radius: 4px;
+  background-color: #fff;
   color: $button_blue;
   font-size: 14px;
   padding: 5px 10px;
   cursor: pointer;
-}
 
-input[type="button"]:hover,
-button:hover {
-  background-color: $button_blue;
-  color: #fff;
+  &:hover,
+  &:focus {
+    background-color: $button_blue;
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #777;
+    border-color: #777;
+    color: #fff;
+  }
 }
 
 input,

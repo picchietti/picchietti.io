@@ -52,8 +52,15 @@ export default class Projects extends React.Component {
             </button>
 
           }
-          <a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer">
-            <button><FontAwesomeIcon icon={ ['fab', 'github'] } /> More on Github</button>
+          <a
+            href="https://github.com/picchietti"
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex="-1"
+          >
+            <button>
+              <FontAwesomeIcon icon={ ['fab', 'github'] } /> More on Github
+            </button>
           </a>
 
           <div>
