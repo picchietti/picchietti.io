@@ -11,11 +11,11 @@ import loadLogin from '../../pages/login/index.bundle.js';
 import loadUploader from '../../pages/uploader/index.bundle.js';
 import loadResource from '../../pages/resource/index.bundle.js';
 
-const NotFoundPage = (props) => ( <Page {...props} load={loadNotFound} /> )
-const ResumePage = (props) => ( <Page {...props} load={loadResume} /> )
-const LoginPage = (props) => ( <Page {...props} load={loadLogin} /> )
-const UploaderPage = (props) => ( <Page {...props} load={loadUploader} /> )
-const ResourcePage = (props) => ( <Page {...props} load={loadResource} /> )
+const NotFoundPage = (props) => (<Page {...props} load={loadNotFound} />);
+const ResumePage = (props) => (<Page {...props} load={loadResume} />);
+const LoginPage = (props) => (<Page {...props} load={loadLogin} />);
+const UploaderPage = (props) => (<Page {...props} load={loadUploader} />);
+const ResourcePage = (props) => (<Page {...props} load={loadResource} />);
 
 import './index.scss';
 

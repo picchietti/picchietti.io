@@ -13,10 +13,10 @@ const spdy = require('spdy');
 const shrinkray = require('shrink-ray');
 const helmet = require('helmet');
 
-const root_dir = '/usr/src/app';
+const rootDir = '/usr/src/app';
 
 require('./private/passport.js')(passport);
-var uploader = require('./private/multer.js')(multer);
+const uploader = require('./private/multer.js')(multer);
 
 app.use(helmet.frameguard({ action: 'deny' }));
 app.use(helmet.hidePoweredBy());
@@ -24,11 +24,16 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 app.use(helmet.contentSecurityPolicy({
   directives: {
-    defaultSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'www.google-analytics.com']
+    defaultSrc: [
+      "'self'",
+      "'unsafe-inline'",
+      "'unsafe-eval'",
+      'www.google-analytics.com'
+    ]
   },
   loose: true
 }));
-if(process.env.NODE_ENV !== 'development'){
+if(process.env.NODE_ENV !== 'development') {
   app.use(helmet.hsts({
     // Must be at least 1 year to be approved
     maxAge: 31536000,
@@ -38,8 +43,6 @@ if(process.env.NODE_ENV !== 'development'){
     preload: true
   }));
 }
-
-
 
 app.use(shrinkray({
   threshold: 100
@@ -60,7 +63,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-if(process.env.NODE_ENV === 'development'){
+if(process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
   const devWebpackConfig = require('../configs/webpack.dev.js');
   const compiler = webpack(devWebpackConfig);
@@ -71,7 +74,7 @@ if(process.env.NODE_ENV === 'development'){
 }
 
 // // Routes
-const router = express.Router();
+const router = new express.Router();
 
 require('./routes.js')(router, passport, uploader);
 
@@ -79,19 +82,19 @@ require('./routes.js')(router, passport, uploader);
 router.use(express.static('./dist/public/'));
 
 // send user the homepage with a react router that decides what page component to load
-router.use(function (req, res, next) {
-  res.sendFile(root_dir + '/dist/public/index.html');
+router.use(function(req, res, next) {
+  res.sendFile(`${rootDir}/dist/public/index.html`);
 });
 
 app.use('/', router);
 
-const privateKey  = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/privkey.pem', 'utf8');
+const privateKey = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/fullchain.pem', 'utf8');
-const credentials = {key: privateKey, cert: certificate};
+const credentials = { key: privateKey, cert: certificate };
 spdy.createServer(credentials, app).listen(443); // https + http2
 
-var http = express();
-http.get('*', function(req, res){
-  res.redirect('https://' + req.headers.host + req.url);
+const http = express();
+http.get('*', function(req, res) {
+  res.redirect(`https://${req.headers.host}${req.url}`);
 });
 http.listen(80);

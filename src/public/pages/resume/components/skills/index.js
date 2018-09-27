@@ -16,23 +16,23 @@ export default class Skills extends React.Component {
     this.maxShown = 1;
     this.shownDifference = this.skillsets.length - this.maxShown;
 
-    var initiallyShown = this.skillsets.slice(0, this.maxShown);
+    const initiallyShown = this.skillsets.slice(0, this.maxShown);
 
     this.state = {
       showingMore: false,
       skillsets: initiallyShown
-    }
+    };
 
     bindAll(this, ['handleToggle']);
   }
 
   handleToggle() {
-    this.setState(prevState => {
-      var skillsets_shown = this.skillsets.slice(0, (prevState.showingMore) ? this.maxShown : undefined);
+    this.setState((prevState) => {
+      const skillsetsShown = this.skillsets.slice(0, (prevState.showingMore) ? this.maxShown : undefined);
 
       return {
         showingMore: !prevState.showingMore,
-        skillsets: skillsets_shown
+        skillsets: skillsetsShown
       };
     });
   }

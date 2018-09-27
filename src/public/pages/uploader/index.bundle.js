@@ -16,7 +16,13 @@ export default class Uploader extends React.Component {
       uploadInputs: []
     };
 
-    bindAll(this, ['clickedDropBox', 'filesChosen', 'handleUrlChange', 'handleUrlKeyUp', 'drop']);
+    bindAll(this, [
+      'clickedDropBox',
+      'filesChosen',
+      'handleUrlChange',
+      'handleUrlKeyUp',
+      'drop'
+    ]);
   }
 
   clickedDropBox(event) {
@@ -25,36 +31,36 @@ export default class Uploader extends React.Component {
 
   addInput() {
     // only create a new input if a file was chosen for the last
-    var last_input = last(this.uploadInputsRef.children);
-    if(last_input && last_input.value == ''){
+    const lastInput = last(this.uploadInputsRef.children);
+    if(lastInput && lastInput.value === '') {
       this.openFileChooser();
       return;
     }
 
-    var input = <input type="file" multiple="multiple" key={this.state.uploadInputs.length} onChange={this.filesChosen} />;
+    const input = <input type="file" multiple="multiple" key={this.state.uploadInputs.length} onChange={this.filesChosen} />;
     this.setState((prevState) => {
       prevState.uploadInputs.push(input);
 
       return {
         uploadInputs: prevState.uploadInputs
-      }
-    }, this.openFileChooser)
+      };
+    }, this.openFileChooser);
   }
 
   openFileChooser() {
-    var lastInput = last(this.uploadInputsRef.children);
+    const lastInput = last(this.uploadInputsRef.children);
     lastInput && lastInput.click();
   }
 
   filesChosen(event) {
-    var input = event.target;
-    var formData = new FormData();
+    const input = event.target;
+    const formData = new FormData();
 
-    for(var i=0,y=input.files.length; i<y; i++){
-      formData.append('file' + input.key + i, input.files[i]);
+    for(let i = 0, y = input.files.length; i < y; i++) {
+      formData.append(`file${input.key}${i}`, input.files[i]);
     }
 
-    var xhr2 = new XHR2('POST', '/upload/file');
+    const xhr2 = new XHR2('POST', '/upload/file');
     xhr2.onload = () => {
       this.setState((prevState) => {
         prevState.uploadInputs.splice(input.key, 1);
@@ -62,9 +68,9 @@ export default class Uploader extends React.Component {
         return {
           uploading: false,
           uploadInputs: prevState.uploadInputs
-        }
-      })
-    }
+        };
+      });
+    };
 
     xhr2.send(formData);
     this.setState({ uploading: true });
@@ -77,28 +83,28 @@ export default class Uploader extends React.Component {
   }
 
   handleUrlKeyUp(event) {
-    if(event.keyCode == 13){
-      var xhr2 = new XHR2('POST', '/upload/url');
+    if(event.keyCode === 13) {
+      const xhr2 = new XHR2('POST', '/upload/url');
       xhr2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       xhr2.onload = () => {
         this.setState({
           url: ''
         });
-      }
-      xhr2.send('url=' + this.state.url);
+      };
+      xhr2.send(`url=${this.state.url}`);
     }
   }
 
-  dragEnter(event) {
+  static dragEnter(event) {
     event.target.classList.add('dragging');
     event.preventDefault();
   }
 
-  dragOver(event) {
+  static dragOver(event) {
     event.preventDefault();
   }
 
-  dragLeave(event) {
+  static dragLeave(event) {
     event.target.classList.remove('dragging');
     event.preventDefault();
   }
@@ -106,25 +112,25 @@ export default class Uploader extends React.Component {
   drop(event) {
     event.preventDefault();
 
-    var dropbox = event.target;
-    var files = event.dataTransfer.files;
+    const dropbox = event.target;
+    const files = event.dataTransfer.files;
 
     // make sure they didnt drop another html element.
-    if(files.length > 0){
-      var formData = new FormData();
+    if(files.length > 0) {
+      const formData = new FormData();
 
-      for(var i=0,y=files.length; i<y; i++){
-        formData.append('drop' + i, files[i]);
+      for(let i = 0, y = files.length; i < y; i++) {
+        formData.append(`drop${i}`, files[i]);
       }
 
-      var xhr2 = new XHR2('POST', '/upload/file');
+      const xhr2 = new XHR2('POST', '/upload/file');
 
       xhr2.onload = () => {
         this.setState({
           uploading: false
-        })
+        });
 
-        if(xhr2.status === 204){
+        if(xhr2.status === 204) {
           dropbox.classList.remove('dragging');
         }
       };
@@ -141,8 +147,10 @@ export default class Uploader extends React.Component {
           <input type="text" styleName="url-upload" value={this.state.url} placeholder="Upload from URL..." onChange={this.handleUrlChange} onKeyUp={this.handleUrlKeyUp} />
         </div>
         <div>
-          <div styleName="dropbox" className="no-select" onClick={this.clickedDropBox} onDragEnter={this.dragEnter} onDragOver={this.dragOver} onDragLeave={this.dragLeave} onDrop={this.drop}>
-            <div styleName="upload-inputs" ref={ (ele) => { this.uploadInputsRef = ele; } }>{this.state.uploadInputs}</div>
+          <div styleName="dropbox" className="no-select" onClick={this.clickedDropBox} onDragEnter={Uploader.dragEnter} onDragOver={Uploader.dragOver} onDragLeave={Uploader.dragLeave} onDrop={this.drop}>
+            <div styleName="upload-inputs" ref={ (ele) => {
+              this.uploadInputsRef = ele;
+            } }>{this.state.uploadInputs}</div>
             {this.state.uploading &&
               <div>
                 <FontAwesomeIcon icon="spinner" size="4x" pulse fixedWidth />

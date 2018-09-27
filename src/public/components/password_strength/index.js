@@ -14,8 +14,8 @@ export default class PasswordStrength extends React.Component {
     super(props);
 
     this.state = {
-      indicator_style: {}
-    }
+      indicatorStyle: {}
+    };
 
     bindAll(this, ['passwordChanged']);
   }
@@ -28,31 +28,31 @@ export default class PasswordStrength extends React.Component {
   }
 
   calculate(event) {
-    var password = event.target.value;
-		var has_symbols = /[^a-zA-Z]+/;
-		const symbols_points = 2;
-		const recommended_length = 16;
-		const max_points = recommended_length + symbols_points;
-		var points = 0;
+    const password = event.target.value;
+    const hasSymbols = /[^a-zA-Z]+/;
+    const symbolsPoints = 2;
+    const recommendedLength = 16;
+    const maxPoints = recommendedLength + symbolsPoints;
+    let points = 0;
 
-		points += Math.min(password.length, recommended_length);
+    points += Math.min(password.length, recommendedLength);
 
-		if(has_symbols.test(password))
-			points += symbols_points;
+    if(hasSymbols.test(password))
+      points += symbolsPoints;
 
-		var points_percentage = points / max_points * 100;
+    const pointsPercentage = points / maxPoints * 100;
 
-    var backgroundColor;
-		if(points_percentage < 40) // bad
-			backgroundColor = '#f00';
-		else if(points_percentage < 70) // good
-			backgroundColor = 'rgb(255, 207, 12)';
-		else // awesome
-			backgroundColor = '#6f0';
+    let backgroundColor;
+    if(pointsPercentage < 40) // bad
+      backgroundColor = '#f00';
+    else if(pointsPercentage < 70) // good
+      backgroundColor = 'rgb(255, 207, 12)';
+    else // awesome
+      backgroundColor = '#6f0';
 
     this.setState({
-      indicator_style: {
-        width: points_percentage + '%',
+      indicatorStyle: {
+        width: `${pointsPercentage}%`,
         backgroundColor: backgroundColor
       }
     });
@@ -62,7 +62,7 @@ export default class PasswordStrength extends React.Component {
     return (
       <div styleName="wrap-password">
         <input {...this.props} type="password" placeholder="Password" onChange={this.passwordChanged} />
-        <div styleName="strength" style={this.state.indicator_style}></div>
+        <div styleName="strength" style={this.state.indicatorStyle}></div>
       </div>
     );
   }

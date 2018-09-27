@@ -1,10 +1,10 @@
-var google = require('googleapis');
-var analytics = google.analytics('v3');
-var moment = require('moment');
-var key = require('/usr/src/app/src/secret/resume-stats-a8a939419e3a.json');
+const google = require('googleapis');
+const analytics = google.analytics('v3');
+const moment = require('moment');
+const key = require('/usr/src/app/src/secret/resume-stats-a8a939419e3a.json');
 const mongo = require('/usr/src/app/src/private/mongodb.js');
 
-var jwtClient = new google.auth.JWT(
+const jwtClient = new google.auth.JWT(
   key.client_email,
   null,
   key.private_key,
@@ -12,48 +12,48 @@ var jwtClient = new google.auth.JWT(
   null
 );
 
-var Analytics = {
-  start_end: moment().subtract(1, 'days'),
+const Analytics = {
+  startEnd: moment().subtract(1, 'days'),
   todo: 0,
 
-  save: function(id, source){
+  save: function(id, source) {
     Analytics.todo++;
-    const start_end_string = Analytics.start_end.format('YYYY-MM-DD');
+    const startEndString = Analytics.startEnd.format('YYYY-MM-DD');
 
-    var params = {
-      'auth': jwtClient,
-      'ids': 'ga:' + id,
-      'start-date': start_end_string,
-      'end-date': start_end_string,
-      'metrics': 'ga:users,ga:pageviews'
-    }
+    const params = {
+      auth: jwtClient,
+      ids: `ga:${id}`,
+      'start-date': startEndString,
+      'end-date': startEndString,
+      metrics: 'ga:users,ga:pageviews'
+    };
 
-    analytics.data.ga.get(params, function(err, response){
-      var totals = response.totalsForAllResults;
+    analytics.data.ga.get(params, function(err, response) {
+      const totals = response.totalsForAllResults;
       Analytics.store(totals, source);
     });
   },
 
-  store: function(totals, source){
-    mongo.getDb().then( (db) => {
-      var users = parseInt(totals['ga:users']);
-      var pageviews = parseInt(totals['ga:pageviews']);
+  store: function(totals, source) {
+    mongo.getDb().then((db) => {
+      const users = parseInt(totals['ga:users']);
+      const pageviews = parseInt(totals['ga:pageviews']);
 
       db.collection('impact_analytics').insert({
         pageviews: pageviews,
         users: users,
         source: source,
-        ymd: Analytics.start_end.toDate()
+        ymd: Analytics.startEnd.toDate()
       }, (error, result) => {
         // or else command line script wont exit
         if(--Analytics.todo === 0)
-          mongo.close()
+          mongo.close();
       });
     });
   }
 };
 
-jwtClient.authorize(function (err, tokens) {
+jwtClient.authorize(function(err, tokens) {
   if (err) {
     console.log(err);
     return;

@@ -37,9 +37,9 @@ export default class Login extends React.Component {
   }
 
   checkReady(event) {
-    if(event.keyCode == 13){
-      var username = this.state.username;
-      var password = this.state.password;
+    if(event.keyCode === 13) {
+      const username = this.state.username;
+      const password = this.state.password;
 
       if(username && password)
         this.login();
@@ -47,26 +47,27 @@ export default class Login extends React.Component {
   }
 
   login() {
-    var username = this.state.username;
-    var password = this.state.password;
+    const username = this.state.username;
+    const password = this.state.password;
 
-    var xhr2 = new XHR2('POST', '/login');
-    xhr2.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    const xhr2 = new XHR2('POST', '/login');
+    xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr2.onload = () => {
-      if(xhr2.status == 401){
+      if(xhr2.status === 401) {
         this.setState({
           feedback: 'Incorrect username or password.',
           password: ''
         });
       }
-      else if(xhr2.status == 200){
+      else if(xhr2.status === 200) {
         this.setState({});
 
         // returns page that referred to login page
         location.href = xhr2.responseText;
       }
-    }
-    xhr2.send('username=' + username + '&password=' + password);
+    };
+
+    xhr2.send(`username=${username}&password=${password}`);
   }
 
   render() {

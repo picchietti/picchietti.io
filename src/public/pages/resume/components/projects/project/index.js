@@ -9,7 +9,7 @@ export default class Project extends React.Component {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     link: PropTypes.string,
-    description: PropTypes.string,
+    description: PropTypes.string
   }
 
   constructor(props) {

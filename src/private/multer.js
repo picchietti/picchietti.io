@@ -1,28 +1,30 @@
-const root_dir = '/usr/src/app/src';
+const rootDir = '/usr/src/app/src';
 
-module.exports = function(multer){
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, root_dir + '/secret/uploads/');
+module.exports = function(multer) {
+  const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, `${rootDir}/secret/uploads/`);
     },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + ' - ' + file.originalname);
+    filename: function(req, file, cb) {
+      cb(null, `${Date.now()} - ${file.originalname}`);
     }
   });
 
-  var uploader = multer({ storage: storage });
+  const uploader = multer({ storage: storage });
 
   // uploader, but with a proper return status based on error or success
-  var allowUpload = function(req, res) {
-    var cb = uploader.any();
+  const allowUpload = function(req, res) {
+    const cb = uploader.any();
 
     cb(req, res, function(err) {
-      if(err)
-        return res.status(500).end();
+      if(err) {
+        res.status(500);
+        return;
+      }
 
-      res.status(204).end();
+      res.status(204);
     });
-  }
+  };
 
   return allowUpload;
 };

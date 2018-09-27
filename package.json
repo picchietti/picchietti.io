@@ -4,7 +4,7 @@
   "description": "Personal website",
   "author": "Jon Picchietti <jon@picchietti.email>",
   "scripts": {
-    "eslint": "eslint src/**/*.js",
+    "eslint": "eslint src/ --ext .js",
     "test": "npm run eslint",
     "build": "webpack --config configs/webpack.prod.js",
     "build:dev": "webpack --config configs/webpack.dev.js",

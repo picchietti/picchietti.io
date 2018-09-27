@@ -6,41 +6,43 @@ function sha512(data) {
   return crypto.createHash('sha512').update(data).digest('hex');
 }
 
-module.exports = function(passport){
+module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
     done(null, user.username);
   });
 
   passport.deserializeUser(function(id, done) {
-    done(null, {username: id});
+    done(null, { username: id });
   });
 
   passport.use(new LocalStrategy(
     function(username, password, done) {
       // find a way to throttle failed attempts or reimplement own
 
-      mongo.getDb().then( (db) => {
-        db.collection('users').findOne({ email: username }, function(err, user){
+      mongo.getDb().then((db) => {
+        db.collection('users').findOne({ email: username }, function(err, user) {
           if(err) {
-            return done(err);
+            done(err);
+            return;
           }
 
-          if(!user){ // cant find user
-            return done(null, false, { message: 'Incorrect username.' });
+          if(!user) { // cant find user
+            done(null, false, { message: 'Incorrect username.' });
+            return;
           }
 
-          var stored_password = user.password;
-          var salt = user.salt;
-          var hash = sha512(password + salt);
+          const storedPassword = user.password;
+          const salt = user.salt;
+          const hash = sha512(password + salt);
 
-          if(hash === stored_password){ // correct password
-            done(null, {username: username});
+          if(hash === storedPassword) { // correct password
+            done(null, { username: username });
           }
           else{ // wrong password
             done(null, false, { message: 'Incorrect password.' });
           }
-        } );
+        });
       });
     }
   ));
-}
+};

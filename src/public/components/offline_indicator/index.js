@@ -7,11 +7,11 @@ export default class OfflineIndicator extends React.Component {
   constructor(props) {
     super(props);
 
-    const initiallyHidden = (typeof navigator !== 'undefined') ? navigator.onLine : true;
+    const initiallyHidden = (typeof navigator === 'undefined') ? true : navigator.onLine;
 
     this.state = {
       hidden: initiallyHidden
-    }
+    };
 
     this.handleClose = this.handleClose.bind(this);
   }

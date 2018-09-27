@@ -12,11 +12,11 @@ export default class Page extends React.Component {
   constructor(props) {
     super(props);
 
-    this.filtered_props = omit(props, ['load'])
+    this.filteredProps = omit(props, ['load']);
 
     this.state = {
       component: null
-    }
+    };
   }
 
   componentWillMount() {
@@ -29,7 +29,7 @@ export default class Page extends React.Component {
 
   render() {
     return (
-      (this.state.component) ? <this.state.component {...this.filtered_props} /> : <Loading />
+      (this.state.component) ? <this.state.component {...this.filteredProps} /> : <Loading />
     );
   }
 }

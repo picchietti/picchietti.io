@@ -17,23 +17,23 @@ export default class Projects extends React.Component {
     this.maxShown = 2;
     this.shownDifference = this.projects.length - this.maxShown;
 
-    var initiallyShown = this.projects.slice(0, this.maxShown);
+    const initiallyShown = this.projects.slice(0, this.maxShown);
 
     this.state = {
       showingMore: false,
       projects: initiallyShown
-    }
+    };
 
     bindAll(this, ['handleToggle']);
   }
 
   handleToggle() {
-    this.setState(prevState => {
-      var projects_shown = this.projects.slice(0, (prevState.showingMore) ? this.maxShown : undefined);
+    this.setState((prevState) => {
+      const projectsShown = this.projects.slice(0, (prevState.showingMore) ? this.maxShown : undefined);
 
       return {
         showingMore: !prevState.showingMore,
-        projects: projects_shown
+        projects: projectsShown
       };
     });
   }

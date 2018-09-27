@@ -21,7 +21,7 @@ export default class Point extends React.Component {
     super(props);
 
     this.shortDateRange = this.getShortDateRange();
-    this.longDateRange = props.from + ' - ' + props.to;
+    this.longDateRange = `${props.from} - ${props.to}`;
     this.icon = (props.isFeatured) ? 'star' : 'circle';
     this.iconClass = (props.isFeatured) ? 'featured' : '';
 
@@ -32,9 +32,9 @@ export default class Point extends React.Component {
 
   getShortDateRange() {
     if(this.props.to === Point.defaultProps.to)
-      return this.props.from + '+';
-    else
-      return this.props.from.slice(-2) + '-' + this.props.to.slice(-2);
+      return `${this.props.from}+`;
+
+    return `${this.props.from.slice(-2)}-${this.props.to.slice(-2)}`;
   }
 
   render() {

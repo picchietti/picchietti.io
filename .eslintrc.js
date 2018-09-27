@@ -22,7 +22,9 @@ module.exports = {
   rules: {
     "quotes": ["error", "single", { "avoidEscape": true }],
     "no-unused-vars": ["error", { "args": "none" }],
-    "class-methods-use-this": "error",
+    "class-methods-use-this": ["error", { "exceptMethods": [
+      'render', 'componentDidMount'
+    ] }],
     "consistent-return": "error",
     "dot-notation": "error",
     "eqeqeq": "error",
@@ -60,9 +62,7 @@ module.exports = {
     "prefer-template": "error",
     "array-bracket-spacing": "error",
     "array-bracket-spacing": ["error", "consistent"],
-    "array-bracket-newline": ["error", {
-      minItems: 3
-    }],
+    "array-bracket-newline": ["error", "consistent"],
     "brace-style": ["error", "stroustrup"],
     "camelcase": "error",
     "array-bracket-spacing": "error",
@@ -109,12 +109,7 @@ module.exports = {
     "object-curly-spacing": ["error", "always"],
     "padded-blocks": ["error", "never"],
 
-
-
     "prefer-promise-reject-errors": "warn",
-    "no-magic-numbers": "warn",
-
-
 
     // allow scripts that can be run via command line to ship with console logs
     "no-console": ["off"],

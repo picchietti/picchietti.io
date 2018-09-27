@@ -16,21 +16,22 @@ export default class Resource extends React.Component {
     location: PropTypes.object.isRequired
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
+
     this.state = {
       resource: ''
-    }
+    };
   }
 
   componentDidMount() {
     // resource should be passed in url like: /pages/resource/diploma.png
-    var path = this.props.location.pathname.split('/pages/resource/');
+    const path = this.props.location.pathname.split('/pages/resource/');
 
-    if(path[1]){
+    if(path[1]) {
       this.setState({
         resource: `${location.origin}/pages/resource/assets/${path[1]}`
-      })
+      });
     }
   }
 

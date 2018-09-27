@@ -1,11 +1,11 @@
-var google = require('googleapis');
-var analytics = google.analytics('v3');
-var moment = require('moment');
-var sleep = require('sleep');
-var key = require('/usr/src/app/src/secret/resume-stats-a8a939419e3a.json');
+const google = require('googleapis');
+const analytics = google.analytics('v3');
+const moment = require('moment');
+const sleep = require('sleep');
+const key = require('/usr/src/app/src/secret/resume-stats-a8a939419e3a.json');
 const mongo = require('/usr/src/app/src/private/mongodb.js');
 
-var jwtClient = new google.auth.JWT(
+const jwtClient = new google.auth.JWT(
   key.client_email,
   null,
   key.private_key,
@@ -13,20 +13,20 @@ var jwtClient = new google.auth.JWT(
   null
 );
 
-mongo.getDb().then( (db) => {
-  var Analytics = {
+mongo.getDb().then((db) => {
+  const Analytics = {
     yesterday: moment().subtract(1, 'days'),
     todo: [], // each item is an array with id, source, and since strings
 
-    doAll: function(){
-      if(!Analytics.todo.length){
+    doAll: function() {
+      if(!Analytics.todo.length) {
         db.end();
         return;
       }
 
-      var todo = Analytics.todo.shift();
-      var source = todo[1];
-      var since = moment(todo[2]);
+      const todo = Analytics.todo.shift();
+      const source = todo[1];
+      const since = moment(todo[2]);
 
       console.log('getting analytics for...', source);
 
@@ -35,25 +35,25 @@ mongo.getDb().then( (db) => {
       }
     },
 
-    get: function(id, source, since){
-      let since_string = since.format('YYYY-MM-DD');
-      console.log('getting analytics for', source, since_string);
+    get: function(id, source, since) {
+      const sinceString = since.format('YYYY-MM-DD');
+      console.log('getting analytics for', source, sinceString);
 
-      var params = {
-        'auth': jwtClient,
-        'ids': 'ga:' + id,
-        'start-date': since_string,
-        'end-date': since_string,
-        'metrics': 'ga:users,ga:pageviews'
+      const params = {
+        auth: jwtClient,
+        ids: `ga:${id}`,
+        'start-date': sinceString,
+        'end-date': sinceString,
+        metrics: 'ga:users,ga:pageviews'
       };
 
-      analytics.data.ga.get(params, function(err, response){
-        console.log('got analytics for', source, since_string);
-        var totals = response.totalsForAllResults;
+      analytics.data.ga.get(params, function(err, response) {
+        console.log('got analytics for', source, sinceString);
+        const totals = response.totalsForAllResults;
         Analytics.store(totals, source, since.toDate());
 
-        since.add(1, 'days')
-        if(since.isSameOrBefore(Analytics.yesterday)){
+        since.add(1, 'days');
+        if(since.isSameOrBefore(Analytics.yesterday)) {
           sleep.sleep(3);
           Analytics.get(id, source, since);
         }
@@ -64,9 +64,9 @@ mongo.getDb().then( (db) => {
       });
     },
 
-    store: function(totals, source, when){
-      var users = parseInt(totals['ga:users']);
-      var pageviews = parseInt(totals['ga:pageviews']);
+    store: function(totals, source, when) {
+      const users = parseInt(totals['ga:users']);
+      const pageviews = parseInt(totals['ga:pageviews']);
 
       db.collection('impact_analytics').insert({
         pageviews: pageviews,
@@ -77,7 +77,7 @@ mongo.getDb().then( (db) => {
     }
   };
 
-  jwtClient.authorize(function (err, tokens) {
+  jwtClient.authorize(function(err, tokens) {
     if (err) {
       console.log(err);
       return;

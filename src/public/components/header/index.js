@@ -5,39 +5,43 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './index.scss';
 import profile from './images/profile2.png';
 
-var Triangle = {
+const Triangle = {
   size: 40,
-  fill_height: 0,
-  fill_width: 0,
+  fillHeight: 0,
+  fillWidth: 0,
 
-  make: function(ele, direction, color, x, y){
-    var tri = document.createElement('div');
+  make: function(ele, direction, color, x, y) {
+    const tri = document.createElement('div');
     tri.className = direction;
-    tri.style.borderWidth = Triangle.size + 'px';
-    tri.style.left = x + 'px';
-    tri.style.top = y + 'px';
+    tri.style.borderWidth = `${Triangle.size}px`;
+    tri.style.left = `${x}px`;
+    tri.style.top = `${y}px`;
 
-    switch(direction){
-      case 'up': tri.style.borderBottomColor = color;	break;
-      case 'down': tri.style.borderTopColor = color;	break;
+    switch(direction) {
+    case 'up':
+      tri.style.borderBottomColor = color;
+      break;
+    case 'down':
+      tri.style.borderTopColor = color;
+      break;
     }
 
     ele.appendChild(tri);
   },
 
-  fill: function(ele){
-    var batch = document.createElement('div');
-    var color, rgb;
-    var x = -Triangle.size;
-    var y = 0;
-    var up = true;
-    var fill_height = ele.clientHeight;
-    var fill_width = ele.clientWidth;
+  fill: function(ele) { // eslint-disable-line max-statements
+    const batch = document.createElement('div');
+    let color, rgb;
+    let x = -Triangle.size;
+    let y = 0;
+    let up = true;
+    const fillHeight = ele.clientHeight;
+    const fillWidth = ele.clientWidth;
 
-    if(Triangle.fill_height !== fill_height || Triangle.fill_width !== fill_width){
+    if(Triangle.fillHeight !== fillHeight || Triangle.fillWidth !== fillWidth) {
       // new dimensions, change
-      Triangle.fill_height = fill_height;
-      Triangle.fill_width = fill_width;
+      Triangle.fillHeight = fillHeight;
+      Triangle.fillWidth = fillWidth;
     }
     else{
       // same dimensions, dont change
@@ -45,15 +49,15 @@ var Triangle = {
     }
 
 
-    var amount = Math.ceil(fill_height / Triangle.size) * (Math.ceil(fill_width / Triangle.size) + 1);
+    const amount = Math.ceil(fillHeight / Triangle.size) * (Math.ceil(fillWidth / Triangle.size) + 1);
 
-    for(var i=0; i <= amount; i++){
+    for(let i = 0; i <= amount; i++) {
       color = Math.floor(Math.random() * (246 - 220) + 220);
-      rgb = 'rgb(' + color + ', ' + color + ', ' + color + ')';
+      rgb = `rgb(${color}, ${color}, ${color})`;
 
-      if(up){
-        var adjusted_y = y - Triangle.size;
-        Triangle.make(batch, 'up', rgb, x, adjusted_y);
+      if(up) {
+        const adjustedY = y - Triangle.size;
+        Triangle.make(batch, 'up', rgb, x, adjustedY);
       }
       else{
         Triangle.make(batch, 'down', rgb, x, y);
@@ -62,7 +66,7 @@ var Triangle = {
       x += Triangle.size;
       up = !up;
 
-      if(x >= ele.clientWidth){
+      if(x >= ele.clientWidth) {
         x = -Triangle.size;
         y += Triangle.size;
       }
@@ -71,17 +75,17 @@ var Triangle = {
     ele.innerHTML = '';
     ele.appendChild(batch);
   }
-}
+};
 
 export default class Header extends React.Component {
-  fillCanvas() {
-    var canvas = document.getElementById('canvas');
+  static fillCanvas() {
+    const canvas = document.getElementById('canvas');
     Triangle.fill(canvas);
   }
 
   componentDidMount() {
-    this.fillCanvas();
-    window.addEventListener('resize', debounce(this.fillCanvas, 300), false);
+    Header.fillCanvas();
+    window.addEventListener('resize', debounce(Header.fillCanvas, 300), false);
   }
 
 

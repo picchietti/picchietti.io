@@ -1,19 +1,21 @@
 const MongoClient = require('mongodb').MongoClient;
-const db_user = process.env.MONGODB_USER;
-const db_pass = process.env.MONGODB_PASS;
-const db_host = 'mongo';
-const db_port = 27017;
-const db_name = process.env.MONGODB_DBNAME;
-const url = `mongodb://${db_user}:${db_pass}@${db_host}:${db_port}/${db_name}`;
+const dbUser = process.env.MONGODB_USER;
+const dbPass = process.env.MONGODB_PASS;
+const dbHost = 'mongo';
+const dbPort = 27017;
+const dbName = process.env.MONGODB_DBNAME;
+const url = `mongodb://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}`;
 
 const options = {
 
 };
 
-let db_client = new Promise(function (fulfill, reject){
+const dbClient = new Promise(function(fulfill, reject) {
   MongoClient.connect(url, options, function(error, client) {
-    if(error)
-      return reject(error);
+    if(error) {
+      reject(error);
+      return;
+    }
 
     console.log('CONNECTED TO MONGO');
     fulfill(client);
@@ -21,19 +23,19 @@ let db_client = new Promise(function (fulfill, reject){
 });
 
 function getConnection() {
-  return db_client;
+  return dbClient;
 }
 
 module.exports = {
   getConnection: getConnection,
 
   getDb: () => (
-    getConnection().then( (client) => (
-      client.db(db_name)
+    getConnection().then((client) => (
+      client.db(dbName)
     ))
   ),
   close: () => (
-    getConnection().then( (client) => (
+    getConnection().then((client) => (
       client.close()
     ))
   )
