@@ -5,7 +5,8 @@
   "author": "Jon Picchietti <jon@picchietti.email>",
   "scripts": {
     "eslint": "eslint src/ --ext .js",
-    "test": "npm run eslint",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
+    "test": "npm run eslint && npm run stylelint",
     "build": "webpack --config configs/webpack.prod.js",
     "build:dev": "webpack --config configs/webpack.dev.js",
     "watch": "npm run build:dev -- --watch",
@@ -60,6 +61,7 @@
     "postcss-scss": "^2.0.0",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.2",
+    "stylelint": "^9.6.0",
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.15",
