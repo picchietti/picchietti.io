@@ -7,3 +7,4 @@ src/secret/
 src/cron/logs/*.log
 .env
 stats.json
+coverage/
