@@ -6,10 +6,10 @@
   "scripts": {
     "eslint": "eslint src/ --ext .js",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
-    "test": "npm run eslint && npm run stylelint",
+    "test": "yarn eslint && yarn stylelint && yarn jest",
     "build": "webpack --config configs/webpack.prod.js",
     "build:dev": "webpack --config configs/webpack.dev.js",
-    "watch": "npm run build:dev -- --watch",
+    "watch": "yarn build:dev --watch",
     "start": "node src/server.js"
   },
   "dependencies": {
@@ -53,19 +53,24 @@
     "clean-webpack-plugin": "^0.1.18",
     "copy-webpack-plugin": "^4.5.0",
     "css-loader": "^0.28.10",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "eslint": "^4.13.1",
     "eslint-plugin-react": "^7.5.1",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
     "node-sass": "^4.6.1",
     "postcss-scss": "^2.0.0",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.2",
     "stylelint": "^9.6.0",
+    "supertest": "^3.3.0",
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.15",
     "webpack-dev-middleware": "^3.1.3",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "yarn": "^1.10.1"
   }
 }
