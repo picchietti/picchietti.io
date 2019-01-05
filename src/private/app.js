@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const multer = require('multer');
-const shrinkray = require('shrink-ray');
+const shrinkray = require('shrink-ray-current');
 const helmet = require('helmet');
 
 const app = express();
