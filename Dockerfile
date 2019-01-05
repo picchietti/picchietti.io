@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:lts
 
 # Available to other docker containers
 EXPOSE 80 443
