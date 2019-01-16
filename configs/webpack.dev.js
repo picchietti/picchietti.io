@@ -29,10 +29,10 @@ module.exports = merge(common, {
             plugins: [
               'transform-class-properties',
               ['react-css-modules', {
-                'generateScopedName': '[local]_[hash:base64:5]',
-                'filetypes': {
+                generateScopedName: '[local]_[hash:base64:5]',
+                filetypes: {
                   '.scss': {
-                    'syntax': 'postcss-scss'
+                    syntax: 'postcss-scss'
                   }
                 }
               }]
