@@ -1,10 +1,7 @@
-const express = require('express');
 const moment = require('moment');
-const router = new express.Router();
+const mongo = require('/usr/src/app/src/server/mongodb.js');
 
-const mongo = require('/usr/src/app/src/private/mongodb.js');
-
-router.get('/', function(req, res) {
+module.exports = (req, res) => {
   const thirtyDaysAgo = moment().subtract(30, 'days').toDate();
 
   const results = {
@@ -29,10 +26,10 @@ router.get('/', function(req, res) {
         $match: { ymd: { $lt: thirtyDaysAgo } }
       },
       {
-        $group: { _id: null, pageviews: { $sum: '$pageviews' } }
+        $group: { _id: null, users: { $sum: '$users' } }
       }
     ]).toArray((err, rows) => {
-      results.one = rows[0].pageviews;
+      results.one = rows[0].users;
 
       if(!!results.one && !!results.two)
         queriesComplete();
@@ -46,7 +43,7 @@ router.get('/', function(req, res) {
       {
         $group: {
           _id: '$ymd',
-          count: { $sum: '$pageviews' },
+          count: { $sum: '$users' },
           date: { $first: '$ymd' }
         }
       },
@@ -60,6 +57,4 @@ router.get('/', function(req, res) {
         queriesComplete();
     });
   });
-});
-
-module.exports = router;
+};

@@ -22,12 +22,12 @@ const dbClient = new Promise(function(fulfill, reject) {
   });
 });
 
-function getConnection() {
-  return dbClient;
-}
+const getConnection = () => (
+  dbClient
+);
 
 module.exports = {
-  getConnection: getConnection,
+  getConnection,
 
   getDb: () => (
     getConnection().then((client) => (

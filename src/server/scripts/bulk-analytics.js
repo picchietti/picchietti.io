@@ -3,7 +3,7 @@ const analytics = google.analytics('v3');
 const moment = require('moment');
 const sleep = require('sleep');
 const key = require('/usr/src/app/src/secret/resume-stats-a8a939419e3a.json');
-const mongo = require('/usr/src/app/src/private/mongodb.js');
+const mongo = require('/usr/src/app/src/server/mongodb.js');
 
 const jwtClient = new google.auth.JWT(
   key.client_email,

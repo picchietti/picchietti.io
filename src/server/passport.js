@@ -1,12 +1,13 @@
+const passport = require('passport');
 const crypto = require('crypto');
 const LocalStrategy = require('passport-local').Strategy;
-const mongo = require('/usr/src/app/src/private/mongodb.js');
+const mongo = require('/usr/src/app/src/server/mongodb.js');
 
-function sha512(data) {
+const sha512 = (data) => {
   return crypto.createHash('sha512').update(data).digest('hex');
-}
+};
 
-module.exports = function(passport) {
+const setupPassport = (app) => {
   passport.serializeUser(function(user, done) {
     done(null, user.username);
   });
@@ -45,4 +46,9 @@ module.exports = function(passport) {
       });
     }
   ));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 };
+
+module.exports = setupPassport;
