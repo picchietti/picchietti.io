@@ -1,7 +1,7 @@
 const passport = require('passport');
 const crypto = require('crypto');
 const LocalStrategy = require('passport-local').Strategy;
-const mongo = require('/usr/src/app/src/server/mongodb.js');
+const mongo = require('./mongodb.js');
 
 const sha512 = (data) => {
   return crypto.createHash('sha512').update(data).digest('hex');

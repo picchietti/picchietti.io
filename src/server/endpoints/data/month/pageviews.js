@@ -1,5 +1,5 @@
 const moment = require('moment');
-const mongo = require('/usr/src/app/src/server/mongodb.js');
+const mongo = require('../../../mongodb.js');
 
 module.exports = (req, res) => {
   const thirtyDaysAgo = moment().subtract(30, 'days').toDate();

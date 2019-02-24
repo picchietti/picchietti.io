@@ -6,7 +6,8 @@ module.exports = {
     jest: true
   },
   plugins: [
-    "react"
+    "react",
+    "import"
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -18,7 +19,8 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:import/errors"
   ],
   rules: {
     "quotes": ["error", "single", { "avoidEscape": true }],
@@ -118,6 +120,8 @@ module.exports = {
     "react/no-find-dom-node": ["off"],
     // this rule can falsely report errors for jsx arrays that are passed where they are mapped with a key
     // with this rule off, please check the console for warnings related to this. there should be none
-    "react/jsx-key": ["off"]
+    "react/jsx-key": ["off"],
+
+    "import/no-unresolved": ["error", { commonjs: true }]
   }
 };
