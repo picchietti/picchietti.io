@@ -24,7 +24,7 @@ module.exports = {
     "quotes": ["error", "single", { "avoidEscape": true }],
     "no-unused-vars": ["error", { "args": "none" }],
     "class-methods-use-this": ["error", { "exceptMethods": [
-      'render', 'componentDidMount'
+      'render', 'componentDidMount', 'componentWillUnmount'
     ] }],
     "consistent-return": "error",
     "dot-notation": "error",
@@ -89,7 +89,7 @@ module.exports = {
     "implicit-arrow-linebreak": "error",
     "key-spacing": "error",
     "linebreak-style": "error",
-    "lines-between-class-members": "error",
+    "lines-between-class-members": "off",
     "max-statements-per-line": "error",
     "new-cap": "error",
     "new-parens": "error",
