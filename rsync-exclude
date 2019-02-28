@@ -1,5 +1,6 @@
 ./rsync-exclude
 .git/
+.env
 db/data/
 mongo/data/
 node_modules/

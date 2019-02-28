@@ -1,4 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
+const fs = require('fs');
+
 const dbUser = process.env.MONGODB_USER;
 const dbPass = process.env.MONGODB_PASS;
 const dbHost = 'mongo';
@@ -6,8 +8,15 @@ const dbPort = 27017;
 const dbName = process.env.MONGODB_DBNAME;
 const url = `mongodb://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}`;
 
-const options = {
+const caCert = fs.readFileSync('/usr/src/app/src/secret/rootCA.pem');
+const fullCert = fs.readFileSync(process.env.MONGODB_FULL_CERT_PATH);
 
+const options = {
+  ssl: true,
+  sslCA: [caCert],
+  sslCert: fullCert,
+  sslKey: fullCert,
+  useNewUrlParser: true
 };
 
 const dbClient = new Promise(function(fulfill, reject) {
