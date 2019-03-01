@@ -1,7 +1,7 @@
 const google = require('googleapis');
 const analytics = google.analytics('v3');
 const moment = require('moment');
-const key = require('../../../secret/resume-stats-a8a939419e3a.json');
+const key = require('../../../secret/resume-stats-a8a939419e3a.json'); // eslint-disable-line import/no-unresolved
 const mongo = require('../../../server/mongodb.js');
 
 const jwtClient = new google.auth.JWT(
