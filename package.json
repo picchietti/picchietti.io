@@ -10,7 +10,7 @@
     "build": "webpack --config configs/webpack.prod.js",
     "build:dev": "webpack --config configs/webpack.dev.js",
     "watch": "yarn build:dev --watch",
-    "start": "node src/server.js"
+    "start": "nodemon --watch src/secret/letsencrypt/ --ext pem src/server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
@@ -31,6 +31,7 @@
     "moment": "^2.17.1",
     "mongodb": "^3.0.1",
     "multer": "^1.3.0",
+    "nodemon": "^1.18.10",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "prop-types": "^15.6.0",
