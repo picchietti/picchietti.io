@@ -1,19 +1,12 @@
-.canvas {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: rgb(220, 220, 220);
-  top: 0;
-  left: 0;
-  z-index: -1;
-  overflow: hidden;
-
-  .up,
-  .down {
-    border-style: solid;
+.triangles {
+  .canvas {
     position: absolute;
-    width: 0;
-    height: 0;
-    border-color: transparent;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(220, 220, 220);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
   }
 }

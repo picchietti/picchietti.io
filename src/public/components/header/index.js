@@ -9,7 +9,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <header className="no-print">
-        <Triangles size={ 40 } />
+        <Triangles />
         <div styleName="profile">
           <img src={profile} alt="Me" styleName="picture" />
         </div>
