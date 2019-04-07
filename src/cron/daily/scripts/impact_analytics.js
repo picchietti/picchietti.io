@@ -39,16 +39,18 @@ const Analytics = {
       const users = parseInt(totals['ga:users']);
       const pageviews = parseInt(totals['ga:pageviews']);
 
-      db.collection('impact_analytics').insert({
+      const attemptDbClose = (result) => {
+        // or else command line script wont exit
+        if(--Analytics.todo === 0)
+          mongo.close();
+      };
+
+      db.collection('impact_analytics').insertOne({
         pageviews: pageviews,
         users: users,
         source: source,
         ymd: Analytics.startEnd.toDate()
-      }, (error, result) => {
-        // or else command line script wont exit
-        if(--Analytics.todo === 0)
-          mongo.close();
-      });
+      }).then(attemptDbClose);
     });
   }
 };

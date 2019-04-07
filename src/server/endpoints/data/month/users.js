@@ -20,6 +20,13 @@ module.exports = (req, res) => {
   }
 
   mongo.getDb().then((db) => {
+    const setResults = (result, value) => {
+      results[result] = value;
+
+      if(!!results.one && !!results.two)
+        queriesComplete();
+    };
+
     // get the total of every record before the most recent thirty days
     db.collection('impact_analytics').aggregate([
       {
@@ -28,11 +35,8 @@ module.exports = (req, res) => {
       {
         $group: { _id: null, users: { $sum: '$users' } }
       }
-    ]).toArray((err, rows) => {
-      results.one = rows[0].users;
-
-      if(!!results.one && !!results.two)
-        queriesComplete();
+    ]).toArray().then((rows) => {
+      setResults('one', rows[0].users);
     });
 
     // get the 30 most recent records
@@ -50,11 +54,8 @@ module.exports = (req, res) => {
       {
         $sort: { date: 1 }
       }
-    ]).toArray((err, rows) => {
-      results.two = rows;
-
-      if(!!results.one && !!results.two)
-        queriesComplete();
+    ]).toArray().then((rows) => {
+      setResults('two', rows);
     });
   });
 };

@@ -68,7 +68,7 @@ mongo.getDb().then((db) => {
       const users = parseInt(totals['ga:users']);
       const pageviews = parseInt(totals['ga:pageviews']);
 
-      db.collection('impact_analytics').insert({
+      db.collection('impact_analytics').insertOne({
         pageviews: pageviews,
         users: users,
         source: source,
