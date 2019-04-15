@@ -13,7 +13,7 @@ const rootDir = '/usr/src/app';
 
 const setupRoutes = (router) => {
   router.post('/upload/file', restrictAccess, allowUpload, (req, res) => {
-    res.status(204);
+    res.status(204).end();
   });
   router.post('/upload/url', restrictAccess, endpointUrl);
 
