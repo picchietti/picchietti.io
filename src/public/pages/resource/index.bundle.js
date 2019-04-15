@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,45 +11,37 @@ import './assets/certifications/analytics/ecommerce.png';
 import './assets/certifications/analytics/fundamentals.png';
 import './assets/certifications/analytics/platform.png';
 
-export default class Resource extends React.Component {
-  static propTypes = {
-    location: PropTypes.object.isRequired
-  }
+function Resource(props) {
+  const [resource, setResource] = useState('');
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      resource: ''
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     // resource should be passed in url like: /pages/resource/diploma.png
-    const path = this.props.location.pathname.split('/pages/resource/');
+    const path = props.location.pathname.split('/pages/resource/');
 
     if(path[1]) {
-      this.setState({
-        resource: `${location.origin}/pages/resource/assets/${path[1]}`
-      });
+      setResource(`${location.origin}/pages/resource/assets/${path[1]}`);
     }
-  }
+  }, [props.location]);
 
-  render() {
-    return (
-      <main>
-        <div styleName="resource">
-          <Link to="/">
-            <div styleName="back" className="alignc">
-              <FontAwesomeIcon icon="arrow-left" />
-              Back
-            </div>
-          </Link>
-          <div styleName="item">
-            <img alt="resource" src={this.state.resource} />
+  return (
+    <main>
+      <div styleName="resource">
+        <Link to="/">
+          <div styleName="back" className="alignc">
+            <FontAwesomeIcon icon="arrow-left" />
+            Back
           </div>
+        </Link>
+        <div styleName="item">
+          <img alt="resource" src={resource} />
         </div>
-      </main>
-    );
-  }
+      </div>
+    </main>
+  );
 }
+
+Resource.propTypes = {
+  location: PropTypes.object.isRequired
+};
+
+export default Resource;

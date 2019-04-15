@@ -1,55 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './index.scss';
 
-export default class OfflineIndicator extends React.Component {
-  constructor(props) {
-    super(props);
+export default function OfflineIndicator(props) {
+  const initiallyHidden = (typeof navigator === 'undefined') ? true : navigator.onLine;
+  const [hidden, setHidden] = useState(initiallyHidden);
+  const handleClose = () => {
+    setHidden(true);
+  };
 
-    const initiallyHidden = (typeof navigator === 'undefined') ? true : navigator.onLine;
-
-    this.state = {
-      hidden: initiallyHidden
-    };
-
-    this.handleClose = this.handleClose.bind(this);
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     const handleConnectionChange = () => {
-      this.setState({
-        hidden: navigator.onLine
-      });
-
+      setHidden(navigator.onLine);
       const addOrRemove = (navigator.onLine) ? 'remove' : 'add';
       document.body.classList[addOrRemove]('offline');
     };
 
     window.addEventListener('online', handleConnectionChange);
     window.addEventListener('offline', handleConnectionChange);
-  }
 
-  handleClose() {
-    this.setState({
-      hidden: true
-    });
-  }
+    return function cleanup() {
+      window.removeEventListener('online', handleConnectionChange);
+      window.removeEventListener('offline', handleConnectionChange);
+    };
+  });
 
-  render() {
-    return (
-      !this.state.hidden &&
-        <div styleName="offline-indicator">
-          <div styleName="wrap-text">
-            No internet connection.
-          </div>
-          <div styleName="wrap-close">
-            <FontAwesomeIcon
-              styleName="close"
-              icon="times"
-              onClick={ this.handleClose } />
-          </div>
+  return (
+    !hidden &&
+      <div styleName="offline-indicator">
+        <div styleName="wrap-text">
+          No internet connection.
         </div>
-    );
-  }
+        <div styleName="wrap-close">
+          <FontAwesomeIcon
+            styleName="close"
+            icon="times"
+            onClick={ handleClose } />
+        </div>
+      </div>
+  );
 }

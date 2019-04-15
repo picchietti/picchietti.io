@@ -1,23 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 
 import './index.scss';
 
-export default class GrowthGraph extends React.Component {
-  static propTypes = {
-    dataUrl: PropTypes.string.isRequired, // where to fetch graph data
-    xLabel: PropTypes.string.isRequired,
-    // You want the data to accumulate to show the growth. Set to false if data is already accumulated.
-    accumulate: PropTypes.bool.isRequired
-  }
+function GrowthGraph(props) {
+  const container = useRef(null);
 
-  componentDidMount() {
-    this.build();
-  }
+  useEffect(() => {
+    build();
+  }, []);
 
-  static abbreviate(num) {
+  function abbreviate(num) {
     let abbr;
 
     if(num >= 1000000)
@@ -32,12 +26,11 @@ export default class GrowthGraph extends React.Component {
     return abbr;
   }
 
-  build() { // eslint-disable-line max-statements
-    this.container = ReactDOM.findDOMNode(this);
-    const selectedContainer = d3.select(this.container);
-    const dataUrl = this.props.dataUrl;
-    const xLabel = this.props.xLabel;
-    const accumulate = this.props.accumulate;
+  function build() { // eslint-disable-line max-statements
+    const selectedContainer = d3.select(container.current);
+    const dataUrl = props.dataUrl;
+    const xLabel = props.xLabel;
+    const accumulate = props.accumulate;
 
     const margin = { top: 10, right: 0, bottom: 20, left: 0 };
     const width = 175;
@@ -94,7 +87,7 @@ export default class GrowthGraph extends React.Component {
 
       selectedContainer.append('span')
         .attr('class', 'growth-overview-total')
-        .text(GrowthGraph.abbreviate(runningTotal));
+        .text(abbreviate(runningTotal));
 
       x.domain(d3.extent(data, function(d) {
         return d.date;
@@ -129,9 +122,16 @@ export default class GrowthGraph extends React.Component {
     });
   }
 
-  render() {
-    return (
-      <div></div>
-    );
-  }
+  return (
+    <div ref={container}></div>
+  );
 }
+
+GrowthGraph.propTypes = {
+  dataUrl: PropTypes.string.isRequired, // where to fetch graph data
+  xLabel: PropTypes.string.isRequired,
+  // You want the data to accumulate to show the growth. Set to false if data is already accumulated.
+  accumulate: PropTypes.bool.isRequired
+};
+
+export default GrowthGraph;

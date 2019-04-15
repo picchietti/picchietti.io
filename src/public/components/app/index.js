@@ -19,24 +19,22 @@ const ResourcePage = (props) => (<Page {...props} load={loadResource} />);
 
 import './index.scss';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="app">
-          <Header />
-          <div styleName="page">
-            <Switch>
-              <Route exact path="/" component={ResumePage} />
-              <Route exact path="/pages/login" component={LoginPage} />
-              <Route exact path="/pages/uploader" component={UploaderPage} />
-              <Route path="/pages/resource" component={ResourcePage} />
-              <Route component={NotFoundPage} />
-            </Switch>
-            <OfflineIndicator />
-          </div>
+export default function App(props) {
+  return (
+    <BrowserRouter>
+      <div className="app">
+        <Header />
+        <div styleName="page">
+          <Switch>
+            <Route exact path="/" component={ResumePage} />
+            <Route exact path="/pages/login" component={LoginPage} />
+            <Route exact path="/pages/uploader" component={UploaderPage} />
+            <Route path="/pages/resource" component={ResourcePage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+          <OfflineIndicator />
         </div>
-      </BrowserRouter>
-    );
-  }
+      </div>
+    </BrowserRouter>
+  );
 }

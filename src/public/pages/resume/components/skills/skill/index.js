@@ -3,20 +3,14 @@ import PropTypes from 'prop-types';
 
 import '../index.scss';
 
-export default class Skill extends React.Component {
-  static propTypes = {
-    children: PropTypes.any.isRequired
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.props = props;
-  }
-
-  render() {
-    return (
-      <span styleName="skill">{ this.props.children }</span>
-    );
-  }
+function Skill(props) {
+  return (
+    <span styleName="skill">{ props.children }</span>
+  );
 }
+
+Skill.propTypes = {
+  children: PropTypes.any.isRequired
+};
+
+export default Skill;

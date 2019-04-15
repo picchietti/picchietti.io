@@ -27,7 +27,6 @@ module.exports = merge(common, {
           options: {
             presets: ['babel-preset-env', 'babel-preset-react'],
             plugins: [
-              'transform-class-properties',
               ['react-css-modules', {
                 generateScopedName: '[local]_[hash:base64:5]',
                 filetypes: {

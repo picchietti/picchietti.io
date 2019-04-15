@@ -1,58 +1,41 @@
-import React from 'react';
-import { bindAll, last } from 'lodash';
+import React, { useState, useEffect, useRef } from 'react';
+import { last } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import XHR2 from '../../scripts/xhr2.js';
 
 import './index.scss';
 
-export default class Uploader extends React.Component {
-  constructor(props) {
-    super(props);
+export default function Uploader(props) {
+  const [url, setUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [uploadInputs, setUploadInputs] = useState([]);
 
-    this.state = {
-      url: '',
-      uploading: false,
-      uploadInputs: []
-    };
+  const uploadInputsRef = useRef(null);
 
-    bindAll(this, [
-      'clickedDropBox',
-      'filesChosen',
-      'handleUrlChange',
-      'handleUrlKeyUp',
-      'drop'
-    ]);
+  useEffect(() => {
+    addInput();
+  }, []);
+
+  function clickedDropBox(event) {
+    openFileChooser();
   }
 
-  clickedDropBox(event) {
-    this.addInput();
-  }
+  function addInput() {
+    const lastInput = last(uploadInputsRef.current.children);
 
-  addInput() {
-    // only create a new input if a file was chosen for the last
-    const lastInput = last(this.uploadInputsRef.children);
-    if(lastInput && lastInput.value === '') {
-      this.openFileChooser();
-      return;
+    if(!lastInput || lastInput.value !== '') {
+      const input = <input type="file" multiple="multiple" key={ uploadInputs.length } onChange={ filesChosen } />;
+      setUploadInputs([...uploadInputs, input]);
     }
-
-    const input = <input type="file" multiple="multiple" key={this.state.uploadInputs.length} onChange={this.filesChosen} />;
-    this.setState((prevState) => {
-      prevState.uploadInputs.push(input);
-
-      return {
-        uploadInputs: prevState.uploadInputs
-      };
-    }, this.openFileChooser);
   }
 
-  openFileChooser() {
-    const lastInput = last(this.uploadInputsRef.children);
-    lastInput && lastInput.click();
+  function openFileChooser() {
+    const lastInput = last(uploadInputsRef.current.children);
+    !uploading && lastInput && lastInput.click();
   }
 
-  filesChosen(event) {
+  function filesChosen(event) {
     const input = event.target;
     const formData = new FormData();
 
@@ -62,54 +45,46 @@ export default class Uploader extends React.Component {
 
     const xhr2 = new XHR2('POST', '/upload/file');
     xhr2.onload = () => {
-      this.setState((prevState) => {
-        prevState.uploadInputs.splice(input.key, 1);
-
-        return {
-          uploading: false,
-          uploadInputs: prevState.uploadInputs
-        };
-      });
+      const removedUploaded = uploadInputs.splice(input.key, 1);
+      setUploadInputs(removedUploaded);
+      setUploading(false);
+      addInput();
     };
 
     xhr2.send(formData);
-    this.setState({ uploading: true });
+    setUploading(true);
   }
 
-  handleUrlChange(event) {
-    this.setState({
-      url: event.target.value
-    });
+  function handleUrlChange(event) {
+    setUrl(event.target.value);
   }
 
-  handleUrlKeyUp(event) {
+  function handleUrlKeyUp(event) {
     if(event.keyCode === 13) {
       const xhr2 = new XHR2('POST', '/upload/url');
       xhr2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       xhr2.onload = () => {
-        this.setState({
-          url: ''
-        });
+        setUrl('');
       };
-      xhr2.send(`url=${this.state.url}`);
+      xhr2.send(`url=${url}`);
     }
   }
 
-  static dragEnter(event) {
+  function dragEnter(event) {
     event.target.classList.add('dragging');
     event.preventDefault();
   }
 
-  static dragOver(event) {
+  function dragOver(event) {
     event.preventDefault();
   }
 
-  static dragLeave(event) {
+  function dragLeave(event) {
     event.target.classList.remove('dragging');
     event.preventDefault();
   }
 
-  drop(event) {
+  function drop(event) {
     event.preventDefault();
 
     const dropbox = event.target;
@@ -126,9 +101,7 @@ export default class Uploader extends React.Component {
       const xhr2 = new XHR2('POST', '/upload/file');
 
       xhr2.onload = () => {
-        this.setState({
-          uploading: false
-        });
+        setUploading(false);
 
         if(xhr2.status === 204) {
           dropbox.classList.remove('dragging');
@@ -136,37 +109,33 @@ export default class Uploader extends React.Component {
       };
 
       xhr2.send(formData);
-      this.setState({ uploading: true });
+      setUploading(true);
     }
   }
 
-  render() {
-    return (
-      <main>
-        <div styleName="space" className="alignc">
-          <input type="text" styleName="url-upload" value={this.state.url} placeholder="Upload from URL..." onChange={this.handleUrlChange} onKeyUp={this.handleUrlKeyUp} />
+  return (
+    <main>
+      <div styleName="space" className="alignc">
+        <input type="text" styleName="url-upload" value={ url } placeholder="Upload from URL..." onChange={ handleUrlChange } onKeyUp={ handleUrlKeyUp } />
+      </div>
+      <div>
+        <div styleName="dropbox" className="no-select" onClick={ clickedDropBox } onDragEnter={ dragEnter } onDragOver={ dragOver } onDragLeave={ dragLeave } onDrop={ drop }>
+          <div styleName="upload-inputs" ref={ uploadInputsRef }>{ uploadInputs }</div>
+          {uploading &&
+            <div>
+              <FontAwesomeIcon icon="spinner" size="4x" pulse fixedWidth />
+              <div className="bold">Uploading...</div>
+            </div>
+          }
+          {!uploading &&
+            <div>
+              <FontAwesomeIcon icon="cloud-upload-alt" size="4x" />
+              <div className="bold">Drag n&apos; drop files to upload</div>
+              <div>(or click)</div>
+            </div>
+          }
         </div>
-        <div>
-          <div styleName="dropbox" className="no-select" onClick={this.clickedDropBox} onDragEnter={Uploader.dragEnter} onDragOver={Uploader.dragOver} onDragLeave={Uploader.dragLeave} onDrop={this.drop}>
-            <div styleName="upload-inputs" ref={ (ele) => {
-              this.uploadInputsRef = ele;
-            } }>{this.state.uploadInputs}</div>
-            {this.state.uploading &&
-              <div>
-                <FontAwesomeIcon icon="spinner" size="4x" pulse fixedWidth />
-                <div className="bold">Uploading...</div>
-              </div>
-            }
-            {!this.state.uploading &&
-              <div>
-                <FontAwesomeIcon icon="cloud-upload-alt" size="4x" />
-                <div className="bold">Drag n&apos; drop files to upload</div>
-                <div>(or click)</div>
-              </div>
-            }
-          </div>
-        </div>
-      </main>
-    );
-  }
+      </div>
+    </main>
+  );
 }

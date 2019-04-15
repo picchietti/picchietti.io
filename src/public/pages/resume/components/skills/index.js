@@ -1,53 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { bindAll } from 'lodash';
 
 import './index.scss';
 
-export default class Skills extends React.Component {
-  static propTypes = {
-    children: PropTypes.any.isRequired
+function Skills(props) {
+  const passedSkillsets = React.Children.toArray(props.children);
+  const maxShown = 1;
+  const shownDifference = passedSkillsets.length - maxShown;
+  const initiallyShown = passedSkillsets.slice(0, maxShown);
+
+  const [showingMore, setShowingMore] = useState(false);
+  const [skillsets, setSkillsets] = useState(initiallyShown);
+
+  function handleToggle() {
+    const skillsetsShown = passedSkillsets.slice(0, (showingMore) ? maxShown : undefined);
+    setSkillsets(skillsetsShown);
+    setShowingMore(!showingMore);
   }
 
-  constructor(props) {
-    super(props);
+  return (
+    <span>
+      <div styleName="skills">
+        { skillsets }
+      </div>
 
-    this.skillsets = React.Children.toArray(this.props.children);
-    this.maxShown = 1;
-    this.shownDifference = this.skillsets.length - this.maxShown;
-
-    const initiallyShown = this.skillsets.slice(0, this.maxShown);
-
-    this.state = {
-      showingMore: false,
-      skillsets: initiallyShown
-    };
-
-    bindAll(this, ['handleToggle']);
-  }
-
-  handleToggle() {
-    this.setState((prevState) => {
-      const skillsetsShown = this.skillsets.slice(0, (prevState.showingMore) ? this.maxShown : undefined);
-
-      return {
-        showingMore: !prevState.showingMore,
-        skillsets: skillsetsShown
-      };
-    });
-  }
-
-  render() {
-    return (
-      <span>
-        <div styleName="skills">
-          { this.state.skillsets }
-        </div>
-
-        <div className="indent">
-          <button onClick={this.handleToggle}>({this.shownDifference}) {this.state.showingMore ? 'Less' : 'More'}</button>
-        </div>
-      </span>
-    );
-  }
+      <div className="indent">
+        <button onClick={ handleToggle }>({ shownDifference }) { showingMore ? 'Less' : 'More' }</button>
+      </div>
+    </span>
+  );
 }
+
+Skills.propTypes = {
+  children: PropTypes.any.isRequired
+};
+
+export default Skills;

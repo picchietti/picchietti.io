@@ -1,35 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { omit } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Loading from '../loading';
 
-export default class Page extends React.Component {
-  static propTypes = {
-    load: PropTypes.func.isRequired // used to load bundle
-  }
+function Page(props) {
+  const [component, setComponent] = useState(null);
+  const { load } = props;
+  const otherProps = omit(props, ['load']);
 
-  constructor(props) {
-    super(props);
-
-    this.filteredProps = omit(props, ['load']);
-
-    this.state = {
-      component: null
-    };
-  }
-
-  componentWillMount() {
-    this.props.load((component) => {
-      this.setState({
-        component: component.default
-      });
+  useEffect(() => {
+    load((component) => {
+      setComponent(component);
     });
-  }
+  }, []);
 
-  render() {
-    return (
-      (this.state.component) ? <this.state.component {...this.filteredProps} /> : <Loading />
-    );
-  }
+  return (
+    (component)
+      ? <component.default { ...otherProps } />
+      : <Loading />
+  );
 }
+
+Page.propTypes = {
+  load: PropTypes.func.isRequired // used to load bundle
+};
+
+export default Page;

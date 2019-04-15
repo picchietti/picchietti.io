@@ -1,33 +1,19 @@
-import React from 'react';
-import { bindAll } from 'lodash';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './index.scss';
 
-export default class PasswordStrength extends React.Component {
-  static propTypes = {
-    // used to update the value of the password input
-    onChange: PropTypes.func.isRequired
-  }
+function PasswordStrength(props) {
+  const [indicatorStyle, setIndicatorStyle] = useState({});
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      indicatorStyle: {}
-    };
-
-    bindAll(this, ['passwordChanged']);
-  }
-
-  passwordChanged(event) {
+  function passwordChanged(event) {
     // parent needs a chance to update the value
-    this.props.onChange(event);
+    props.onChange(event);
 
-    this.calculate(event);
+    calculate(event);
   }
 
-  calculate(event) {
+  function calculate(event) {
     const password = event.target.value;
     const hasSymbols = /[^a-zA-Z]+/;
     const symbolsPoints = 2;
@@ -50,20 +36,23 @@ export default class PasswordStrength extends React.Component {
     else // awesome
       backgroundColor = '#6f0';
 
-    this.setState({
-      indicatorStyle: {
-        width: `${pointsPercentage}%`,
-        backgroundColor: backgroundColor
-      }
+    setIndicatorStyle({
+      width: `${pointsPercentage}%`,
+      backgroundColor
     });
   }
 
-  render() {
-    return (
-      <div styleName="wrap-password">
-        <input {...this.props} type="password" placeholder="Password" onChange={this.passwordChanged} />
-        <div styleName="strength" style={this.state.indicatorStyle}></div>
-      </div>
-    );
-  }
+  return (
+    <div styleName="wrap-password">
+      <input {...props} type="password" placeholder="Password" onChange={passwordChanged} />
+      <div styleName="strength" style={indicatorStyle}></div>
+    </div>
+  );
 }
+
+PasswordStrength.propTypes = {
+  // used to update the value of the password input
+  onChange: PropTypes.func.isRequired
+};
+
+export default PasswordStrength;

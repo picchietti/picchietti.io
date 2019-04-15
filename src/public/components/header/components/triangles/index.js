@@ -1,22 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import seedRandom from 'seedrandom';
 
 import './index.scss';
 
-export default class Triangles extends React.Component {
-  static propTypes = {
-    size: PropTypes.number,
-    seed: PropTypes.any
-  };
-  static defaultProps = {
-    size: 80,
-    seed: (new Date()).getTime()
-  };
+function Triangles(props) {
+  const canvas = useRef(null);
+  let context;
 
-  draw(triangles) {
-    const context = this.context;
+  function draw(triangles) {
     const drawTriangle = (triangle, i) => {
       context.fillStyle = context.strokeStyle = triangle.color;
       const points = triangle.points;
@@ -30,9 +23,8 @@ export default class Triangles extends React.Component {
     triangles.forEach(drawTriangle);
   }
 
-  generate(howMany) { // eslint-disable-line max-statements
-    const canvas = this.canvas;
-    const size = this.props.size;
+  function generate(howMany) { // eslint-disable-line max-statements
+    const size = props.size;
     const halfSize = size / 2;
     const triangles = [];
     let x = 0;
@@ -40,7 +32,7 @@ export default class Triangles extends React.Component {
     let mirror = true;
 
     for(let i = 0; i <= howMany; i++) {
-      const randomForColor = seedRandom(`${i}${this.props.seed}`);
+      const randomForColor = seedRandom(`${i}${props.seed}`);
       const color1 = Math.floor(randomForColor() * (250 - 215) + 215);
       const color2 = Math.floor(randomForColor() * (250 - 215) + 215);
       const rgb1 = `rgb(${color1}, ${color1}, ${color1})`;
@@ -85,7 +77,7 @@ export default class Triangles extends React.Component {
 
       x += size;
 
-      if(x - halfSize >= canvas.clientWidth) {
+      if(x - halfSize >= canvas.current.clientWidth) {
         x = 0;
         y += halfSize;
         mirror = !mirror;
@@ -95,50 +87,55 @@ export default class Triangles extends React.Component {
     return triangles;
   }
 
-  fill() {
-    const canvas = this.canvas;
-    const size = this.props.size;
+  function fill() {
+    const size = props.size;
     const halfSize = size / 2;
 
-    const canvasHeight = canvas.clientHeight;
-    const canvasWidth = canvas.clientWidth;
+    const canvasHeight = canvas.current.clientHeight;
+    const canvasWidth = canvas.current.clientWidth;
     const rows = Math.ceil(canvasHeight / halfSize);
     const perRow = Math.ceil(canvasWidth / size + 1) * 2;
     const amount = rows * perRow / 2;
 
-    const triangles = this.generate(amount);
+    const triangles = generate(amount);
 
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-    this.context.clearRect(0, 0, canvasWidth, canvasHeight);
-    this.draw(triangles);
+    canvas.current.width = canvasWidth;
+    canvas.current.height = canvasHeight;
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    draw(triangles);
   }
 
-  constructor(props) {
-    super(props);
-    this.limitedFillCanvas = debounce(() => this.fill(), 200);
-  }
 
-  componentDidMount() {
-    this.context = this.canvas.getContext('2d');
-    this.fill();
-    window.addEventListener('resize', this.limitedFillCanvas, false);
-  }
+  const limitedFillCanvas = debounce(() => fill(), 200);
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.limitedFillCanvas, false);
-  }
+  useEffect(() => {
+    context = canvas.current.getContext('2d');
+    fill();
+    window.addEventListener('resize', limitedFillCanvas, false);
 
-  render() {
-    return (
-      <div styleName="triangles">
-        <canvas
-          styleName="canvas"
-          ref={ (ele) => {
-            this.canvas = ele;
-          } }
-        />
-      </div>
-    );
-  }
+    return () => {
+      window.removeEventListener('resize', limitedFillCanvas, false);
+    };
+  });
+
+  return (
+    <div styleName="triangles">
+      <canvas
+        styleName="canvas"
+        ref={ canvas }
+      />
+    </div>
+  );
 }
+
+Triangles.propTypes = {
+  size: PropTypes.number,
+  seed: PropTypes.any
+};
+
+Triangles.defaultProps = {
+  size: 80,
+  seed: (new Date()).getTime()
+};
+
+export default Triangles;
