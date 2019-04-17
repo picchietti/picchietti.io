@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import PasswordStrength from '../../components/password_strength';
-
 import './index.scss';
-import XHR2 from '../../scripts/xhr2.js';
+import { httpError } from '../../scripts/errors';
 
 export default function Login(props) {
   const [feedback, setFeedback] = useState('');
@@ -26,23 +26,21 @@ export default function Login(props) {
   }
 
   function login() {
-    const xhr2 = new XHR2('POST', '/login');
-    xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr2.onload = () => {
-      if(xhr2.status === 401) {
+    axios.post('/login', {
+      username,
+      password
+    }).then((response) => {
+      setFeedback('');
+      setPassword('');
+
+      // returns page that referred to login page
+      location.href = response.data;
+    }).catch(httpError((error) => {
+      if(error.response.status === 401) {
         setFeedback('Incorrect username or password.');
         setPassword('');
       }
-      else if(xhr2.status === 200) {
-        setFeedback('');
-        setPassword('');
-
-        // returns page that referred to login page
-        location.href = xhr2.responseText;
-      }
-    };
-
-    xhr2.send(`username=${username}&password=${password}`);
+    }));
   }
 
   return (

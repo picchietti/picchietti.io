@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { last } from 'lodash';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import XHR2 from '../../scripts/xhr2.js';
+import { httpError } from '../../scripts/errors';
 
 import './index.scss';
 
@@ -43,15 +44,16 @@ export default function Uploader(props) {
       formData.append(`file${input.key}${i}`, input.files[i]);
     }
 
-    const xhr2 = new XHR2('POST', '/upload/file');
-    xhr2.onload = () => {
-      const removedUploaded = uploadInputs.splice(input.key, 1);
-      setUploadInputs(removedUploaded);
-      setUploading(false);
-      addInput();
-    };
+    axios.post('/upload/file', formData)
+      .then((response) => {
+        const removedUploaded = uploadInputs.splice(input.key, 1);
+        setUploadInputs(removedUploaded);
+        setUploading(false);
+        addInput();
+      }).catch(httpError((error) => {
+        alert('Error uploading file(s)'); // eslint-disable-line no-alert
+      }));
 
-    xhr2.send(formData);
     setUploading(true);
   }
 
@@ -61,12 +63,13 @@ export default function Uploader(props) {
 
   function handleUrlKeyUp(event) {
     if(event.keyCode === 13) {
-      const xhr2 = new XHR2('POST', '/upload/url');
-      xhr2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      xhr2.onload = () => {
+      axios.post('/upload/url', {
+        url
+      }).then((response) => {
         setUrl('');
-      };
-      xhr2.send(`url=${url}`);
+      }).catch(httpError((error) => {
+        alert('Error getting that file'); // eslint-disable-line no-alert
+      }));
     }
   }
 
@@ -98,17 +101,17 @@ export default function Uploader(props) {
         formData.append(`drop${i}`, files[i]);
       }
 
-      const xhr2 = new XHR2('POST', '/upload/file');
+      axios.post('/upload/file', formData)
+        .then((response) => {
+          setUploading(false);
 
-      xhr2.onload = () => {
-        setUploading(false);
+          if(response.status === 204) {
+            dropbox.classList.remove('dragging');
+          }
+        }).catch(httpError((error) => {
+          alert('Error uploading file(s)'); // eslint-disable-line no-alert
+        }));
 
-        if(xhr2.status === 204) {
-          dropbox.classList.remove('dragging');
-        }
-      };
-
-      xhr2.send(formData);
       setUploading(true);
     }
   }
