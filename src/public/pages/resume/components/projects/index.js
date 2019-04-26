@@ -20,12 +20,12 @@ function Projects(props) {
   }
 
   return (
-    <span>
-      <div className="indent" styleName="projects">
+    <div className="indent">
+      <div styleName="projects">
         { projects }
       </div>
 
-      <div className="indent">
+      <div>
         { shownDifference > 0 &&
           <button styleName="show-more" onClick={ handleToggle }>
             ({ shownDifference }) { showingMore ? 'Less' : 'More' }
@@ -41,14 +41,8 @@ function Projects(props) {
             <FontAwesomeIcon icon={ ['fab', 'github'] } /> More on Github
           </button>
         </a>
-
-        <div>
-          Extra websites I&apos;ve worked on but no longer maintain:&nbsp;
-          <a href="http://www.stlaurs.org/" target="_blank" rel="noopener noreferrer">Stlaurs</a>,&nbsp;
-          <a href="http://www2.cs.siu.edu/~HPCLab/" target="_blank" rel="noopener noreferrer">SIU HPC Lab</a>
-        </div>
       </div>
-    </span>
+    </div>
   );
 }
 

@@ -11,7 +11,9 @@ const setSecurityHeaders = (app) => {
         "'self'",
         "'unsafe-inline'",
         "'unsafe-eval'",
-        'www.google-analytics.com'
+        'www.google-analytics.com',
+        'fonts.googleapis.com',
+        'fonts.gstatic.com'
       ]
     },
     loose: true

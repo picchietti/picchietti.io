@@ -3,6 +3,7 @@ import { omit } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Loading from '../loading';
+import './index.scss';
 
 function Page(props) {
   const [component, setComponent] = useState(null);
@@ -16,9 +17,11 @@ function Page(props) {
   }, []);
 
   return (
-    (component)
-      ? <component.default { ...otherProps } />
-      : <Loading />
+    <div styleName="page">
+      {(component)
+        ? <component.default { ...otherProps } />
+        : <Loading />}
+    </div>
   );
 }
 

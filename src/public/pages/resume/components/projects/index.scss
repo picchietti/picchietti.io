@@ -5,7 +5,6 @@
     padding: 12px 18px;
     margin: 5px 0;
     border-radius: 4px;
-    font-size: 13px;
     display: block;
     color: #000;
 
@@ -28,4 +27,12 @@
 
 .show-more {
   margin: 0 10px 10px 0;
+}
+
+@media (max-width: 480px) {
+  .projects {
+    .project {
+      padding: 6px 4px;
+    }
+  }
 }

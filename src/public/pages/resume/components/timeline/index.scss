@@ -1,12 +1,10 @@
 .timeline {
   border-left: 2px solid gray;
-  margin-left: 57px;
+  margin-left: 50px;
   padding: 10px 0;
-  padding-left: 25px;
   min-height: 70px;
 
   .point {
-    margin-left: -25px;
     margin-bottom: 10px;
     padding-left: 35px;
     position: relative;
@@ -15,27 +13,31 @@
       position: absolute;
       top: 50%;
       margin-top: -0.5em;
-      left: -13px;
+      left: -0.5em;
       cursor: default;
 
       :global(.fa-circle).background {
         color: #fff;
-        font-size: 1.2em;
+        font-size: 1em;
       }
 
       :global(.fa-circle).foreground,
       :global(.fa-star).foreground {
         color: #ddd;
-        font-size: 0.8em;
+        font-size: 0.7em;
       }
 
       .year {
         color: #000;
-        font-family: monospace;
+        background-color: #fff;
+        font-family: 'Ubuntu Mono', monospace;
         font-size: 12px;
-        margin-left: -80px;
-        position: relative;
-        top: -7px;
+        position: absolute;
+        right: 100%;
+        padding-right: 4px;
+        top: 50%;
+        margin-top: -8px;
+        white-space: nowrap;
       }
     }
 
@@ -58,5 +60,26 @@
 
   .point:last-child {
     margin-bottom: 0;
+  }
+}
+
+// small devices
+@media (max-width: 480px) {
+  .timeline {
+    margin-left: 16px;
+
+    .point {
+      .when {
+        .year {
+          top: 100%;
+          padding-top: 2px;
+          padding-right: 0;
+          margin-left: -16px;
+          margin-top: -1px;
+          left: 50%;
+          right: auto;
+        }
+      }
+    }
   }
 }

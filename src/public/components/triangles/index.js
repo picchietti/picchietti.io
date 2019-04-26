@@ -119,7 +119,7 @@ function Triangles(props) {
   });
 
   return (
-    <div styleName="triangles">
+    <div styleName="triangles" className="no-print">
       <canvas
         styleName="canvas"
         ref={ canvas }

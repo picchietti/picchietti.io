@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './index.scss';
+import styles from './index.scss';
 
 function GrowthGraph(props) {
+  const { title, info } = props;
   const container = useRef(null);
 
   useEffect(() => {
@@ -86,7 +88,7 @@ function GrowthGraph(props) {
       }
 
       selectedContainer.append('span')
-        .attr('class', 'growth-overview-total')
+        .attr('class', styles['growth-overview-total'])
         .text(abbreviate(runningTotal));
 
       x.domain(d3.extent(data, function(d) {
@@ -97,7 +99,7 @@ function GrowthGraph(props) {
       }));
 
       svg.append('g')
-        .attr('class', 'x axis')
+        .attr('class', `x ${styles.axis}`)
         .attr('transform', `translate(0,${height})`)
         .call(xAxis);
 
@@ -107,23 +109,31 @@ function GrowthGraph(props) {
         .text(xLabel);
 
       svg.append('g')
-        .attr('class', 'y axis')
+        .attr('class', `y ${styles.axis}`)
         .call(yAxis);
 
       svg.append('path')
         .datum(data)
-        .attr('class', 'area')
+        .attr('class', styles.area)
         .attr('d', area);
 
       svg.append('path')
         .datum(data)
-        .attr('class', 'line')
+        .attr('class', styles.line)
         .attr('d', line);
     });
   }
 
   return (
-    <div ref={container}></div>
+    <div styleName="growth-overview">
+      { title &&
+        <div styleName="growth-overview-title">
+          {title}
+          {(info) ? <span>&nbsp;<FontAwesomeIcon icon="info-circle" title={info} /></span> : ''}
+        </div>
+      }
+      <div ref={container}></div>
+    </div>
   );
 }
 
@@ -131,7 +141,9 @@ GrowthGraph.propTypes = {
   dataUrl: PropTypes.string.isRequired, // where to fetch graph data
   xLabel: PropTypes.string.isRequired,
   // You want the data to accumulate to show the growth. Set to false if data is already accumulated.
-  accumulate: PropTypes.bool.isRequired
+  accumulate: PropTypes.bool.isRequired,
+  title: PropTypes.string,
+  info: PropTypes.string
 };
 
 export default GrowthGraph;

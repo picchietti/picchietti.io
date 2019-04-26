@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Header from '../header';
+import Triangles from '../triangles/';
 import Page from '../page';
 import OfflineIndicator from '../offline_indicator';
 
@@ -22,18 +22,16 @@ import './index.scss';
 export default function App(props) {
   return (
     <BrowserRouter>
-      <div className="app">
-        <Header />
-        <div styleName="page">
-          <Switch>
-            <Route exact path="/" component={ResumePage} />
-            <Route exact path="/pages/login" component={LoginPage} />
-            <Route exact path="/pages/uploader" component={UploaderPage} />
-            <Route path="/pages/resource" component={ResourcePage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-          <OfflineIndicator />
-        </div>
+      <div className="app" styleName="app">
+        <Triangles />
+        <Switch>
+          <Route exact path="/" component={ResumePage} />
+          <Route exact path="/pages/login" component={LoginPage} />
+          <Route exact path="/pages/uploader" component={UploaderPage} />
+          <Route path="/pages/resource" component={ResourcePage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+        <OfflineIndicator />
       </div>
     </BrowserRouter>
   );

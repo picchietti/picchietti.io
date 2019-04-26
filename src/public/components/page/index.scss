@@ -1,0 +1,44 @@
+.page {
+  padding: 20px 0;
+  background-color: #fff;
+  max-width: 8.5in;
+  border-radius: 20px;
+  margin: 0 auto;
+  box-shadow: 0 1px 3px #aaa;
+
+  main {
+    padding: 1em 4em;
+  }
+}
+
+// large devices
+@media (min-width: 8.6in) {
+  .page {
+    main {
+      padding: 1em 3em;
+    }
+  }
+}
+
+// medium devices
+@media (max-width: 8.5in) {
+  .page {
+    margin: 0;
+    width: 100%;
+
+    main {
+      padding: 0 2em;
+    }
+  }
+}
+
+// small devices
+@media (max-width: 480px) {
+  .page main {
+    padding: 0 1em;
+  }
+
+  :global(.hidden-small) {
+    display: none;
+  }
+}

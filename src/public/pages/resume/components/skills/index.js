@@ -24,9 +24,9 @@ function Skills(props) {
         { skillsets }
       </div>
 
-      <div className="indent">
-        <button onClick={ handleToggle }>({ shownDifference }) { showingMore ? 'Less' : 'More' }</button>
-      </div>
+      <button onClick={ handleToggle }>
+        ({ shownDifference }) { showingMore ? 'Less' : 'More' }
+      </button>
     </span>
   );
 }
