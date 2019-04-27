@@ -1,4 +1,3 @@
-const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,10 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   plugins: [
-    new CleanWebpackPlugin('../dist'),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      { from: './src/public/components/app/assets', to: '../' },
-      { from: './src/public/pages/resource/assets', to: '../pages/resource/assets/' }
+      { from: './src/public/components/app/assets', to: './' },
+      { from: './src/public/pages/resource/assets', to: './pages/resource/assets/' }
     ]),
     new HtmlWebpackPlugin({
       minify: {
@@ -25,15 +24,13 @@ module.exports = {
       },
       showErrors: true,
       template: './src/public/index.html',
-      filename: '../index.html',
+      filename: './index.html',
       inject: false
     })
     // new BundleAnalyzerPlugin()
   ],
   output: {
     filename: '[name].js',
-    // chunkFilename: '[hash].js',
-    path: path.resolve(__dirname, '../dist/public/bundles'),
     publicPath: '/bundles/'
   },
   module: {
@@ -46,7 +43,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: '../images/',
+              outputPath: './images/',
               publicPath: '/images/'
             }
           }
@@ -60,7 +57,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: '../fonts/',
+              outputPath: './fonts/',
               publicPath: '/fonts/'
             }
           }
@@ -74,7 +71,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: '../other/',
+              outputPath: './other/',
               publicPath: '/other/'
             }
           }
