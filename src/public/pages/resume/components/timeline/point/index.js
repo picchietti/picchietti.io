@@ -6,14 +6,19 @@ import '../index.scss';
 
 function Point(props) {
   const getShortDateRange = () => {
-    if(props.to === Point.defaultProps.to)
+    if(!props.to)
       return `${props.from}+`;
 
     return `${props.from.slice(-2)}-${props.to.slice(-2)}`;
   };
 
+  const getLongDateRange = () => {
+    const to = props.to || 'Current';
+    return `${props.from} - ${to}`;
+  };
+
   const shortDateRange = getShortDateRange();
-  const longDateRange = `${props.from} - ${props.to}`;
+  const longDateRange = getLongDateRange();
   const icon = (props.isFeatured) ? 'star' : 'circle';
   const iconClass = (props.isFeatured) ? 'featured' : '';
 
@@ -39,16 +44,44 @@ function Point(props) {
   );
 }
 
-Point.propTypes = {
-  from: PropTypes.string.isRequired, // string with YYYY at end
-  to: PropTypes.string, // string with YYYY at end
-  description: PropTypes.any.isRequired, // string or jsx
-  bullets: PropTypes.array.isRequired, // array of (strings or jsx)
-  isFeatured: PropTypes.bool
+const validStringWithYear = (isRequired) => (props, propName, componentName) => {
+  const prop = props[propName];
+
+  if (isRequired && prop === undefined || prop === null) {
+    return new Error(
+      `Prop "${propName}" required for <${componentName}>.`
+    );
+  }
+  else if (!isRequired && prop === undefined || prop === null) {
+    return null;
+  }
+
+  if (typeof prop !== 'string') {
+    return new Error(
+      `Invalid prop "${propName}" for <${componentName}>. Must be a string.`
+    );
+  }
+  if (!/\d{4}/.test(prop)) {
+    console.log('prop', prop);
+    return new Error(
+      `Invalid prop "${propName}" for <${componentName}>. String must contain four digits.`
+    );
+  }
+
+  return null;
 };
 
-Point.defaultProps = {
-  to: 'Current'
+const stringOrJsx = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.element
+]);
+
+Point.propTypes = {
+  from: validStringWithYear(true),
+  to: validStringWithYear(false),
+  description: stringOrJsx.isRequired,
+  bullets: PropTypes.arrayOf(stringOrJsx).isRequired,
+  isFeatured: PropTypes.bool
 };
 
 export default Point;
