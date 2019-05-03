@@ -8,3 +8,4 @@ src/cron/logs/
 src/secret/letsencrypt/
 src/secret/uploads/
 src/secret/config.env
+coverage/
