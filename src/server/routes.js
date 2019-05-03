@@ -24,7 +24,7 @@ const setupRoutes = (router) => {
   router.get('/logout', endpointLogout);
 
   router.get('/pages/uploader', restrictAccess, function(req, res) {
-    res.sendFile(`${rootDir}/dist/public/index.html`);
+    res.sendFile(`${rootDir}/dist/index.html`);
   });
 };
 

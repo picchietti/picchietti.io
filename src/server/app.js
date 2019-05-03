@@ -47,11 +47,11 @@ const router = new express.Router();
 setupRoutes(router);
 
 // Static Resources - AFTER setupRoutes so restricted access routes have priority.
-router.use(express.static('./dist/public/'));
+router.use(express.static('./dist/'));
 
 // send user the homepage with a react router that decides what page component to load
 router.use(function(req, res, next) {
-  res.sendFile(`${rootDir}/dist/public/index.html`);
+  res.sendFile(`${rootDir}/dist/index.html`);
 });
 
 app.use('/', router);
