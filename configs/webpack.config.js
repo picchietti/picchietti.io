@@ -2,6 +2,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -26,8 +27,12 @@ module.exports = {
       template: './src/public/index.html',
       filename: './index.html',
       inject: false
+    }),
+    new InjectManifest({
+      swSrc: './src/public/components/app/assets/service-worker.js',
+      importWorkboxFrom: 'disabled'
     })
-    // new BundleAnalyzerPlugin()
+    // , new BundleAnalyzerPlugin()
   ],
   output: {
     filename: '[name].js',

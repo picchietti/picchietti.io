@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Triangles from '../triangles/';
@@ -11,15 +11,22 @@ import loadLogin from '../../pages/login/index.bundle.js';
 import loadUploader from '../../pages/uploader/index.bundle.js';
 import loadResource from '../../pages/resource/index.bundle.js';
 
+import setupAnalytics from '../../scripts/analytics';
+import registerWorker from '../../scripts/worker';
+import './index.scss';
+
 const NotFoundPage = (props) => (<Page {...props} load={loadNotFound} />);
 const ResumePage = (props) => (<Page {...props} load={loadResume} />);
 const LoginPage = (props) => (<Page {...props} load={loadLogin} />);
 const UploaderPage = (props) => (<Page {...props} load={loadUploader} />);
 const ResourcePage = (props) => (<Page {...props} load={loadResource} />);
 
-import './index.scss';
-
 export default function App(props) {
+  useEffect(() => {
+    registerWorker();
+    setTimeout(setupAnalytics, 200);
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="app" styleName="app">
