@@ -37,7 +37,8 @@ if(process.env.NODE_ENV === 'development') {
   const compiler = webpack(devWebpackConfig);
   const devMiddleware = require('webpack-dev-middleware');
   app.use(devMiddleware(compiler, {
-    publicPath: devWebpackConfig.output.publicPath
+    publicPath: devWebpackConfig.output.publicPath,
+    writeToDisk: true
   }));
 }
 
