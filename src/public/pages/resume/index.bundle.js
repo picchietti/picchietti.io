@@ -103,41 +103,37 @@ export default function Resume(props) {
             <Skills>
               <SkillSet title="Featured Skills" featured>
                 <Skill>JavaScript</Skill>
-                <Skill>NodeJS</Skill>
-                <Skill>HTML</Skill>
-                <Skill>CSS</Skill>
-                <Skill>MySQL</Skill>
-                <Skill>Sass</Skill>
                 <Skill>React</Skill>
+                <Skill>NodeJS</Skill>
+                <Skill>MongoDB</Skill>
+                <Skill>Jest</Skill>
+                <Skill>CSS</Skill>
+                <Skill>Sass</Skill>
                 <Skill>Ruby/Rails</Skill>
                 <Skill>Git</Skill>
                 <Skill>Docker</Skill>
                 <Skill>Bootstrap</Skill>
               </SkillSet>
               <SkillSet title="Other Skills">
-                <Skill>CoffeeScript</Skill>
-                <Skill>Backbone</Skill>
-                <Skill>Handlebars</Skill>
-                <Skill>Haml</Skill>
+                <Skill>MySQL</Skill>
+                <Skill>HTML</Skill>
                 <Skill>Java &amp; Android SDK</Skill>
                 <Skill>Gulp</Skill>
                 <Skill>D3</Skill>
                 <Skill>Bash</Skill>
                 <Skill>Lets Encrypt</Skill>
                 <Skill>MomentJS</Skill>
+                <Skill>CoffeeScript</Skill>
               </SkillSet>
               <SkillSet title="Main Operating System">
                 <Skill>Ubuntu Linux</Skill>
               </SkillSet>
-              <SkillSet title="Tools">
-                <Skill>Atom</Skill>
-                <Skill>Gitkraken</Skill>
-                <Skill>Android Studio</Skill>
-                <Skill>Slack</Skill>
-              </SkillSet>
               <SkillSet title="Deprecated Skills">
                 <Skill>Vagrant</Skill>
                 <Skill>PHP</Skill>
+                <Skill>Backbone</Skill>
+                <Skill>Handlebars</Skill>
+                <Skill>Haml</Skill>
               </SkillSet>
             </Skills>
           </div>
