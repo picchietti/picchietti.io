@@ -36,7 +36,7 @@ module.exports = {
   ],
   output: {
     filename: '[name].js',
-    publicPath: '/bundles/'
+    publicPath: '/'
   },
   module: {
     rules: [
