@@ -25,7 +25,7 @@ function fromCache(request) {
   return caches.open(cacheName)
     .then((cache) => (
       cache.match(request).then((matching) => (
-        matching || Promise.reject(new Error('no-match'))
+        matching || fetch(request)
       ))
     ));
 }
