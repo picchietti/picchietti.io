@@ -40,7 +40,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "request": "^2.83.0",
     "seedrandom": "^3.0.0",
     "shrink-ray-current": "^3.0.2",
     "sleep": "^5.1.0",

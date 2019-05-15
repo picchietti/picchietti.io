@@ -1,5 +1,5 @@
 const fs = require('fs');
-const request = require('request');
+const axios = require('axios');
 
 const rootDir = '/usr/src/app/src';
 
@@ -15,10 +15,16 @@ module.exports = (req, res) => {
       res.status(204).end();
     });
 
-    request(fileUrl).on('error', (err) => {
+    axios({
+      url: fileUrl,
+      method: 'GET',
+      responseType: 'stream'
+    }).then((response) => {
+      response.data.pipe(file);
+    }).catch((error) => {
       file.close();
       fs.unlink(path + filename);
       res.status(500).end();
-    }).pipe(file);
+    });
   });
 };
