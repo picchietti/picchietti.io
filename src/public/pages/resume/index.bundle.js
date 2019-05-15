@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import GrowthGraph from '../../components/graphs/growth';
+import Picture from '../../components/picture';
 import Projects from './components/projects';
 import Project from './components/projects/project';
 import Skills from './components/skills';
@@ -33,7 +34,7 @@ export default function Resume(props) {
       <div styleName="resume">
         <div styleName="header">
           <div styleName="profile" className="hidden-small">
-            <img src={profile} alt="Me" styleName="picture" />
+            <Picture src={profile} alt="Me" />
           </div>
           <div styleName="name">
             <div className="wrap-centered">

@@ -1,8 +1,26 @@
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 
 module.exports = merge(common, {
   mode: 'production',
+  plugins: [
+    new ImageminWebpWebpackPlugin({
+      config: [
+        {
+          test: /\.(png)$/,
+          options: {
+            lossless: true
+          }
+        }, {
+          test: /\.(jpe?g)$/,
+          options: {
+            quality: 65
+          }
+        }
+      ]
+    })
+  ],
   module: {
     rules: [
       {
