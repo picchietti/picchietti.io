@@ -50,6 +50,9 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET')
+    return;
+
   event.respondWith(fromCache(event.request));
   if (navigator.onLine) {
     event.waitUntil(updateCache(event.request));
