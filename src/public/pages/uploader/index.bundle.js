@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { last } from 'lodash';
+import { last } from 'lodash-es';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

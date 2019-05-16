@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
+import { debounce } from 'lodash-es';
 import seedRandom from 'seedrandom';
 
 import './index.scss';

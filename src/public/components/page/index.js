@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { omit } from 'lodash';
+import { omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 
 import Loading from '../loading';
