@@ -11,7 +11,6 @@ import loadLogin from '../../pages/login/index.bundle.js';
 import loadUploader from '../../pages/uploader/index.bundle.js';
 import loadResource from '../../pages/resource/index.bundle.js';
 
-import setupAnalytics from '../../scripts/analytics';
 import registerWorker from '../../scripts/worker';
 import './index.scss';
 
@@ -24,7 +23,6 @@ const ResourcePage = (props) => (<Page {...props} load={loadResource} />);
 export default function App(props) {
   useEffect(() => {
     registerWorker();
-    setTimeout(setupAnalytics, 200);
   }, []);
 
   return (

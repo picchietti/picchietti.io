@@ -63,8 +63,8 @@ jwtClient.authorize(function(err, tokens) {
 
   Analytics.save('41469908', 'siualumni.com'); // since '2013-10-30'
   Analytics.save('82388800', 'dnadiscovery.net'); // since '2014-02-18'
-  Analytics.save('118734877', 'picchietti.io'); // since '2016-03-26'
 });
 
-// // Legacy
+// // No longer gathered
+// Analytics.save('118734877', 'picchietti.io'); // since '2016-03-26'
 // Analytics.save('71729805', 'jonpicchietti.com'); // since '2013-04-26'
