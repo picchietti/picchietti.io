@@ -43,7 +43,6 @@
     "react-router-dom": "^5.0.0",
     "seedrandom": "^3.0.0",
     "shrink-ray-current": "^3.0.2",
-    "sleep": "^5.1.0",
     "spdy": "^3.4.4",
     "url": "^0.11.0"
   },

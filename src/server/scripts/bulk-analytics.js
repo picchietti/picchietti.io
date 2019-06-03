@@ -1,7 +1,8 @@
 const google = require('googleapis');
 const analytics = google.analytics('v3');
 const moment = require('moment');
-const sleep = require('sleep');
+
+const sleep = require('./sleep');
 const key = require('../../secret/resume-stats-a8a939419e3a.json'); // eslint-disable-line import/no-unresolved
 const mongo = require('../mongodb.js');
 
@@ -54,7 +55,7 @@ mongo.getDb().then((db) => {
 
         since.add(1, 'days');
         if(since.isSameOrBefore(Analytics.yesterday)) {
-          sleep.sleep(3);
+          sleep(3);
           Analytics.get(id, source, since);
         }
         else {
