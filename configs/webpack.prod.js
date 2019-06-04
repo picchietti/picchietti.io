@@ -1,5 +1,6 @@
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const merge = require('webpack-merge');
+
 const common = require('./webpack.config.js');
 
 module.exports = merge(common, {
@@ -30,9 +31,17 @@ module.exports = merge(common, {
           {
             loader: 'css-loader',
             options: {
-              minimize: true,
               modules: true,
-              localIdentName: '[local]_[hash:base64:5]'
+              localIdentName: '[local]_[hash:base64:5]',
+              importLoaders: 2
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: './configs/postcss.config.js'
+              }
             }
           },
           { loader: 'sass-loader' }
