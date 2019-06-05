@@ -1,7 +1,7 @@
 const axios = require('axios');
 const moment = require('moment');
 
-const credentials = require('../../../secret/cloudflare');
+const credentials = require('../../../secret/cloudflare'); // eslint-disable-line import/no-unresolved
 const mongo = require('../../../server/mongodb.js');
 
 const cloudflareRequest = axios.create({
