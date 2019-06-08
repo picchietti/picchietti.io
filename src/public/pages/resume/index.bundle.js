@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import GrowthGraph from '../../components/graphs/growth';
 import Picture from '../../components/picture';
+import GitSocial from '../../components/GitSocial';
 import Projects from './components/projects';
 import Project from './components/projects/project';
 import Skills from './components/skills';
@@ -48,7 +49,6 @@ export default function Resume(props) {
           <div styleName="section">
             <div styleName="title">Contact</div>
             <div styleName="contact-badge">
-
               <div styleName="contact-info">
                 <div>
                   <a href="tel:+13093709036">
@@ -68,12 +68,7 @@ export default function Resume(props) {
                     St. Charles, MO
                   </a>
                 </div>
-                <div>
-                  <a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon icon={ ['fab', 'github'] } />
-                    Github
-                  </a>
-                </div>
+                <GitSocial />
                 <div>
                   <a href="https://www.linkedin.com/in/picchietti/" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={ ['fab', 'linkedin'] } />

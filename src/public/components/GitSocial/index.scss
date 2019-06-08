@@ -1,0 +1,28 @@
+.git-social {
+  display: inline-block;
+
+  .slider {
+    background-color: #ddd;
+    border-radius: 20px;
+    box-sizing: content-box;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0 5px;
+    width: 2em;
+
+    &.off {
+      svg {
+        margin-left: 0;
+        transition: margin-left 1s ease;
+      }
+    }
+
+    &.on {
+      svg {
+        margin-left: 1em;
+        transition: margin-left 1s ease;
+      }
+    }
+  }
+}

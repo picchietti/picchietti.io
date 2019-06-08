@@ -4,12 +4,15 @@ import {
   faStar, faInfoCircle, faCircle, faCaretLeft, faCloudUploadAlt,
   faArrowLeft, faWifi, faTimes, faEdit
 } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {
+  faGithub, faLinkedin, faGitlab
+} from '@fortawesome/free-brands-svg-icons';
 
 export default function() {
   library.add(
     faLinkedin,
     faGithub,
+    faGitlab,
     faDna,
     faSpinner,
     faPhone,
