@@ -34,9 +34,9 @@ function Timeline(props) {
         </div>
       </div>
 
-      <div className="alignc">
-        <button onClick={handleToggle}>({shownDifference}) {showingMore ? 'Less' : 'More'}</button>
-      </div>
+      <button onClick={handleToggle}>
+        ({shownDifference}) {showingMore ? 'Less' : 'More'}
+      </button>
     </div>
   );
 }
