@@ -1,12 +1,10 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const shrinkray = require('shrink-ray-current');
 
 const setupRoutes = require('./routes.js');
 const setSecurityHeaders = require('./securityHeaders.js');
-const setupPassport = require('./passport.js');
 
 const app = express();
 const rootDir = '/usr/src/app';
@@ -16,17 +14,8 @@ setSecurityHeaders(app);
 app.use(shrinkray({
   threshold: 100
 }));
-
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: true }
-}));
-
-setupPassport(app);
 
 if(process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
