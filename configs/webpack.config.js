@@ -41,6 +41,28 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]_[hash:base64:5]',
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: './configs/postcss.config.js'
+              }
+            }
+          }
+        ]
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         exclude: /font/,
         use: [

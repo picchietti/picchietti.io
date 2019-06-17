@@ -3,7 +3,7 @@ import { omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 
 import Loading from '../loading';
-import './index.scss';
+import './index.css';
 
 function Page(props) {
   const [component, setComponent] = useState(null);

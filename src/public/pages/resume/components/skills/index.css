@@ -1,5 +1,6 @@
 .skills {
   margin-bottom: 10px;
+}
 
   .skill {
     background-color: #eee;
@@ -8,4 +9,3 @@
     font-size: 13px;
     display: inline-block;
   }
-}

@@ -4,11 +4,13 @@
   margin-left: 50px;
   padding: 10px 0;
   min-height: 70px;
+}
 
   .point {
     margin-bottom: 10px;
     padding-left: 35px;
     position: relative;
+  }
 
     .when {
       position: absolute;
@@ -16,14 +18,15 @@
       margin-top: -0.5em;
       left: -0.5em;
       cursor: default;
+    }
 
-      :global(.fa-circle).background {
+      .when :global(.fa-circle).background {
         color: #fff;
         font-size: 1em;
       }
 
-      :global(.fa-circle).foreground,
-      :global(.fa-star).foreground {
+      .when :global(.fa-circle).foreground,
+      .when :global(.fa-star).foreground {
         color: #ddd;
         font-size: 0.7em;
       }
@@ -40,14 +43,14 @@
         margin-top: -8px;
         white-space: nowrap;
       }
-    }
 
     .what {
       position: relative;
       background-color: #eee;
       padding: 10px;
+    }
 
-      :global(.fa-caret-left) {
+      .what :global(.fa-caret-left) {
         position: absolute;
         top: 50%;
         right: 100%;
@@ -56,31 +59,24 @@
         margin-top: -15px;
         margin-right: -1px;
       }
-    }
-  }
 
   .point:last-child {
     margin-bottom: 0;
   }
-}
 
-// small devices
+/* small devices */
 @media (max-width: 480px) {
   .timeline {
     margin-left: 16px;
-
-    .point {
-      .when {
-        .year {
-          top: 100%;
-          padding-top: 2px;
-          padding-right: 0;
-          margin-left: -16px;
-          margin-top: -1px;
-          left: 50%;
-          right: auto;
-        }
-      }
-    }
   }
+
+    .year {
+      top: 100%;
+      padding-top: 2px;
+      padding-right: 0;
+      margin-left: -16px;
+      margin-top: -1px;
+      left: 50%;
+      right: auto;
+    }
 }

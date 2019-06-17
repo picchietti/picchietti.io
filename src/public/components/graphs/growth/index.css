@@ -5,6 +5,7 @@
   position: relative;
   border-radius: 3px;
   width: 100%;
+}
 
   .growth-overview-title {
     font-size: 0.95em;
@@ -37,4 +38,3 @@
     fill: #e1f5fe;
     stroke-width: 0;
   }
-}

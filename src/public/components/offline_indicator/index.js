@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './index.scss';
+import './index.css';
 
 export default function OfflineIndicator(props) {
   const initiallyHidden = (typeof navigator === 'undefined') ? true : navigator.onLine;

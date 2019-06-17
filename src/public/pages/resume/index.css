@@ -1,26 +1,28 @@
-$button_blue: rgb(45, 139, 215);
-
 .resume {
   line-height: 1.3;
   position: relative;
+}
 
-  a:hover,
-  a:focus {
+  .resume :global(.featured) {
+    color: #ffd600 !important;
+  }
+
+  .resume a:hover,
+  .resume a:focus {
     text-decoration: underline;
   }
 
   .header {
     display: flex;
     align-items: center;
+  }
 
-    div {
+    .header div {
       margin: 0 6px;
     }
 
-    .profile {
-      img {
-        max-width: 100px;
-      }
+    .profile img {
+      max-width: 100px;
     }
 
     .name {
@@ -28,42 +30,43 @@ $button_blue: rgb(45, 139, 215);
       font-size: 30pt;
       width: 100%;
       text-align: center;
+    }
 
       .pronunciation {
         font-size: 10pt;
         text-align: right;
       }
-    }
 
     .qr {
       min-height: 80px;
     }
-  }
 
   .contact-badge {
+  }
+
     .contact-info {
       display: flex;
       align-items: center;
       justify-content: space-around;
       flex-wrap: wrap;
+    }
 
-      div {
+      .contact-info div {
         margin: 6px;
       }
-    }
-  }
 
   .education {
     display: flex;
     justify-content: space-around;
+  }
 
-    div {
+    .education div {
       margin: 0 6px;
     }
-  }
 
   .section {
     margin-top: 20px;
+  }
 
     .title {
       font-size: 1.2em;
@@ -71,16 +74,11 @@ $button_blue: rgb(45, 139, 215);
       margin-bottom: 12px;
     }
 
-    :global(.subtitle) {
+    .section :global(.subtitle) {
       text-transform: uppercase;
       font-size: 12px;
       margin: 6px 0;
     }
-  }
-
-  :global(.featured) {
-    color: #ffd600 !important;
-  }
 
   .spacing-top {
     margin-top: 15px;
@@ -91,18 +89,17 @@ $button_blue: rgb(45, 139, 215);
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 0 -5px;
+  }
 
     .impact {
       width: 175px;
       margin-left: 5px;
       margin-right: 5px;
+    }
 
-      :global(.svg-inline--fa.fa-info-circle) {
+      .impact :global(.svg-inline--fa.fa-info-circle) {
         cursor: help;
       }
-    }
-  }
-}
 
 @media print {
   body {
@@ -121,10 +118,8 @@ $button_blue: rgb(45, 139, 215);
 }
 
 @media (max-width: 480px) {
-  .resume {
-    ul,
-    :global(.indent) {
-      padding-left: 0;
-    }
+  .resume ul,
+  .resume :global(.indent) {
+    padding-left: 0;
   }
 }

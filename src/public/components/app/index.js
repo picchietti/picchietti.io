@@ -10,7 +10,7 @@ import loadResume from '../../pages/resume/index.bundle.js';
 import loadResource from '../../pages/resource/index.bundle.js';
 
 import registerWorker from '../../scripts/worker';
-import './index.scss';
+import './index.css';
 
 const NotFoundPage = (props) => (<Page {...props} load={loadNotFound} />);
 const ResumePage = (props) => (<Page {...props} load={loadResume} />);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './index.scss';
+import './index.css';
 
 import './assets/diploma.png';
 import './assets/awards/wyse.jpg';

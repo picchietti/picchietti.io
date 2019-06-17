@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './index.scss';
+import './index.css';
 
 function GitSocial(props) {
   const [on, setOn] = useState(false);

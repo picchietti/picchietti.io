@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './public/components/app';
 import setupFontAwesome from './public/scripts/font-awesome';
 
-import './public/index.scss';
+import './public/index.css';
 
 setupFontAwesome();
 

@@ -2,10 +2,7 @@
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,section,summary,time,mark,audio,video,main{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
 /* stylelint-enable */
 
-// variables
-$button_blue: rgb(36, 121, 193);
-
-// Include padding in width
+/* Include padding in width */
 *,
 *::before,
 *::after {
@@ -26,11 +23,11 @@ img {
 ul {
   list-style-type: disc;
   list-style-position: inside;
+}
 
-  li {
+  ul li {
     line-height: 1.5;
   }
-}
 
 input[type="text"],
 input[type="email"],
@@ -41,35 +38,40 @@ input[type="password"] {
   border: 1px solid #eee;
   border-bottom: solid 2px #c9c9c9;
   transition: border 0.3s;
+}
 
-  &:focus {
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
     border-bottom: solid 2px #969696;
   }
-}
 
 input[type="button"],
 button {
-  border: 2px solid $button_blue;
+  border: 2px solid rgb(36, 121, 193);
   border-radius: 4px;
   background-color: #fff;
-  color: $button_blue;
+  color: rgb(36, 121, 193);
   font-size: 14px;
   padding: 5px 10px;
   cursor: pointer;
+}
 
-  &:hover,
-  &:focus {
-    background-color: $button_blue;
+  input[type="button"]:hover,
+  button:hover,
+  input[type="button"]:focus,
+  button:focus {
+    background-color: rgb(36, 121, 193);
     color: #fff;
   }
 
-  &:disabled {
+  input[type="button"]:disabled,
+  button:disabled {
     cursor: not-allowed;
     background-color: #777;
     border-color: #777;
     color: #fff;
   }
-}
 
 input,
 select,
@@ -88,84 +90,82 @@ body {
   height: 100vh;
 }
 
-:global {
-  strong,
-  b,
-  .bold {
-    font-weight: bold;
-  }
+strong,
+b,
+:global(.bold) {
+  font-weight: bold;
+}
 
-  em,
-  i,
-  .italic {
-    font-style: italic;
-  }
+em,
+i,
+:global(.italic) {
+  font-style: italic;
+}
 
-  p {
-    margin: 0 0 2em 0;
-  }
+p {
+  margin: 0 0 2em 0;
+}
 
-  .alignl { text-align: left; }
-  .alignr { text-align: right; }
-  .alignc { text-align: center; }
-  .clearb { clear: both; }
+:global(.alignl) { text-align: left; }
+:global(.alignr) { text-align: right; }
+:global(.alignc) { text-align: center; }
+:global(.clearb) { clear: both; }
 
-  a,
-  .link {
-    color: #00f;
-    text-decoration: none;
-    cursor: pointer;
-  }
+a,
+:global(.link) {
+  color: #00f;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .super {
-    font-size: 12px;
-    vertical-align: super;
-  }
+:global(.super) {
+  font-size: 12px;
+  vertical-align: super;
+}
 
-  .no-select {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+:global(.no-select) {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-  .hidden { display: none; }
+:global(.hidden) { display: none; }
 
-  ul,
-  .indent {
-    padding-left: 24px;
-  }
+ul,
+:global(.indent) {
+  padding-left: 24px;
+}
 
-  a .svg-inline--fa,
-  .link .svg-inline--fa {
-    margin-right: 10px;
-  }
+a :global(.svg-inline--fa),
+:global(.link .svg-inline--fa) {
+  margin-right: 10px;
+}
 
-  .wrap-centered {
-    display: inline-block;
-    text-align: center;
-  }
+:global(.wrap-centered) {
+  display: inline-block;
+  text-align: center;
+}
 
-  .svg-inline--fa { color: #000; }
+:global(.svg-inline--fa) { color: #000; }
 
-  .on-print,
-  .on-print-block,
-  .on-print-inline {
+:global(.on-print,
+.on-print-block,
+.on-print-inline) {
+  display: none !important;
+}
+
+@media print {
+  :global(.no-print) {
     display: none !important;
   }
 
-  @media print {
-    .no-print {
-      display: none !important;
-    }
+  :global(.on-print,
+  .on-print-block) {
+    display: block !important;
+  }
 
-    .on-print,
-    .on-print-block {
-      display: block !important;
-    }
-
-    .on-print-inline {
-      display: inline !important;
-    }
+  :global(.on-print-inline) {
+    display: inline !important;
   }
 }

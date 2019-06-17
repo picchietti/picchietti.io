@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './index.scss';
+import './index.css';
 
 function Projects(props) {
   const passedProjects = React.Children.toArray(props.children);

@@ -25,29 +25,6 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.s?css$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[local]_[hash:base64:5]',
-              importLoaders: 2
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: './configs/postcss.config.js'
-              }
-            }
-          },
-          { loader: 'sass-loader' }
-        ]
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -56,12 +33,7 @@ module.exports = merge(common, {
             presets: ['@babel/preset-env', '@babel/preset-react'],
             plugins: [
               ['react-css-modules', {
-                generateScopedName: '[local]_[hash:base64:5]',
-                filetypes: {
-                  '.scss': {
-                    syntax: 'postcss-scss'
-                  }
-                }
+                generateScopedName: '[local]_[hash:base64:5]'
               }]
             ],
             compact: true,

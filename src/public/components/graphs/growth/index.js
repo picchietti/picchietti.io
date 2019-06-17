@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from './index.scss';
+import styles from './index.css';
 
 function GrowthGraph(props) {
   const { title, info } = props;

@@ -16,7 +16,7 @@ import profile from './images/profile2.png';
 import './contributions.json';
 import './greplytix-recommendation-online.pdf';
 
-import './index.scss';
+import './index.css';
 
 const employmentHistory = [
   { from: '2018', description: <span><span className="bold">Software Engineer</span>, <a href="https://www.express-scripts.com/" target="_blank" rel="noopener noreferrer">Express Scripts</a></span>, bullets: [<span>Working on a complex, large scale system with a highly qualified team.</span>], isFeatured: true },

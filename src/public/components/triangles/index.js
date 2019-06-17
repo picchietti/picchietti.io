@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { debounce } from 'lodash-es';
 import seedRandom from 'seedrandom';
 
-import './index.scss';
+import './index.css';
 
 function Triangles(props) {
   const canvas = useRef(null);

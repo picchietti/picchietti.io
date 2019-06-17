@@ -1,4 +1,6 @@
 .resource {
+}
+
   .back {
     padding: 10px;
     background-color: #bdbdbd;
@@ -13,9 +15,8 @@
   .item {
     width: 100%;
     height: 100%;
+  }
 
-    img {
+    .item img {
       width: 100%;
     }
-  }
-}

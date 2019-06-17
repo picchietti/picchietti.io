@@ -1,4 +1,6 @@
 .notfound {
+}
+
   .centered {
     display: flex;
     align-items: center;
@@ -6,10 +8,12 @@
     background-image: url('./images/missing.jpg');
     width: 100%;
     min-height: 500px;
+  }
 
     .message {
       padding: 15px;
       background-color: rgba(255, 255, 255, 0.85);
+    }
 
       .large,
       .small {
@@ -23,6 +27,3 @@
       .small {
         font-size: 1em;
       }
-    }
-  }
-}

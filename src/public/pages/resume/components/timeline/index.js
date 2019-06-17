@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Point from './point';
-import './index.scss';
+import './index.css';
 
 function Timeline(props) {
   const maxShown = props.maxShown;

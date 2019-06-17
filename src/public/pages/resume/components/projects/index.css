@@ -1,5 +1,6 @@
 .projects {
   margin-bottom: 10px;
+}
 
   .project {
     padding: 12px 18px;
@@ -7,32 +8,31 @@
     border-radius: 4px;
     display: block;
     color: #000;
+  }
 
     .project-contents {
       display: flex;
       align-items: center;
     }
+
+  .projects a:hover,
+  .projects a:focus {
+    text-decoration: none !important;
   }
 
-  a:hover,
-  a:focus {
-    text-decoration: none !important;
-
-    .project {
+    .projects a:hover .project,
+    .projects a:focus .project {
       transition: background-color 0.3s;
       background-color: #eee;
     }
-  }
-}
 
 .show-more {
   margin: 0 10px 10px 0;
 }
 
+/* small devices */
 @media (max-width: 480px) {
-  .projects {
-    .project {
-      padding: 6px 4px;
-    }
+  .project {
+    padding: 6px 4px;
   }
 }
