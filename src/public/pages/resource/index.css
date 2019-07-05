@@ -6,6 +6,7 @@
     background-color: #bdbdbd;
     cursor: pointer;
     color: #000;
+    margin-bottom: 10px;
   }
 
   .back:hover {
