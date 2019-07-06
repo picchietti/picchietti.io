@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 if(process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
-  const devWebpackConfig = require('../../configs/webpack.dev.js');
+  const devWebpackConfig = require('@picchietti/build/webpack.dev.js');
   const compiler = webpack(devWebpackConfig);
   const devMiddleware = require('webpack-dev-middleware');
   app.use(devMiddleware(compiler, {
