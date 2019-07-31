@@ -1,11 +1,15 @@
 image: node:lts
 
+cache:
+  paths:
+    - node_modules/
+
 stages:
-  - build
+  - install
   - test
 
-build:
-  stage: build
+install:
+  stage: install
   script: npm install
 
 test:
