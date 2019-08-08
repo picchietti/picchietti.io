@@ -21,8 +21,8 @@ const rfc3339 = 'YYYY-MM-DDTHH:mm:ss[Z]';
 const yesterday = moment().subtract(1, 'days');
 const today = moment().format(rfc3339);
 
-zones.forEach((zone) => {
-  cloudflareRequest.get(
+const zonePromises = zones.map((zone) => {
+  return cloudflareRequest.get(
     `zones/${zone.id}/analytics/dashboard` +
       `?since=${yesterday.format(rfc3339)}` +
       `&until=${today}` +
@@ -31,13 +31,13 @@ zones.forEach((zone) => {
     const users = response.data.result.totals.uniques.all;
     const pageviews = response.data.result.totals.pageviews.all;
 
-    mongo.getDb().then((db) => {
+    return mongo.getDb().then((db) => {
       db.collection('impact_analytics').insertOne({
         pageviews: pageviews,
         users: users,
         source: zone.name,
         ymd: yesterday.toDate()
-      }).then(mongo.close);
+      });
     });
   }).catch((error) => {
     if (error.response) {
@@ -51,3 +51,5 @@ zones.forEach((zone) => {
     }
   });
 });
+
+Promise.all(zonePromises).then(() => mongo.close());
