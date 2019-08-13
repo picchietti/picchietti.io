@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Personal website",
   "author": "Jon Picchietti <jon@picchietti.email>",
+  "license": "MIT",
   "scripts": {
     "eslint": "eslint src/ --ext .js",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
