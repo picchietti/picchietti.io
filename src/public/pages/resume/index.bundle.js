@@ -91,7 +91,6 @@ export default function Resume(props) {
                 <Skill>React</Skill>
                 <Skill>NodeJS</Skill>
                 <Skill>MongoDB</Skill>
-                <Skill>Jest</Skill>
                 <Skill>CSS</Skill>
                 <Skill>Sass</Skill>
                 <Skill>Ruby/Rails</Skill>
@@ -108,10 +107,17 @@ export default function Resume(props) {
                 <Skill>Bash</Skill>
                 <Skill>Lets Encrypt</Skill>
                 <Skill>MomentJS</Skill>
-                <Skill>CoffeeScript</Skill>
               </SkillSet>
-              <SkillSet title="Main Operating System">
-                <Skill>Ubuntu Linux</Skill>
+              <SkillSet title="Automated Testing">
+                <Skill>Drone CI</Skill>
+                <Skill>Jenkins CI</Skill>
+                <Skill>Travis CI</Skill>
+                <Skill>Jest</Skill>
+                <Skill>Jasmine</Skill>
+                <Skill>Nightwatch</Skill>
+                <Skill>Eslint</Skill>
+                <Skill>Sasslint</Skill>
+                <Skill>500+ Code Reviews</Skill>
               </SkillSet>
               <SkillSet title="Deprecated Skills">
                 <Skill>Vagrant</Skill>
@@ -119,6 +125,7 @@ export default function Resume(props) {
                 <Skill>Backbone</Skill>
                 <Skill>Handlebars</Skill>
                 <Skill>Haml</Skill>
+                <Skill>CoffeeScript</Skill>
               </SkillSet>
             </Skills>
           </div>
