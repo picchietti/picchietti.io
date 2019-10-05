@@ -14,7 +14,6 @@ import Timeline from './components/timeline';
 import { employmentHistory, yearsOfExperience } from './employment';
 import qrcode from './images/qrcode.svg';
 import profile from './images/profile2.png';
-import './contributions.json';
 import './greplytix-recommendation-online.pdf';
 import './index.css';
 
@@ -165,10 +164,11 @@ export default function Resume(props) {
           <div styleName="impacts">
             <div styleName="impact">
               <GrowthGraph
-                dataUrl="/other/contributions.json"
-                xLabel="Jan 2015 - Dec 2016"
-                accumulate={true}
-                title="Github Contributions" />
+                dataUrl="data/month/contributions"
+                xLabel="Last 30 days"
+                accumulate={false}
+                title="Github Contributions"
+                info="Does not include over 3000 contribution to private Github Enterprise" />
             </div>
             <div styleName="impact">
               <GrowthGraph

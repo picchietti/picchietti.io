@@ -103,7 +103,7 @@ function GrowthGraph(props) {
         .attr('transform', `translate(0,${height})`)
         .call(xAxis);
 
-      svg.append('text')
+      xLabel && svg.append('text')
         .attr('text-anchor', 'middle')
         .attr('transform', `translate(${width / 2},${height + margin.top + 5})`)
         .text(xLabel);
