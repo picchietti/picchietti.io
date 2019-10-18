@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconSlider } from '@picchietti/components';
 
 import GrowthGraph from '../../components/graphs/growth';
 import Picture from '../../components/picture';
-import GitSocial from '../../components/GitSocial';
 import Projects from './components/projects';
 import Project from './components/projects/project';
 import Skills from './components/skills';
@@ -56,7 +56,12 @@ export default function Resume(props) {
                     St. Charles, MO
                   </a>
                 </div>
-                <GitSocial />
+                <IconSlider
+                  onIcon={ ['fab', 'gitlab'] }
+                  offIcon={ ['fab', 'github'] }
+                  onText={ <a href="https://gitlab.com/picchietti" target="_blank" rel="noopener noreferrer">Gitlab</a> }
+                  offText={ <a href="https://github.com/picchietti" target="_blank" rel="noopener noreferrer">Github</a> }
+                />
                 <div>
                   <a href="https://www.linkedin.com/in/picchietti/" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={ ['fab', 'linkedin'] } />
