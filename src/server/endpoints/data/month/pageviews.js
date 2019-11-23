@@ -2,51 +2,30 @@ const moment = require('moment');
 const mongo = require('../../../mongodb.js');
 
 module.exports = (req, res) => {
-  const thirtyDaysAgo = moment().subtract(30, 'days').toDate();
+  // we dont have data for today so +1
+  const dataStartDate = moment().subtract(30 + 1, 'days').toDate();
 
-  const results = {
-    one: null, // the prev total
-    two: null // 30 most recent records
-  };
-
-  function queriesComplete() {
-    for(let i = 0, y = results.two.length; i < y; i++) {
-      results.one += results.two[i].count;
-      results.two[i].count = results.one;
-      results.two[i].date = moment(results.two[i].date).format('YYYY-MM-DD');
-    }
-
-    res.json(results.two);
-  }
-
-  mongo.getDb().then((db) => {
-    const setResults = (result, value) => {
-      results[result] = value;
-
-      if(!!results.one && !!results.two)
-        queriesComplete();
-    };
-
-    // get the total of every record before the most recent thirty days
+  const previousTotalPromise = mongo.getDb().then((db) => (
     db.collection('impact_analytics').aggregate([
       {
-        $match: { ymd: { $lt: thirtyDaysAgo } }
+        $match: { ymd: { $lt: dataStartDate } }
       },
       {
         $group: { _id: null, pageviews: { $sum: '$pageviews' } }
       }
-    ]).toArray().then((rows) => {
-      setResults('one', rows[0].pageviews);
-    });
+    ]).toArray().then((rows) => (
+      rows[0].pageviews
+    ))
+  ));
 
-    // get the 30 most recent records
+  const recentDataPromise = mongo.getDb().then((db) => (
     db.collection('impact_analytics').aggregate([
       {
-        $match: { ymd: { $gte: thirtyDaysAgo } }
+        $match: { ymd: { $gte: dataStartDate } }
       },
       {
         $group: {
-          _id: '$ymd',
+          _id: { $dateToString: { format: '%Y-%m-%d', date: '$ymd' } },
           count: { $sum: '$pageviews' },
           date: { $first: '$ymd' }
         }
@@ -54,8 +33,20 @@ module.exports = (req, res) => {
       {
         $sort: { date: 1 }
       }
-    ]).toArray().then((rows) => {
-      setResults('two', rows);
+    ]).toArray().then((rows) => (
+      rows
+    ))
+  ));
+
+  Promise.all([previousTotalPromise, recentDataPromise]).then(([previousTotal, recentData]) => {
+    let total = previousTotal;
+
+    recentData.forEach((contribution) => {
+      total += contribution.count;
+      contribution.count = total;
+      contribution.date = moment(contribution.date).format('YYYY-MM-DD');
     });
+
+    res.json(recentData);
   });
 };
