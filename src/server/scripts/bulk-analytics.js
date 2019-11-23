@@ -21,7 +21,7 @@ mongo.getDb().then((db) => {
 
     doAll: function() {
       if(!Analytics.todo.length) {
-        db.end();
+        db.close();
         return;
       }
 
