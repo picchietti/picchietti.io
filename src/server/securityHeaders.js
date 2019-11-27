@@ -1,8 +1,7 @@
-const helmet = require('helmet');
+const helmet = require('koa-helmet');
 
 const setSecurityHeaders = (app) => {
   app.use(helmet.frameguard({ action: 'deny' }));
-  app.use(helmet.hidePoweredBy());
   app.use(helmet.xssFilter());
   app.use(helmet.noSniff());
   app.use(helmet.contentSecurityPolicy({
@@ -21,7 +20,6 @@ const setSecurityHeaders = (app) => {
     app.use(helmet.hsts({
       // Must be at least 1 year for preload
       maxAge: 31536000,
-
       // Must be enabled for preload
       includeSubDomains: true,
       preload: true

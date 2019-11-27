@@ -1,7 +1,7 @@
 const moment = require('moment');
 const mongo = require('../../../mongodb.js');
 
-module.exports = (req, res) => {
+module.exports = (ctx, next) => {
   // we dont have data for today so +1
   const dataStartDate = moment().subtract(30 + 1, 'days').toDate();
 
@@ -38,7 +38,7 @@ module.exports = (req, res) => {
     ))
   ));
 
-  Promise.all([previousTotalPromise, recentDataPromise]).then(([previousTotal, recentData]) => {
+  return Promise.all([previousTotalPromise, recentDataPromise]).then(([previousTotal, recentData]) => {
     let total = previousTotal;
 
     recentData.forEach((contribution) => {
@@ -47,6 +47,6 @@ module.exports = (req, res) => {
       contribution.date = moment(contribution.date).format('YYYY-MM-DD');
     });
 
-    res.json(recentData);
+    ctx.body = recentData;
   });
 };

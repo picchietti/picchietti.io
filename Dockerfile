@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:13
 
 # Available to other docker containers
 EXPOSE 80 443

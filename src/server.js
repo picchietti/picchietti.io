@@ -1,15 +1,23 @@
 const fs = require('fs');
-const express = require('express');
-const spdy = require('spdy');
-const app = require('./server/app.js');
+const http = require('http');
+const http2 = require('http2');
+const app = require('./server/koa.js');
 
 const privateKey = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/fullchain.pem', 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-spdy.createServer(credentials, app).listen(443); // https + http2
-
-const http = express();
-http.get('*', function(req, res) {
-  res.redirect(`https://${req.headers.host}${req.url}`);
+const options = {
+  key: privateKey,
+  cert: certificate,
+  allowHTTP1: true
+};
+const port = 443;
+http2.createSecureServer(options, app.callback()).listen(port, () => {
+  console.log(`node koa server running on port ${port}`);
 });
-http.listen(80);
+
+// redirect http to https
+http.createServer(function(req, res) {
+  res
+    .writeHead(302, { Location: `https://${req.headers.host}${req.url}` })
+    .end();
+}).listen(80);

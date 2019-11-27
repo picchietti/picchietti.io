@@ -1,7 +1,7 @@
 const moment = require('moment');
 const mongo = require('../../../mongodb.js');
 
-module.exports = (req, res) => {
+module.exports = (ctx, next) => {
   const thirtyDaysAgo = moment().subtract(30, 'days').toDate();
   const today = moment().toDate();
 
@@ -36,7 +36,7 @@ module.exports = (req, res) => {
     });
   });
 
-  Promise.all([preThirtyTotalPromise, lastThirtyPromise]).then(([preThirtyTotal, lastThirty]) => {
+  return Promise.all([preThirtyTotalPromise, lastThirtyPromise]).then(([preThirtyTotal, lastThirty]) => {
     let total = preThirtyTotal;
 
     lastThirty.forEach((contribution) => {
@@ -45,6 +45,6 @@ module.exports = (req, res) => {
       contribution.date = moment(contribution.date).format('YYYY-MM-DD');
     });
 
-    res.json(lastThirty);
+    ctx.body = lastThirty;
   });
 };

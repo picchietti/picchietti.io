@@ -8,3 +8,4 @@ src/cron/logs/*.log
 .env
 stats.json
 coverage/
+.git/
