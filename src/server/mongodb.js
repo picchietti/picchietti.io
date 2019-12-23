@@ -16,7 +16,8 @@ const options = {
   sslCA: [caCert],
   sslCert: fullCert,
   sslKey: fullCert,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  checkServerIdentity: process.env.NODE_ENV !== 'development'
 };
 
 const dbClient = new Promise(function(fulfill, reject) {
