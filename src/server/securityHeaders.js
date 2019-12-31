@@ -1,4 +1,4 @@
-const helmet = require('koa-helmet');
+import helmet from 'koa-helmet';
 
 const setSecurityHeaders = (app) => {
   app.use(helmet.frameguard({ action: 'deny' }));
@@ -27,4 +27,4 @@ const setSecurityHeaders = (app) => {
   }
 };
 
-module.exports = setSecurityHeaders;
+export default setSecurityHeaders;

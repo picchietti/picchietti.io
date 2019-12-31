@@ -4,6 +4,7 @@
   "description": "Personal website",
   "author": "Jon Picchietti <jon@picchietti.email>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "eslint": "eslint src/ --ext .js",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
@@ -40,16 +41,34 @@
   },
   "devDependencies": {
     "@picchietti/build": "git+https://github.com/picchietti/build.git",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.7.0",
-    "eslint": "^4.13.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.15.0",
     "eslint-plugin-react": "^7.5.1",
     "imagemin-webp-webpack-plugin": "^3.2.1",
-    "jest": "^23.6.0",
+    "jest": "^24.9.0",
     "koa-webpack": "^5.2.4",
     "stylelint": "^9.9.0",
     "supertest": "^3.3.0",
     "yarn": "^1.10.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["<rootDir>/configs/jest/setup/enzyme.js"],
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/src/public/**/*.js"
+    ],
+    "coverageReporters": ["json", "lcov", "text"],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
+      }
+    }
   }
 }

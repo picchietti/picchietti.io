@@ -1,9 +1,10 @@
-const google = require('googleapis');
-const analytics = google.analytics('v3');
-const moment = require('moment');
-const key = require('../../../secret/resume-stats-a8a939419e3a.json'); // eslint-disable-line import/no-unresolved
-const mongo = require('../../../server/mongodb.js');
+import google from 'googleapis';
+import moment from 'moment';
 
+import key from '../../../secret/resume-stats-a8a939419e3a.json';
+import mongo from '../../../server/mongodb.js';
+
+const analytics = google.analytics('v3');
 const jwtClient = new google.auth.JWT(
   key.client_email,
   null,

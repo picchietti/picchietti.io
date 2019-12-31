@@ -1,11 +1,15 @@
-const Koa = require('koa');
-const Router = require('koa-router');
-const serveStatic = require('koa-static');
-const jsonResponses = require('koa-json');
-const compress = require('koa-compress');
-const bodyParser = require('koa-body');
-const setSecurityHeaders = require('./securityHeaders.js');
-const setupRoutes = require('./routes.js');
+import Koa from 'koa';
+import Router from 'koa-router';
+import serveStatic from 'koa-static';
+import jsonResponses from 'koa-json';
+import compress from 'koa-compress';
+import bodyParser from 'koa-body';
+import webpack from 'webpack';
+import koaWebpack from 'koa-webpack';
+import devWebpackConfig from '@picchietti/build/webpack.dev.js';
+
+import setSecurityHeaders from './securityHeaders.js';
+import setupRoutes from './routes.js';
 
 const app = new Koa();
 
@@ -24,10 +28,6 @@ app.use(compress({
 }));
 
 if(process.env.NODE_ENV === 'development') {
-  const webpack = require('webpack');
-  const koaWebpack = require('koa-webpack');
-  const devWebpackConfig = require('@picchietti/build/webpack.dev.js');
-
   const koaWebpackPromise = koaWebpack({
     compiler: webpack(devWebpackConfig),
     devMiddleware: {
@@ -40,12 +40,13 @@ if(process.env.NODE_ENV === 'development') {
   koaWebpackPromise.then((middleware) => app.use(middleware));
 }
 
-// Routes
 const router = new Router();
 
+// endpoints
 setupRoutes(router);
 app.use(router.routes());
 
+// static files
 app.use(serveStatic('./dist/'));
 
-module.exports = app;
+export default app;

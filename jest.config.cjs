@@ -1,4 +1,6 @@
 module.exports = {
+  setupFilesAfterEnv: ['<rootDir>/configs/jest/setup/enzyme.js'],
+  verbose: true,
   testURL: 'http://localhost/',
   collectCoverage: true,
   collectCoverageFrom: [
@@ -12,6 +14,5 @@ module.exports = {
       lines: 0,
       statements: 0
     }
-  },
-  setupTestFrameworkScriptFile: '<rootDir>/configs/jest/setup/'
+  }
 };

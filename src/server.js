@@ -1,7 +1,8 @@
-const fs = require('fs');
-const http = require('http');
-const http2 = require('http2');
-const app = require('./server/koa.js');
+import fs from 'fs';
+import http from 'http';
+import http2 from 'http2';
+
+import app from './server/koa.js';
 
 const privateKey = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('./src/secret/letsencrypt/live/picchietti.io/fullchain.pem', 'utf8');

@@ -1,5 +1,5 @@
-const MongoClient = require('mongodb').MongoClient;
-const fs = require('fs');
+import MongoClient from 'mongodb';
+import fs from 'fs';
 
 const dbUser = process.env.MONGODB_USER;
 const dbPass = process.env.MONGODB_PASS;
@@ -36,7 +36,7 @@ const getConnection = () => (
   dbClient
 );
 
-module.exports = {
+export default {
   getConnection,
 
   getDb: () => (

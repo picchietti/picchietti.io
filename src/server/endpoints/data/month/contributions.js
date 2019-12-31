@@ -1,7 +1,8 @@
-const moment = require('moment');
-const mongo = require('../../../mongodb.js');
+import moment from 'moment';
 
-module.exports = (ctx, next) => {
+import mongo from '../../../mongodb.js';
+
+export default (ctx, next) => {
   const thirtyDaysAgo = moment().subtract(30, 'days').toDate();
   const today = moment().toDate();
 

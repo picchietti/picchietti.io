@@ -1,8 +1,8 @@
-const moment = require('moment');
-const cheerio = require('cheerio');
-const axios = require('axios');
+import moment from 'moment';
+import cheerio from 'cheerio';
+import axios from 'axios';
 
-const mongo = require('../../../server/mongodb.js');
+import mongo from '../../../server/mongodb.js';
 
 const since = 2012;
 const user = 'picchietti';
