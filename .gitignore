@@ -9,3 +9,4 @@ src/cron/logs/*.log
 stats.json
 coverage/
 .git/
+package-lock.json

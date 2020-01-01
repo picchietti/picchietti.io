@@ -6,9 +6,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "integrity": "yarn check --integrity",
     "eslint": "eslint src/ --ext .js",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
-    "test": "yarn eslint && yarn stylelint && yarn jest",
+    "test": "yarn integrity && yarn eslint && yarn stylelint && yarn jest",
     "build": "webpack --config node_modules/@picchietti/build/webpack.prod.js",
     "build:dev": "webpack --config node_modules/@picchietti/build/webpack.dev.js",
     "watch": "yarn build:dev --watch",
