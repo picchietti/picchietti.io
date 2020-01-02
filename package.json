@@ -36,6 +36,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.0.0",
     "seedrandom": "^3.0.0",
     "url": "^0.11.0"
@@ -55,14 +56,20 @@
     "yarn": "^1.10.1"
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/configs/jest/setup/enzyme.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/configs/jest/setup/enzyme.js"
+    ],
     "verbose": true,
     "testURL": "http://localhost/",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "<rootDir>/src/public/**/*.js"
     ],
-    "coverageReporters": ["json", "lcov", "text"],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 0,

@@ -7,9 +7,12 @@ import bodyParser from 'koa-body';
 import webpack from 'webpack';
 import koaWebpack from 'koa-webpack';
 import devWebpackConfig from '@picchietti/build/webpack.dev.js';
+import { createReadStream } from 'fs';
+import reactRouterConfig from 'react-router-config';
 
 import setSecurityHeaders from './securityHeaders.js';
-import setupRoutes from './routes.js';
+import setupEndpoints from './endpoints.js';
+import clientSideRoutes from '../routes.js';
 
 const app = new Koa();
 
@@ -40,13 +43,21 @@ if(process.env.NODE_ENV === 'development') {
   koaWebpackPromise.then((middleware) => app.use(middleware));
 }
 
+
+app.use(serveStatic('./dist/'));
+
 const router = new Router();
 
-// endpoints
-setupRoutes(router);
-app.use(router.routes());
+setupEndpoints(router);
 
-// static files
-app.use(serveStatic('./dist/'));
+router.get('*', async(ctx, next) => {
+  if(reactRouterConfig.matchRoutes(clientSideRoutes, ctx.path).length === 0) {
+    ctx.status = 404;
+  }
+  ctx.type = 'html';
+  ctx.body = createReadStream('./dist/index.html');
+});
+
+app.use(router.routes());
 
 export default app;
