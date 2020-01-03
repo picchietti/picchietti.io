@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { omit } from 'lodash-es';
 import PropTypes from 'prop-types';
+import { Loading } from '@picchietti/components';
 
-import Loading from '../loading';
 import './index.css';
 
 function Page(props) {
