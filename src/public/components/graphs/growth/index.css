@@ -7,18 +7,13 @@
   width: 100%;
 }
 
-  .growth-overview-title {
+  .title {
     font-size: 0.95em;
     text-align: center;
   }
 
-  .growth-overview-total {
-    color: #000;
-    font-size: 2em;
-    position: absolute;
-    top: 20%;
-    left: 6%;
-    text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.5);
+  .details {
+    font-size: 0.8em;
   }
 
   .axis path,
@@ -37,4 +32,18 @@
   .area {
     fill: #e1f5fe;
     stroke-width: 0;
+  }
+
+  .focus {
+    fill: none;
+    pointer-events: all;
+  }
+
+  .focus:hover + .circle,
+  .circle:hover {
+    fill: #1e88e5;
+  }
+
+  .circle {
+    fill: none;
   }

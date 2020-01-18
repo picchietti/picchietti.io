@@ -1,13 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { throttle } from 'lodash-es';
 
 import styles from './index.css';
 
 function GrowthGraph(props) {
   const { title, info } = props;
   const container = useRef(null);
+  const [details, setDetails] = useState();
+  let total;
 
   useEffect(() => {
     build();
@@ -19,8 +22,11 @@ function GrowthGraph(props) {
     if(num >= 1000000)
       abbr = `${(num / 1000000).toFixed(1)}m`;
 
-    else if(num >= 1000)
+    else if(num >= 10000)
       abbr = `${(num / 1000 | 0)}k`;
+
+    else if(num > 999)
+      abbr = num.toLocaleString();
 
     else
       abbr = num;
@@ -37,12 +43,13 @@ function GrowthGraph(props) {
     const margin = { top: 10, right: 0, bottom: 20, left: 0 };
     const width = 175;
     const totalWidth = width + margin.right + margin.left;
-    const height = 100;
+    const height = 80;
     const totalHeight = height + margin.top + margin.bottom;
     const alignFit = 'xMidYMid meet';
     const xYWidthHeight = `0 0 ${totalWidth} ${totalHeight}`;
 
-    const formatDate = d3.timeParse('%Y-%m-%d');
+    const parseDate = d3.timeParse('%Y-%m-%d');
+    const bisectDate = d3.bisector((d) => d.date).left;
 
     const x = d3.scaleTime().range([0, width]);
     const y = d3.scaleLinear().range([height, 0]);
@@ -77,19 +84,19 @@ function GrowthGraph(props) {
       if (error) throw error;
 
       let runningTotal = 0;
-      for (let i = 0, j = data.length; i < j; i++) {
-        data[i].date = formatDate(data[i].date);
+      data.forEach((datum) => {
+        datum.date = parseDate(datum.date);
+
         if(accumulate)
-          data[i].count = runningTotal += data[i].count;
-      }
+          datum.count = runningTotal += datum.count;
+      });
 
       if(!accumulate && data.length) {
         runningTotal = data[data.length - 1].count;
       }
 
-      selectedContainer.append('span')
-        .attr('class', styles['growth-overview-total'])
-        .text(abbreviate(runningTotal));
+      total = `${abbreviate(runningTotal)} total`;
+      setDetails(total);
 
       x.domain(d3.extent(data, function(d) {
         return d.date;
@@ -121,17 +128,55 @@ function GrowthGraph(props) {
         .datum(data)
         .attr('class', styles.line)
         .attr('d', line);
+
+      svg.append('rect')
+        .attr('class', styles.focus)
+        .attr('width', width)
+        .attr('height', height);
+
+      svg.append('circle')
+        .attr('class', styles.circle)
+        .attr('r', 4);
+
+      function mousemove(mouseX) {
+        const x0 = x.invert(mouseX);
+        const i = bisectDate(data, x0, 1);
+        const d0 = data[i - 1];
+        const d1 = data[i];
+        const d = (x0 - d0.date > d1.date - x0) ? d1 : d0;
+
+        const dCount = d.count.toLocaleString();
+        const formatDate = d3.timeFormat('%Y-%m-%d');
+        const dDate = formatDate(d.date);
+
+        setDetails(`${dCount} on ${dDate}`);
+        svg.select(`.${styles.circle}`)
+          .attr('transform', `translate(${x(d.date)},${y(d.count)})`);
+      }
+      const rateLimitedMouseMove = throttle(mousemove, 10);
+
+      svg
+        .on('mouseout', () => {
+          setDetails(total);
+        })
+        .on('mousemove', function() {
+          const mouseX = d3.mouse(this)[0];
+          rateLimitedMouseMove(mouseX);
+        });
     });
   }
 
   return (
     <div styleName="growth-overview">
       { title &&
-        <div styleName="growth-overview-title">
+        <div styleName="title">
           {title}
           {(info) ? <span>&nbsp;<FontAwesomeIcon icon="info-circle" title={info} /></span> : ''}
         </div>
       }
+      <div styleName="details">
+        { details }
+      </div>
       <div ref={container}></div>
     </div>
   );
