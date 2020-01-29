@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-import credentials from '../../../secret/cloudflare';
+import credentials from '../../../secret/cloudflare.js';
 import mongo from '../../../server/mongodb.js';
 
 const cloudflareRequest = axios.create({
