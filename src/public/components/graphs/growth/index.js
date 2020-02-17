@@ -37,7 +37,6 @@ function GrowthGraph(props) {
   function build() { // eslint-disable-line max-statements
     const selectedContainer = d3.select(container.current);
     const dataUrl = props.dataUrl;
-    const xLabel = props.xLabel;
     const accumulate = props.accumulate;
 
     const margin = { top: 10, right: 0, bottom: 20, left: 0 };
@@ -110,10 +109,10 @@ function GrowthGraph(props) {
         .attr('transform', `translate(0,${height})`)
         .call(xAxis);
 
-      xLabel && svg.append('text')
+      svg.append('text')
         .attr('text-anchor', 'middle')
         .attr('transform', `translate(${width / 2},${height + margin.top + 5})`)
-        .text(xLabel);
+        .text(`Last ${data.length} ${props.xUnit}`);
 
       svg.append('g')
         .attr('class', `y ${styles.axis}`)
@@ -194,7 +193,7 @@ function GrowthGraph(props) {
 
 GrowthGraph.propTypes = {
   dataUrl: PropTypes.string.isRequired, // where to fetch graph data
-  xLabel: PropTypes.string.isRequired,
+  xUnit: PropTypes.string.isRequired, // what the data on the x-axis represents
   // You want the data to accumulate to show the growth. Set to false if data is already accumulated.
   accumulate: PropTypes.bool.isRequired,
   title: PropTypes.string,

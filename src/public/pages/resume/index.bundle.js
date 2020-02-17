@@ -170,7 +170,7 @@ export default function Resume(props) {
             <div styleName="impact">
               <GrowthGraph
                 dataUrl="data/month/contributions"
-                xLabel="Last 30 days"
+                xUnit="days"
                 accumulate={false}
                 title="Github Contributions"
                 info="Does not include over 3000 contribution to private Github Enterprise" />
@@ -178,7 +178,7 @@ export default function Resume(props) {
             <div styleName="impact">
               <GrowthGraph
                 dataUrl="data/month/users"
-                xLabel="Last 30 days"
+                xUnit="days"
                 accumulate={false}
                 title="Websites User Audience"
                 info="Data from a subset of the websites I've worked on." />
@@ -186,7 +186,7 @@ export default function Resume(props) {
             <div styleName="impact">
               <GrowthGraph
                 dataUrl="data/month/pageviews"
-                xLabel="Last 30 days"
+                xUnit="days"
                 accumulate={false}
                 title="Websites Webpage Views"
                 info="Data from a subset of the websites I've worked on." />
