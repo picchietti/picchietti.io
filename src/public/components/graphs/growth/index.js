@@ -138,7 +138,7 @@ function GrowthGraph(props) {
         .attr('class', styles.circle)
         .attr('r', 4);
 
-      function mousemove(mouseX) {
+      function showDatum(mouseX) {
         const x0 = x.invert(mouseX);
         const i = bisectDate(data, x0, 1);
         const d0 = data[i - 1];
@@ -153,15 +153,25 @@ function GrowthGraph(props) {
         svg.select(`.${styles.circle}`)
           .attr('transform', `translate(${x(d.date)},${y(d.count)})`);
       }
-      const rateLimitedMouseMove = throttle(mousemove, 10);
+      const rateLimitedShowDatum = throttle(showDatum, 10);
 
       svg
-        .on('mouseout', () => {
-          setDetails(total);
-        })
-        .on('mousemove', function() {
+        .on('mouseover touchstart', function() {
           const mouseX = d3.mouse(this)[0];
-          rateLimitedMouseMove(mouseX);
+          showDatum(mouseX);
+          svg.select(`.${styles.circle}`)
+            .classed(styles.fill, true);
+        })
+        .on('mouseout touchend touchcancel', () => {
+          setDetails(total);
+          svg.select(`.${styles.circle}`)
+            .classed(styles.fill, false);
+        })
+        .on('mousemove touchmove', function() {
+          const mouseX = d3.mouse(this)[0];
+          if(mouseX > 0 && mouseX < width) {
+            rateLimitedShowDatum(mouseX);
+          }
         });
     });
   }

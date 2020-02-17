@@ -39,8 +39,7 @@
     pointer-events: all;
   }
 
-  .focus:hover + .circle,
-  .circle:hover {
+  .circle.fill {
     fill: #1e88e5;
   }
 
