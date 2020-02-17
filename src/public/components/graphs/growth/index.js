@@ -128,7 +128,7 @@ function GrowthGraph(props) {
         .attr('class', styles.line)
         .attr('d', line);
 
-      svg.append('rect')
+      const focus = svg.append('rect')
         .attr('class', styles.focus)
         .attr('width', width)
         .attr('height', height);
@@ -154,7 +154,7 @@ function GrowthGraph(props) {
       }
       const rateLimitedShowDatum = throttle(showDatum, 10);
 
-      svg
+      focus
         .on('mouseover touchstart', function() {
           const mouseX = d3.mouse(this)[0];
           showDatum(mouseX);
