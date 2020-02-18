@@ -156,17 +156,20 @@ function GrowthGraph(props) {
 
       focus
         .on('mouseover touchstart', function() {
+          d3.event.preventDefault();
           const mouseX = d3.mouse(this)[0];
           showDatum(mouseX);
           svg.select(`.${styles.circle}`)
             .classed(styles.fill, true);
         })
         .on('mouseout touchend touchcancel', () => {
+          d3.event.preventDefault();
           setDetails(total);
           svg.select(`.${styles.circle}`)
             .classed(styles.fill, false);
         })
         .on('mousemove touchmove', function() {
+          d3.event.preventDefault();
           const mouseX = d3.mouse(this)[0];
           if(mouseX > 0 && mouseX < width) {
             rateLimitedShowDatum(mouseX);
