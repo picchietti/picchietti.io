@@ -1,4 +1,8 @@
+
 .timeline {
+  --feature-color: #ffd600;
+  --feature-color-light: #ffef9c;
+
   border-left: 2px solid gray;
   margin-bottom: 10px;
   margin-left: 50px;
@@ -8,7 +12,7 @@
 
   .point {
     margin-bottom: 10px;
-    padding-left: 35px;
+    padding-left: 32px;
     position: relative;
   }
 
@@ -20,13 +24,12 @@
       cursor: default;
     }
 
-      .when :global(.fa-circle).background {
+      .when .background {
         color: #fff;
         font-size: 1em;
       }
 
-      .when :global(.fa-circle).foreground,
-      .when :global(.fa-star).foreground {
+      .when .foreground {
         color: #ddd;
         font-size: 0.7em;
       }
@@ -46,7 +49,7 @@
 
     .what {
       position: relative;
-      background-color: #eee;
+      border: 4px solid #ddd;
       padding: 10px;
     }
 
@@ -54,14 +57,26 @@
         position: absolute;
         top: 50%;
         right: 100%;
-        color: #eee;
+        color: #ddd;
         font-size: 30px;
         margin-top: -15px;
-        margin-right: -1px;
+        margin-right: 2px;
       }
 
   .point:last-child {
     margin-bottom: 0;
+  }
+
+  .featured .what {
+    border-color: var(--feature-color-light);
+  }
+
+  .featured .when .foreground {
+    color: var(--feature-color);
+  }
+
+  .featured :global(.fa-caret-left) {
+    color: var(--feature-color-light);
   }
 
 /* small devices */

@@ -20,17 +20,17 @@ function Point(props) {
   const shortDateRange = getShortDateRange();
   const longDateRange = getLongDateRange();
   const icon = (props.isFeatured) ? 'star' : 'circle';
-  const iconClass = (props.isFeatured) ? 'featured' : '';
+  const baseClass = (props.isFeatured) ? 'point featured' : 'point';
 
   const bullets = props.bullets.map((bullet, i) => (
     <li key={i}>{bullet}</li>
   ));
 
   return (
-    <div styleName="point">
+    <div styleName={ baseClass }>
       <div styleName="when" className="fa-layers fa-2x" title={longDateRange}>
         <FontAwesomeIcon icon="circle" styleName="background" />
-        <FontAwesomeIcon icon={ icon } styleName="foreground" className={iconClass} />
+        <FontAwesomeIcon icon={ icon } styleName="foreground" />
         <span styleName="year">{shortDateRange}</span>
       </div>
       <div styleName="what">
