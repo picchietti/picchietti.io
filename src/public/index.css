@@ -139,7 +139,7 @@ ul,
 
 a :global(.svg-inline--fa),
 :global(.link .svg-inline--fa) {
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 :global(.wrap-centered) {

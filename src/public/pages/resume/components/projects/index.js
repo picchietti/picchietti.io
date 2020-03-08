@@ -38,7 +38,7 @@ function Projects(props) {
           tabIndex="-1"
         >
           <button>
-            <FontAwesomeIcon icon={ ['fab', 'github'] } /> More on Github
+            <FontAwesomeIcon icon={ ['fab', 'github'] } />More on Github
           </button>
         </a>
       </div>
