@@ -19,18 +19,22 @@
   .axis path,
   .axis line {
     fill: none;
-    stroke: #000;
+    stroke: var(--darkest);
     shape-rendering: crispEdges;
   }
 
   .line {
     fill: none;
-    stroke: #64b5f6;
+    stroke: var(--primary3);
     stroke-width: 2.5px;
   }
 
+  .text {
+    fill: var(--darkest);
+  }
+
   .area {
-    fill: #e1f5fe;
+    fill: var(--primary0);
     stroke-width: 0;
   }
 
@@ -40,7 +44,7 @@
   }
 
   .circle.fill {
-    fill: #1e88e5;
+    fill: var(--primary6);
   }
 
   .circle {

@@ -3,7 +3,7 @@
 }
 
   .skill {
-    background-color: #eee;
+    background-color: var(--light);
     padding: 6px 9px;
     margin: 2px;
     font-size: 13px;

@@ -4,12 +4,7 @@
 }
 
   .resume :global(.featured) {
-    color: #ffd600 !important;
-  }
-
-  .resume a:hover,
-  .resume a:focus {
-    text-decoration: underline;
+    color: var(--highlight-dark) !important;
   }
 
   .header {
@@ -103,12 +98,12 @@
 
 @media print {
   body {
-    background: #fff;
+    background: var(--lightest);
     height: auto;
   }
 
   a {
-    color: #000;
+    color: var(--darkest);
   }
 
   .resume {

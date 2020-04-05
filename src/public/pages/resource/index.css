@@ -1,16 +1,16 @@
 .resource {
 }
 
-  .back {
-    padding: 10px;
-    background-color: #bdbdbd;
-    cursor: pointer;
-    color: #000;
-    margin-bottom: 10px;
+  .resource a {
+    text-decoration: none;
   }
 
-  .back:hover {
-    background-color: #e0e0e0;
+  .back {
+    padding: 10px;
+    background-color: var(--interactive-light);
+    cursor: pointer;
+    color: var(--darkest);
+    margin-bottom: 10px;
   }
 
   .item {

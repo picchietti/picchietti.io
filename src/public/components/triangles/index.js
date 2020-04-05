@@ -8,6 +8,7 @@ import './index.css';
 function Triangles(props) {
   const canvas = useRef(null);
   let context;
+  let isDarkMode = false;
 
   function draw(triangles) {
     const drawTriangle = (triangle, i) => {
@@ -23,7 +24,8 @@ function Triangles(props) {
     triangles.forEach(drawTriangle);
   }
 
-  function generate(howMany) { // eslint-disable-line max-statements
+  // eslint-disable-next-line max-statements
+  function generate(howMany) {
     const size = props.size;
     const halfSize = size / 2;
     const triangles = [];
@@ -33,8 +35,10 @@ function Triangles(props) {
 
     for(let i = 0; i <= howMany; i++) {
       const randomForColor = seedRandom(`${i}${props.seed}`);
-      const color1 = Math.floor(randomForColor() * (250 - 215) + 215);
-      const color2 = Math.floor(randomForColor() * (250 - 215) + 215);
+      const colorRangeHigh = (isDarkMode) ? 80 : 250;
+      const colorRangeLow = colorRangeHigh - 35;
+      const color1 = Math.floor(randomForColor() * (colorRangeHigh - colorRangeLow) + colorRangeLow);
+      const color2 = Math.floor(randomForColor() * (colorRangeHigh - colorRangeLow) + colorRangeLow);
       const rgb1 = `rgb(${color1}, ${color1}, ${color1})`;
       const rgb2 = `rgb(${color2}, ${color2}, ${color2})`;
 
@@ -109,14 +113,31 @@ function Triangles(props) {
   const limitedFillCanvas = debounce(() => fill(), 200);
 
   useEffect(() => {
-    context = canvas.current.getContext('2d');
-    fill();
     window.addEventListener('resize', limitedFillCanvas, false);
 
     return () => {
       window.removeEventListener('resize', limitedFillCanvas, false);
     };
-  });
+  }, []);
+
+  useEffect(() => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+    isDarkMode = prefersDarkMode.matches;
+
+    context = canvas.current.getContext('2d');
+    fill();
+
+    function darkModePreferenceChanged(e) {
+      isDarkMode = e.matches;
+      fill();
+    }
+
+    prefersDarkMode.addListener(darkModePreferenceChanged);
+
+    return () => {
+      prefersDarkMode.removeListener(darkModePreferenceChanged);
+    };
+  }, []);
 
   return (
     <div styleName="triangles" className="no-print">

@@ -110,6 +110,7 @@ function GrowthGraph(props) {
         .call(xAxis);
 
       svg.append('text')
+        .attr('class', styles.text)
         .attr('text-anchor', 'middle')
         .attr('transform', `translate(${width / 2},${height + margin.top + 5})`)
         .text(`Last ${data.length} ${props.xUnit}`);

@@ -2,6 +2,41 @@
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,section,summary,time,mark,audio,video,main{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
 /* stylelint-enable */
 
+:root {
+  --shadow: #aaa;
+  --disabled: #bcd;
+  --interactive: #216dfb;
+  --interactive-light: #bad2ff;
+  --highlight-dark: #ffd600;
+  --highlight-light: #ffef9c;
+  --primary0: #e3f2fd;
+  --primary3: #64b5f6;
+  --primary6: #1e88e5;
+  --darkest: #222;
+  --darker: #37474f;
+  --dark: #455a64;
+  --light: #dbdee1;
+  --lighter: #eff0f2;
+  --lightest: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shadow: #666;
+    --interactive: #bad2ff;
+    --interactive-light: #216dfb;
+    --highlight-dark: #ffef9c;
+    --primary0: #1e88e5;
+    --primary6: #e3f2fd;
+    --darkest: #fff;
+    --darker: #eff0f2;
+    --dark: #dbdee1;
+    --light: #455a64;
+    --lighter: #37474f;
+    --lightest: #222;
+  }
+}
+
 /* Include padding in width */
 *,
 *::before,
@@ -35,23 +70,23 @@ input[type="password"] {
   color: rgb(77, 77, 77);
   font-size: 16px;
   padding: 10px;
-  border: 1px solid #eee;
-  border-bottom: solid 2px #c9c9c9;
+  border: 1px solid var(--lighter);
+  border-bottom: solid 2px var(--light);
   transition: border 0.3s;
 }
 
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="password"]:focus {
-    border-bottom: solid 2px #969696;
+    border-bottom: solid 2px var(--dark);
   }
 
 input[type="button"],
 button {
-  border: 2px solid rgb(36, 121, 193);
+  border: 2px solid var(--interactive);
   border-radius: 4px;
-  background-color: #fff;
-  color: rgb(36, 121, 193);
+  background-color: var(--lightest);
+  color: var(--interactive);
   font-size: 14px;
   padding: 5px 10px;
   cursor: pointer;
@@ -61,16 +96,16 @@ button {
   button:hover,
   input[type="button"]:focus,
   button:focus {
-    background-color: rgb(36, 121, 193);
-    color: #fff;
+    background-color: var(--interactive);
+    color: var(--lightest);
   }
 
   input[type="button"]:disabled,
   button:disabled {
     cursor: not-allowed;
-    background-color: #777;
-    border-color: #777;
-    color: #fff;
+    background-color: var(--disabled);
+    border-color: var(--disabled);
+    color: var(--lightest);
   }
 
 input,
@@ -80,8 +115,8 @@ textarea {
 }
 
 body {
-  color: #000;
-  background: #fff;
+  color: var(--darkest);
+  background: var(--lightest);
   font-family: 'Ubuntu', Arial, sans-serif !important;
   font-size: 14px;
   font-weight: 400;
@@ -113,10 +148,15 @@ p {
 
 a,
 :global(.link) {
-  color: #00f;
+  color: var(--interactive);
   text-decoration: none;
   cursor: pointer;
 }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
 
 :global(.super) {
   font-size: 12px;
@@ -139,7 +179,7 @@ ul,
 
 a :global(.svg-inline--fa),
 :global(.link .svg-inline--fa) {
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 :global(.wrap-centered) {
@@ -147,7 +187,7 @@ a :global(.svg-inline--fa),
   text-align: center;
 }
 
-:global(.svg-inline--fa) { color: #000; }
+:global(.svg-inline--fa) { color: var(--darkest); }
 
 :global(.on-print,
 .on-print-block,
