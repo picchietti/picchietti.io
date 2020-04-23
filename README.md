@@ -8,4 +8,4 @@ A few things to note about this repository:
 ### Remotes
 [Github](https://github.com/picchietti/picchietti.io) | [Gitlab](https://gitlab.com/picchietti/picchietti.io)
 ------ | ------
-[![Build Status](https://drone.picchietti.io:8443/api/badges/picchietti/picchietti.io/status.svg)](https://drone.picchietti.io:8443/picchietti/picchietti.io) | [![Build Status](https://drone.picchietti.io/api/badges/picchietti/picchietti.io/status.svg)](https://drone.picchietti.io/picchietti/picchietti.io)
+[![Build Status](https://drone.picchietti.io/api/badges/picchietti/picchietti.io/status.svg)](https://drone.picchietti.io/picchietti/picchietti.io) | [![Build Status](https://drone2.picchietti.io/api/badges/picchietti/picchietti.io/status.svg)](https://drone2.picchietti.io/picchietti/picchietti.io)
