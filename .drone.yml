@@ -3,7 +3,7 @@ name: default
 
 platform:
   os: linux
-  arch: arm
+  arch: amd64
 
 steps:
 - name: test
