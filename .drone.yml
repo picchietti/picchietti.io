@@ -9,5 +9,5 @@ steps:
 - name: test
   image: node:lts
   commands:
-    - npm install
+    - yarn install
     - npm test
