@@ -5,9 +5,25 @@ platform:
   os: linux
   arch: amd64
 
+clone:
+  depth: 1
+
 steps:
-- name: test
+- name: install
   image: node:lts
+  volumes:
+  - name: cache
+    path: /node_modules
   commands:
     - yarn install
+- name: test
+  image: node:lts
+  volumes:
+  - name: cache
+    path: /node_modules
+  commands:
     - npm test
+
+volumes:
+- name: cache
+  temp: {}
